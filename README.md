@@ -8,11 +8,12 @@ Placeholder
 - Feature 2
 - Feature 3
 
-### :camera: Foto
-
+### :camera: Dambord
 <div align="center"> 
   <img src="img1.png" alt="screenshot" />
 </div>
+
+### :camera: Foto
 <div align="center"> 
   <img src="https://placehold.co/600x400?text=Image+2" alt="screenshot" />
 </div>
