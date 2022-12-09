@@ -11,5 +11,8 @@ Placeholder
 ### :camera: Foto
 
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <img src="img1.jpg" alt="screenshot" />
+</div>
+<div align="center"> 
+  <img src="https://placehold.co/600x400?text=Image+2" alt="screenshot" />
 </div>
