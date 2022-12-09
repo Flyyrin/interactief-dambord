@@ -4,9 +4,9 @@
 Placeholder
 
 ### :dart: Onderdelen
-- Feature 1
-- Feature 2
-- Feature 3
+- local: Progamma van het dambord en de lokale website
+- server: Progamma van de server
+- website: Root van de website
 
 ### :camera: Dambord
 <div align="center"> 
