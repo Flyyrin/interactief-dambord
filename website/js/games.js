@@ -1,5 +1,6 @@
 const api_url = "http://flyyrin.pythonanywhere.com/";
 var current_apidata
+var refreshInterval
 
 const colors = {
     "red": "#fc4c4f",
@@ -13,9 +14,7 @@ async function getapi(url) {
     const response = await fetch(url);
     var apidata = await response.json();
     if (response) {
-        hideSpinner();
-        await loadData(apidata)
-        $(".footer").load("html/footer.html");
+        return apidata
     }
 }
   
@@ -23,9 +22,12 @@ function hideSpinner() {
     document.getElementById('spinner').style.display = 'none';
 } 
 
+function showSpinner() {
+    document.getElementById('spinner').style.display = 'block';
+} 
+
 async function loadData(data) {
     for (var i = 0; i < data.length; i++) {
-        console.log(data[i])
         await $.get('html/game-item.html', function (template) {
             template = template.replace("player1", data[i]["player1"]["name"])
             template = template.replace("player2", data[i]["player2"]["name"])
@@ -37,7 +39,6 @@ async function loadData(data) {
             }
             template = template.replace("cp1", colors[data[i]["player1"]["color"]])
             template = template.replace("cp2", colors[data[i]["player2"]["color"]])
-            console.log(data[i]["date"])
             template = template.replace("pt", timeSince(data[i]["date"]))
             
             $(".table").append(template);
@@ -70,7 +71,39 @@ function timeSince(date) {
     return Math.floor(seconds) + " seconds";
 }
 
+async function refreshFunction() {
+    data = await getapi(api_url)
+    if (JSON.stringify(data)!=JSON.stringify(current_apidata)) {
+        $(".footer").empty();
+        $(".table").empty();
+        showSpinner();
+        await loadData(data)
+        $(".footer").load("html/footer.html");
+        checkFooter()
+        hideSpinner();
+    } 
+    current_apidata = data
+}
+
+async function firstLoad() {
+    data = await getapi(api_url)
+    current_apidata = data
+    hideSpinner();
+    await loadData(data)
+    $(".footer").load("html/footer.html");
+    checkFooter()
+}
+
+function checkFooter() {
+    if ($("html").height() > $(window).height()) {
+        $(".footer").removeClass("fixed-bottom")
+    } else {
+        $(".footer").addClass("fixed-bottom")
+    }
+}
+
 window.onload = function() {
     $(".header").load("html/header.html");
-    getapi(api_url);
+    firstLoad()
+    refreshInterval = setInterval(refreshFunction, 3000);
 }

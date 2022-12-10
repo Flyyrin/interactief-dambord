@@ -1,0 +1,15 @@
+.blogs {
+    padding-top: 7rem;
+    padding-bottom: 5rem;
+}
+
+.btn {
+    background-color: #262626;
+    border-color: #262626;
+}
+
+.btn:hover {
+    background-color: #262626;
+    border-color: #262626;
+    color: #999;
+}

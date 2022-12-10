@@ -3,11 +3,51 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
     text-align: left;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: #fff;
 }
 
-.bg-image {
-    background-image: url(''); 
-    height: 100vh
+html,
+body {
+    height: 100%;
+    background-image: url('/website/img/bg.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #262626;
+    text-shadow: none;
+    background-color: #fff;
+    border: .05rem solid #fff;
+    }
+
+.cover-container {
+    max-width: 42em;
+}
+
+.cover {
+    padding: 0 1.5rem;
+}
+.cover .btn-lg {
+    padding: .75rem 1.25rem;
+    font-weight: 700;
+}
+
+.box-area {
+    /* border-radius: 30px;
+    padding: 35px;
+    background-color: #2626269f;
+    backdrop-filter: blur(10px); */
+    text-shadow: 0px 5px 15px #000000;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
