@@ -1,26 +1,25 @@
-.header-container {
-    max-width: 960px;
-}
-
-.header-container-items {
-    max-width: 500px !important;
-}
-
-.site-header {
-    background-color: rgba(0, 0, 0, .85);
+.navbar {
+    background-color: #262626;
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
 }
-.site-header a {
-    color: #999;
-    transition: ease-in-out color .15s;
+
+.navbar a {
+    color: #999 !important;
+    transition: ease-in-out color .15s !important;
+    margin-right: 3rem;
 }
-.site-header a:hover {
-    color: #fff;
-    text-decoration: none;
+
+.navbar a:hover {
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 svg {
-    width: 24px;
+    width: 40px;
     border-radius: 20%;
+}
+
+.navbar-toggler {
+    border: none;
 }

@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Shadows+Into+Light&display=swap');
+
+.table {
+    min-width: 300px;
+    margin-top: 6rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.col:nth-child(1) {
+    margin-left: 1rem;
+} 
+
+.col:nth-child(2) > h1 {
+    font-family: 'Shadows Into Light', cursive;
+    padding: 0;
+    margin: 0;
+} 
+
+.row {
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0px 5px 15px #000000;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.col {
+    max-width: 33%;
+    padding: 1rem;
+}
+
+.crown {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 2rem;
+    display: none;
+}
+
+.winner {
+    display: inline-block;
+}
+
+p, h1{
+    margin-bottom: 0;
+}
+
+.timeTag {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+    white-space: nowrap;
+    text-shadow: 0px 5px 15px #5e5e5e;
+    color: rgb(229, 229, 229);
+}
+
+.text-center {
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.spinner-border {
+    display: block;
+    position: fixed;
+    top: calc(50% - (58px / 2));  
+    right: calc(50% - (58px / 2));
+    color: #262626;
+}
