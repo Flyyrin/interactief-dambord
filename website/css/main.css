@@ -13,15 +13,6 @@ body {
     color: #fff;
 }
 
-html,
-body {
-    height: 100%;
-    background-image: url('/img/bg.jpg'); 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
