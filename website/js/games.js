@@ -1,4 +1,5 @@
 const api_url = "https://flyyrin.pythonanywhere.com/";
+const minimim_spinner_time = 1000
 var current_apidata
 var refreshInterval
 
@@ -78,6 +79,7 @@ async function refreshFunction() {
         $(".table").empty();
         showSpinner();
         await loadData(data)
+        await delay(3000)
         $(".footer").load("html/footer.html");
         checkFooter()
         hideSpinner();
@@ -88,8 +90,10 @@ async function refreshFunction() {
 async function firstLoad() {
     data = await getapi(api_url)
     current_apidata = data
+    await minDelay()
     hideSpinner();
     await loadData(data)
+    await minDelay()
     $(".footer").load("html/footer.html");
     checkFooter()
 }
@@ -101,6 +105,10 @@ function checkFooter() {
         $(".footer").addClass("fixed-bottom")
     }
 }
+
+function minDelay() {
+    return new Promise(resolve => setTimeout(resolve, minimim_spinner_time));
+}  
 
 window.onload = function() {
     $(".header").load("html/header.html");
