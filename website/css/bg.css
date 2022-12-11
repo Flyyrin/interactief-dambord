@@ -9,6 +9,10 @@ body {
     -o-animation: animatedBackground 40s linear infinite;
 }
 
+body {
+    background-color: #262626 !important;
+}
+
 @keyframes animatedBackground {
     0% { background-position: 0 0px; }
 	100% { background-position: -1920px -1130px; }
