@@ -1,9 +1,13 @@
+nav {
+    background-color: #262626 !important;
+}
+
 header {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .navbar {
-    background-color: #262626;
+    background-color: #262626 !important;
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
 }

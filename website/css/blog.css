@@ -4,12 +4,19 @@
 }
 
 .btn {
-    background-color: #262626;
+    background-color: #262626 !important;
     border-color: #262626;
 }
 
 .btn:hover {
-    background-color: #262626;
-    border-color: #262626;
-    color: #999;
+    background-color: #999 !important;
+    border-color: #999;
+}
+
+.btn:focus {
+    border: none;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
