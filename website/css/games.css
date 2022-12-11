@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Shadows+Into+Light&display=swap');
 
-.table {
+.table, .ptable {
     min-width: 300px;
     margin-top: 7rem;
     margin-bottom: 5rem;
@@ -73,4 +73,8 @@ p, h1{
     top: calc(50% - (58px / 2));  
     right: calc(50% - (58px / 2));
     color: #262626;
+}
+
+.invis {
+    visibility: hidden;
 }

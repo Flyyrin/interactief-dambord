@@ -1,5 +1,5 @@
 const api_url = "https://flyyrin.pythonanywhere.com/";
-const minimim_spinner_time = 1000
+const minimim_spinner_time = 3000
 var current_apidata
 var refreshInterval
 
@@ -20,11 +20,11 @@ async function getapi(url) {
 }
   
 function hideSpinner() {
-    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('placeholder').style.display = 'none';
 } 
 
 function showSpinner() {
-    document.getElementById('spinner').style.display = 'block';
+    document.getElementById('placeholder').style.display = 'block';
 } 
 
 async function loadData(data) {
@@ -75,25 +75,27 @@ function timeSince(date) {
 async function refreshFunction() {
     data = await getapi(api_url)
     if (JSON.stringify(data)!=JSON.stringify(current_apidata)) {
-        $(".footer").empty();
         $(".table").empty();
         showSpinner();
         await loadData(data)
-        await delay(3000)
-        $(".footer").load("html/footer.html");
         checkFooter()
         hideSpinner();
+        checkFooter()
     } 
     current_apidata = data
 }
 
 async function firstLoad() {
+    for (var i = 0; i < 6; i++) {
+        await $.get('html/placeholder-game-item.html', function (template) {  
+            $(".ptable").append(template);
+        })
+    }
     data = await getapi(api_url)
     current_apidata = data
     await minDelay()
     hideSpinner();
     await loadData(data)
-    await minDelay()
     $(".footer").load("html/footer.html");
     checkFooter()
 }
@@ -112,6 +114,8 @@ function minDelay() {
 
 window.onload = function() {
     $(".header").load("html/header.html");
+    $(".footer").load("html/footer.html");
+    checkFooter()
     firstLoad()
     refreshInterval = setInterval(refreshFunction, 3000);
 }
