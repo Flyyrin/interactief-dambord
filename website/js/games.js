@@ -1,4 +1,4 @@
-const api_url = "http://flyyrin.pythonanywhere.com/";
+const api_url = "https://flyyrin.pythonanywhere.com/";
 var current_apidata
 var refreshInterval
 
