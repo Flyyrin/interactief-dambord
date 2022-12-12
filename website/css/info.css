@@ -37,6 +37,11 @@ body {
   .carousel-caption {
     bottom: 3rem;
     z-index: 10;
+    text-shadow: 0px 5px 15px #575757;
+  }
+
+  .carousel-caption > button{
+    box-shadow: rgba(119, 119, 119, 0.35) 0px 5px 15px;
   }
   
   /* Declare heights because of positioning of img element */
