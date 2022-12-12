@@ -121,3 +121,7 @@ body {
 .btn:focus {
     border: none;
 }
+
+.about {
+    color: black;
+}
