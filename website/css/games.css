@@ -78,3 +78,8 @@ p, h1{
 .invis {
     visibility: hidden;
 }
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }

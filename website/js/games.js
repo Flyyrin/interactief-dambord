@@ -98,6 +98,7 @@ async function firstLoad() {
     await loadData(data)
     $(".footer").load("html/footer.html");
     checkFooter()
+    $('body').removeClass('stop-scrolling')
 }
 
 function checkFooter() {
@@ -113,6 +114,7 @@ function minDelay() {
 }  
 
 window.onload = function() {
+    $('body').addClass('stop-scrolling')
     $(".header").load("html/header.html");
     $(".footer").load("html/footer.html");
     checkFooter()
