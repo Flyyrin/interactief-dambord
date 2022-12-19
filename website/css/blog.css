@@ -13,10 +13,24 @@
     border-color: #999;
 }
 
-.btn:focus {
-    border: none;
-}
-
 .card {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.preview {
+    width: 100%;
+    height: 230px;
+}
+
+.invis {
+    visibility: hidden;
+}
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+
+.placeholder-background {
+    border-color: #26262600;
 }

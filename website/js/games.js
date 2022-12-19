@@ -1,4 +1,4 @@
-const api_url = "https://flyyrin.pythonanywhere.com/";
+const api_url = "https://flyyrin.pythonanywhere.com/games";
 const minimim_spinner_time = 3000
 var current_apidata
 var refreshInterval
@@ -86,7 +86,7 @@ async function refreshFunction() {
 }
 
 async function firstLoad() {
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 10; i++) {
         await $.get('html/placeholder-game-item.html', function (template) {  
             $(".ptable").append(template);
         })
@@ -94,8 +94,8 @@ async function firstLoad() {
     data = await getapi(api_url)
     current_apidata = data
     await minDelay()
-    hideSpinner();
     await loadData(data)
+    hideSpinner();
     $(".footer").load("html/footer.html");
     checkFooter()
     $('body').removeClass('stop-scrolling')

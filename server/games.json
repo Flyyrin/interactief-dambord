@@ -1,0 +1,14 @@
+[
+    {
+        "player1": {
+            "name": "BLOGGG Naam",
+            "color": "Voorbeeld Kleur"
+        },
+        "player2": {
+            "name": "Voorbeeld Naam",
+            "color": "Voorbeeld Kleur"
+        },
+        "winner": 1,
+        "date": 1670231294871
+    }
+]
