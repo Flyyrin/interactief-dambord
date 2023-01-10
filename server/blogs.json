@@ -1,14 +1,30 @@
 [
     {
-        "player1": {
-            "name": "Voorbeeld Naam",
-            "color": "Voorbeeld Kleur"
-        },
-        "player2": {
-            "name": "Voorbeeld Naam",
-            "color": "Voorbeeld Kleur"
-        },
-        "winner": 1,
-        "date": 1670231294871
+        "title": "Test Titel",
+        "name": "Rafael Lemmen",
+        "imgurl": "https://picsum.photos/600/400",
+        "date": 1670231294871,
+        "content": "test content"
+    },
+    {
+        "title": "Test Titel",
+        "name": "Rafael Lemmen",
+        "imgurl": "https://picsum.photos/600/400",
+        "date": 1670231294871,
+        "content": "test content"
+    },
+    {
+        "title": "Test Tite4",
+        "name": "Rafael Lemmen",
+        "imgurl": "https://picsum.photos/600/400",
+        "date": 1670231294871,
+        "content": "test content4"
+    },
+    {
+        "title": "Test 3",
+        "name": "Rafael Lemmen",
+        "imgurl": "https://picsum.photos/600/400",
+        "date": 1670231294871,
+        "content": "test content3"
     }
 ]

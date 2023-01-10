@@ -1,14 +1,74 @@
 [
     {
         "player1": {
-            "name": "BLOGGG Naam",
-            "color": "Voorbeeld Kleur"
+            "name": "Rafael",
+            "color": "green"
         },
         "player2": {
-            "name": "Voorbeeld Naam",
-            "color": "Voorbeeld Kleur"
+            "name": "Romeo",
+            "color": "red"
         },
-        "winner": 1,
+        "winner": 2,
+        "date": 1670231294871
+    },
+    {
+        "player1": {
+            "name": "Rafael",
+            "color": "green"
+        },
+        "player2": {
+            "name": "Romeo",
+            "color": "red"
+        },
+        "winner": 2,
+        "date": 1670231294871
+    },
+    {
+        "player1": {
+            "name": "Rafael",
+            "color": "green"
+        },
+        "player2": {
+            "name": "Romeo",
+            "color": "red"
+        },
+        "winner": 2,
+        "date": 1670231294871
+    },
+    {
+        "player1": {
+            "name": "Rafael",
+            "color": "green"
+        },
+        "player2": {
+            "name": "Romeo",
+            "color": "red"
+        },
+        "winner": 2,
+        "date": 1670231294871
+    },
+    {
+        "player1": {
+            "name": "Rafael",
+            "color": "green"
+        },
+        "player2": {
+            "name": "Romeo",
+            "color": "red"
+        },
+        "winner": 2,
+        "date": 1670231294871
+    },
+    {
+        "player1": {
+            "name": "Kiki",
+            "color": "red"
+        },
+        "player2": {
+            "name": "Jef",
+            "color": "purple"
+        },
+        "winner": 2,
         "date": 1670231294871
     }
 ]
