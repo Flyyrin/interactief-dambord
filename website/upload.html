@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico">
+        <title>Upload blog</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/upload.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="js/upload.js"></script>
+    </head>
+    <body>
+        <div class="header"></div>
+        <div class="container upload-form w-75 text-left">
+            <form action="https://google.com">
+                <div class="container preview-container text-center">
+                    <div class="upload-btn-wrapper">
+                        <button class="btn ubut">
+                            <img class="preview-img" src="https://placehold.co/600x400?text=Klik Om Te Uploaden">
+                        </button>
+                        <input type="file" class="preview img-fluid" accept="image/*" required/>
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label for="title">Titel:</label>
+                    <input type="text" placeholder="Titel van de blog" class="form-control ptitv" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Inhoud:</label>
+                    <textarea class="form-control pconv" placeholder="Inhoud van de blog" id="exampleFormControlTextarea4" rows="7" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="email">Schrijver:</label>
+                    <select class="custom-select pnamv" id="author">
+                        <option>Rafael Lemmen</option>
+                        <option>Michael Van Walderveen</option>
+                    </select>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="pwd">Wachtwoord:</label>
+                    <input type="password" class="form-control" id="pwd" required>
+                </div> -->
+                <br/>
+            </form>
+            <button class="btn s-btn btn-dark pbut">Preview</button>
+            <button class="btn s-btn btn-dark plaatsbut">Plaatsen</button>
+
+        </div>
+
+        <div class="modal fade" id="modalpreview" tabindex="-1" role="dialog" aria-labelledby="titel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-body">
+                        <h3 class="card-title ptit">titel</h3>
+                        <img src="" class="pimg img-fluid" />
+                        <hr/>
+                        <p class="card-text pcont">--c--</p>
+                        <hr/>
+                        <button type="button" class="s-btn btn btn-dark" data-dismiss="modal">Terug</button>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <small class="text-muted pnam">name</small>
+                            </div>
+                            <small class="text-muted pdat">date</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer"></div>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
+    </body>
+</html>
