@@ -15,7 +15,8 @@ body {
 }
 
 .preview {
-    height: 20rem;
+    width: 100%;
+    /* width: 20rem; */
 }
 
 .upload-form {
