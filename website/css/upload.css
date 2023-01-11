@@ -14,10 +14,9 @@ body {
     padding-bottom: 3rem;
 }
 
-.preview {
-    width: 100%;
-    /* width: 20rem; */
-}
+/* .preview {
+    width: 20rem;
+} */
 
 .upload-form {
     padding-bottom: 7rem;
@@ -37,7 +36,8 @@ opacity: 0;
 }
 
 .preview-img {
-    height: 20rem;
+    /* height: 20rem; */
+    width: 100%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
