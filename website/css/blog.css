@@ -36,3 +36,24 @@
 .placeholder-background {
     border-color: #26262600;
 }
+
+.post-btn {
+    height: 3rem;
+    /* aspect-ratio: 1; */
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.post-btn > i {
+    margin-left: 12px;
+}
+
+.post-button {
+    position: absolute;
+    bottom: 5rem;
+    left: 2rem;
+}

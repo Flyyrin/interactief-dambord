@@ -5,7 +5,7 @@ import uuid
 import json
 import os
 
-API_CODE = "testcode123"
+PASSWORD = "gipstrijders123"
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 GAMES_FILE_PATH = os.path.join(BASE, "games.json")
@@ -38,26 +38,31 @@ def games():
 @cross_origin()
 def blogs():
     if request.method == 'POST':
-        data = {
-            "title":  request.form.get("title"),
-            "name":  request.form.get("name"),
-            "date":  datetime.today().strftime('%d-%m-%Y'),
-            "content":  request.form.get("content")
-        }
+        password = request.form.get("password")
 
-        img = request.files['imgfile']
-        newname = f"{str(uuid.uuid4())}{os.path.splitext(img.filename)[1]}"
-        img.save(os.path.join(UPLOAD_FOLDER_PATH, newname))
+        if password == PASSWORD:
+            data = {
+                "title":  request.form.get("title"),
+                "name":  request.form.get("name"),
+                "date":  datetime.today().strftime('%d-%m-%Y'),
+                "content":  request.form.get("content")
+            }
 
-        data["imgurl"] = f"http://flyyrin.pythonanywhere.com/media/{newname}"
+            img = request.files['imgfile']
+            newname = f"{str(uuid.uuid4())}{os.path.splitext(img.filename)[1]}"
+            img.save(os.path.join(UPLOAD_FOLDER_PATH, newname))
 
-        with open(BLOGS_FILE_PATH,'r') as file:
-            file_data = json.load(file)
-            file_data.append(data)
-        with open(BLOGS_FILE_PATH,'w') as file:
-            json.dump(file_data, file, indent = 4)
+            data["imgurl"] = f"http://flyyrin.pythonanywhere.com/media/{newname}"
 
-        return redirect("https://dambord.netlify.app/blog")
+            with open(BLOGS_FILE_PATH,'r') as file:
+                file_data = json.load(file)
+                file_data.append(data)
+            with open(BLOGS_FILE_PATH,'w') as file:
+                json.dump(file_data, file, indent = 4)
+
+            return redirect("https://dambord.netlify.app/blog")
+        else:
+            return 'redirect("https://dambord.netlify.app/fout")'
 
     if request.method == 'GET':
         print(BASE)
