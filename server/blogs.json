@@ -1,37 +1,9 @@
 [
     {
-        "title": "Test Titel",
-        "name": "Rafael Lemmen",
-        "imgurl": "https://picsum.photos/600/400",
-        "date": 1670231294871,
-        "content": "test content"
-    },
-    {
-        "title": "Test Titel",
-        "name": "Rafael Lemmen",
-        "imgurl": "https://picsum.photos/600/400",
-        "date": 1670231294871,
-        "content": "test content"
-    },
-    {
-        "title": "Test Tite4",
-        "name": "Rafael Lemmen",
-        "imgurl": "https://picsum.photos/600/400",
-        "date": 1670231294871,
-        "content": "test content4"
-    },
-    {
-        "title": "Test 3",
-        "name": "Rafael Lemmen",
-        "imgurl": "https://picsum.photos/600/400",
-        "date": 1670231294871,
-        "content": "test content3"
-    },
-    {
         "title": "test",
         "name": "Michael Van Walderveen",
         "date": "12-01-2023",
         "content": "123",
-        "imgurl": "https://dambord.netlify.app/blog/5d6a3d1b-54c7-4c68-b195-42876acc7953.jpg"
+        "imgurl": "http://172.20.10.7:5000/media/1c399237-b7c1-47a0-b620-5e007436671b.jpg"
     }
 ]

@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, send_file
 from flask_cors import CORS, cross_origin
 from datetime import datetime
 import uuid
@@ -56,13 +56,22 @@ def blogs():
             file_data.append(data)
         with open(BLOGS_FILE_PATH,'w') as file:
             json.dump(file_data, file, indent = 4)
-            
+
         return redirect("https://dambord.netlify.app/blog")
 
     if request.method == 'GET':
         print(BASE)
         print(UPLOAD_FOLDER_PATH)
         return open(BLOGS_FILE_PATH).read()
+    
+@app.route('/media/<id>')
+@cross_origin()
+def media(id):
+    filepath = os.path.join(UPLOAD_FOLDER_PATH, id)
+    if os.path.exists(filepath):
+        return send_file(filepath, mimetype='image/gif')
+    else:
+        return send_file(os.path.join(BASE, "notfound.png"), mimetype='image/gif')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
