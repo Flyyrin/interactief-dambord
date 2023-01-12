@@ -5,9 +5,11 @@ import uuid
 import json
 import os
 
+API_CODE = "testcode123"
+
 BASE = os.path.dirname(os.path.abspath(__file__))
-GAMES_FILE_PATH = "games.json"
-BLOGS_FILE_PATH = "blogs.json"
+GAMES_FILE_PATH = os.path.join(BASE, "games.json")
+BLOGS_FILE_PATH = os.path.join(BASE, "blogs.json")
 UPLOAD_FOLDER_PATH = os.path.join(BASE, "uploads")
 app = Flask(__name__)
 cors = CORS(app)
