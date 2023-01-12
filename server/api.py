@@ -49,13 +49,14 @@ def blogs():
         newname = f"{str(uuid.uuid4())}{os.path.splitext(img.filename)[1]}"
         img.save(os.path.join(UPLOAD_FOLDER_PATH, newname))
 
-        data["imgurl"] = newname
+        data["imgurl"] = f"https://dambord.netlify.app/blog/{newname}"
 
-        # with open(BLOGS_FILE_PATH,'r') as file:
-        #     file_data = json.load(file)
-        #     file_data.append(json_data)
-        # with open(BLOGS_FILE_PATH,'w') as file:
-        #     json.dump(file_data, file, indent = 4)
+        with open(BLOGS_FILE_PATH,'r') as file:
+            file_data = json.load(file)
+            file_data.append(data)
+        with open(BLOGS_FILE_PATH,'w') as file:
+            json.dump(file_data, file, indent = 4)
+            
         return redirect("https://dambord.netlify.app/blog")
 
     if request.method == 'GET':
