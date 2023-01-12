@@ -1,4 +1,5 @@
 # sudo python3 dambord/checkers.py om te runnen
+# sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel voor neopixel install
 import sys
 import curses
 import threading
