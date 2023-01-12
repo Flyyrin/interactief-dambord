@@ -13,12 +13,6 @@ from joystickController import trackJoystick
 joystickControllerThread = threading.Thread(target=trackJoystick)
 joystickControllerThread.start()
 
-global joystick_boven_pressed
-global joystick_onder_pressed
-global joystick_links_pressed
-global joystick_rechts_pressed
-global joystick_button_pressed
-
 LED_board_dict = {}
 LED_board = []
 def LED_setTile(x,y,content):
