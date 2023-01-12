@@ -49,7 +49,7 @@ def blogs():
         newname = f"{str(uuid.uuid4())}{os.path.splitext(img.filename)[1]}"
         img.save(os.path.join(UPLOAD_FOLDER_PATH, newname))
 
-        data["imgurl"] = f"https://dambord.netlify.app/blog/{newname}"
+        data["imgurl"] = f"http://flyyrin.pythonanywhere.com/media/{newname}"
 
         with open(BLOGS_FILE_PATH,'r') as file:
             file_data = json.load(file)
