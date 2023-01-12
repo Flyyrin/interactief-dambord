@@ -62,7 +62,7 @@ def blogs():
 
             return redirect("https://dambord.netlify.app/blog")
         else:
-            return 'redirect("https://dambord.netlify.app/fout")'
+            return redirect("https://dambord.netlify.app/fout")
 
     if request.method == 'GET':
         print(BASE)
