@@ -1,5 +1,9 @@
 # sudo python3 local/checkers.py om te runnen
 # sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel voor neopixel install
+# sudo pip3 install --upgrade adafruit-python-shell
+# wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+# sudo python3 raspi-blinka.py
+
 import sys
 import curses
 import threading
