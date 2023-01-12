@@ -17,13 +17,13 @@
     <body>
         <div class="header"></div>
         <div class="container upload-form w-75 text-left">
-            <form action="https://google.com">
+            <form action="http://172.16.1.106:5000/blogs" method="POST">
                 <div class="container preview-container text-center">
                     <div class="upload-btn-wrapper">
                         <button class="btn ubut">
                             <img class="preview-img" src="https://placehold.co/600x400?text=Klik Om Te Uploaden">
                         </button>
-                        <input type="file" class="preview img-fluid" accept="image/*" required/>
+                        <input type="file" class="preview img-fluid" name="img" accept="image/*" required/>
                       </div>
                 </div>
                 <div class="form-group">
@@ -46,10 +46,9 @@
                     <input type="password" class="form-control" id="pwd" required>
                 </div> -->
                 <br/>
+                <button class="btn s-btn btn-dark pbut">Preview</button>
+                <button type="submit" class="btn s-btn btn-dark plaatsbut">Plaatsen</button>
             </form>
-            <button class="btn s-btn btn-dark pbut">Preview</button>
-            <button class="btn s-btn btn-dark plaatsbut">Plaatsen</button>
-
         </div>
 
         <div class="modal fade" id="modalpreview" tabindex="-1" role="dialog" aria-labelledby="titel" aria-hidden="true">

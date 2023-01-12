@@ -34,40 +34,40 @@ window.onload = function(){
         $("#modalpreview").modal()
     })
 
-    function uploadIMG(img) {
-        var fd = new FormData();
-        fd.append('file1', img /*, optional filename */)
+    // function uploadIMG(img) {
+    //     var fd = new FormData();
+    //     fd.append('file1', img /*, optional filename */)
 
-        var req = jQuery.ajax({
-            url: 'http://flyyrin.pythonanywhere.com/upload', 
-            method: 'POST',
-            data: fd, // sends fields with filename mimetype etc
-            // data: aFiles[0], // optional just sends the binary
-            processData: false, // don't let jquery process the data
-            contentType: false // let xhr set the content type
-        });
+    //     var req = jQuery.ajax({
+    //         url: 'http://172.16.1.106:5000/upload', 
+    //         method: 'POST',
+    //         data: fd, // sends fields with filename mimetype etc
+    //         // data: aFiles[0], // optional just sends the binary
+    //         processData: false, // don't let jquery process the data
+    //         contentType: false // let xhr set the content type
+    //     });
 
-        // jQuery is promise A++ compatible and is the todays norms of doing things 
-        req.then(function(response) {
-           return response
-        }, function(xhr) {
-            return xhr
-        })
-        return req
-    }
+    //     // jQuery is promise A++ compatible and is the todays norms of doing things 
+    //     req.then(function(response) {
+    //        return response
+    //     }, function(xhr) {
+    //         return xhr
+    //     })
+    //     return req
+    // }
 
-    async function uploadBlog() {
-        var data = {
-            "title":  $(".ptitv").val(),
-            "name":  $(".pnamv").val(),
-            "imgurl": await uploadIMG(file),
-            "date":  new Date().toISOString().slice(0, 10),
-            "content":  $(".pconv").val()
-        }
-        console.log(data)
-    }
-    $(".plaatsbut").on("click",function(){
-        uploadBlog()
-    })
+    // async function uploadBlog() {
+    //     var data = {
+    //         "title":  $(".ptitv").val(),
+    //         "name":  $(".pnamv").val(),
+    //         "imgurl": await uploadIMG(file),
+    //         "date":  new Date().toISOString().slice(0, 10),
+    //         "content":  $(".pconv").val()
+    //     }
+    //     console.log(data)
+    // }
+    // $(".plaatsbut").on("click",function(){
+    //     uploadBlog()
+    // })
     
 }
