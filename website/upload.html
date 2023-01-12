@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/upload.css">
+        <link rel="stylesheet" href="css/blogpost.css">
         <link rel="stylesheet" href="css/footer.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="js/upload.js"></script>
@@ -42,10 +43,10 @@
                     </select>
                 </div>
                 <input type="hidden" class="datevar" id="date" name="date" value="">
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label for="pwd">Wachtwoord:</label>
-                    <input type="password" class="form-control" id="pwd" required>
-                </div> -->
+                    <input type="password" name="password" class="areas form-control" id="pwd" required>
+                </div>
                 <br/>
                 <button class="btn s-btn btn-dark pbut">Preview</button>
                 <button type="submit" class="btn s-btn btn-dark plaatsbut">Plaatsen</button>
@@ -57,7 +58,9 @@
                 <div class="modal-content text-center">
                     <div class="modal-body">
                         <h3 class="card-title ptit">titel</h3>
-                        <img src="" class="pimg img-fluid" />
+                        <div class="preview-container-blog">
+                        <img src="" class="pimg img-fluid preview-img" />
+                        </div>
                         <hr/>
                         <p class="card-text pcont">--c--</p>
                         <hr/>

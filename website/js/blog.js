@@ -76,5 +76,7 @@ async function loadBlogs() {
 window.onload = function(){
     $('body').addClass('stop-scrolling')
     $(".header").load("html/header.html");
+    $(".footer").load("html/footer.html");
+    checkFooter()
     loadBlogs()
 }
