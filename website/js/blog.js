@@ -5,7 +5,7 @@ async function getapi(url) {
     const response = await fetch(url);
     var apidata = await response.json();
     if (response) {
-        return apidata
+        return apidata.reverse()
     }
 }
 
