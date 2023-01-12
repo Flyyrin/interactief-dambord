@@ -9,12 +9,6 @@ joystick_button = Button(24, pull_up = 0) #wit
 #oranje en grijs op 5v!
 
 def trackJoystick():
-    global joystick_boven_pressed
-    global joystick_onder_pressed
-    global joystick_links_pressed
-    global joystick_rechts_pressed
-    global joystick_button_pressed
-
     joystick_boven_pressed = False
     joystick_onder_pressed = False
     joystick_links_pressed = False
