@@ -97,7 +97,8 @@ def start():
                 LED_setTile(add,y,str(x))
         stdscr.refresh()
 
-        # consolePrint(joystick_boven_pressed)
+        # CONTROLS
+        
         if key == curses.KEY_UP:
             # if 2nd row, move one up-left (diagonal)
             if pos_x == 1:

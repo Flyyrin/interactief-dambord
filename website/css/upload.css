@@ -61,3 +61,7 @@ opacity: 0;
 .s-btn:focus {
     border: none;
 }
+
+.areas:focus{
+    box-shadow:0 0 0 .2rem rgba(82,88,93,.5)
+}

@@ -1,12 +1,14 @@
-from flask import Flask, request
+from flask import Flask, request, redirect
 from flask_cors import CORS, cross_origin
+from datetime import datetime
+import uuid
 import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 GAMES_FILE_PATH = "games.json"
 BLOGS_FILE_PATH = "blogs.json"
-UPLOAD_FOLDER_PATH = os.path.join(BASE, "/uploads")
+UPLOAD_FOLDER_PATH = os.path.join(BASE, "uploads")
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -34,15 +36,29 @@ def games():
 @cross_origin()
 def blogs():
     if request.method == 'POST':
-        json_data = request.get_json()
+        data = {
+            "title":  request.form.get("title"),
+            "name":  request.form.get("name"),
+            "date":  datetime.today().strftime('%d-%m-%Y'),
+            "content":  request.form.get("content")
+        }
+
+        img = request.files['imgfile']
+        newname = f"{str(uuid.uuid4())}{os.path.splitext(img.filename)[1]}"
+        img.save(os.path.join(UPLOAD_FOLDER_PATH, newname))
+
+        data["imgurl"] = newname
+
         # with open(BLOGS_FILE_PATH,'r') as file:
         #     file_data = json.load(file)
         #     file_data.append(json_data)
         # with open(BLOGS_FILE_PATH,'w') as file:
         #     json.dump(file_data, file, indent = 4)
-        return json_data
+        return redirect("https://dambord.netlify.app/blog")
 
     if request.method == 'GET':
+        print(BASE)
+        print(UPLOAD_FOLDER_PATH)
         return open(BLOGS_FILE_PATH).read()
 
 if __name__ == '__main__':

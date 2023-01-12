@@ -17,30 +17,31 @@
     <body>
         <div class="header"></div>
         <div class="container upload-form w-75 text-left">
-            <form action="http://172.16.1.106:5000/blogs" method="POST">
+            <form action="http://172.16.1.106:5000/blogs" method="POST" enctype="multipart/form-data">
                 <div class="container preview-container text-center">
                     <div class="upload-btn-wrapper">
                         <button class="btn ubut">
                             <img class="preview-img" src="https://placehold.co/600x400?text=Klik Om Te Uploaden">
                         </button>
-                        <input type="file" class="preview img-fluid" name="img" accept="image/*" required/>
+                        <input type="file" class="preview img-fluid" name="imgfile" accept="image/*" required/>
                       </div>
                 </div>
                 <div class="form-group">
                     <label for="title">Titel:</label>
-                    <input type="text" placeholder="Titel van de blog" class="form-control ptitv" id="title" required>
+                    <input type="text" name="title" placeholder="Titel van de blog" class="areas form-control ptitv" id="title" required>
                 </div>
                 <div class="form-group">
                     <label for="content">Inhoud:</label>
-                    <textarea class="form-control pconv" placeholder="Inhoud van de blog" id="exampleFormControlTextarea4" rows="7" required></textarea>
+                    <textarea class="form-control pconv areas" name="content" placeholder="Inhoud van de blog" id="exampleFormControlTextarea4" rows="7" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="email">Schrijver:</label>
-                    <select class="custom-select pnamv" id="author">
+                    <select class="custom-select pnamv areas" name="name" id="author">
                         <option>Rafael Lemmen</option>
                         <option>Michael Van Walderveen</option>
                     </select>
                 </div>
+                <input type="hidden" class="datevar" id="date" name="date" value="">
                 <!-- <div class="form-group">
                     <label for="pwd">Wachtwoord:</label>
                     <input type="password" class="form-control" id="pwd" required>
