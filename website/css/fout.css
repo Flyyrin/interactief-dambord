@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+    color: black;
+}
+
+.box-area {
+    /* border-radius: 30px;
+    padding: 35px;
+    background-color: #2626269f;
+    backdrop-filter: blur(10px); */
+    text-shadow: none;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+
+.btn {
+    background-color: #262626 !important;
+    border-color: #262626;
+    color: white !important;
+}
+
+.btn:hover {
+    background-color: #999 !important;
+    border-color: #999;
+}
