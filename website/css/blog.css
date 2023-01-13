@@ -53,9 +53,9 @@
 }
 
 .post-button {
-    position: absolute;
-    bottom: 5rem;
-    left: 2rem;
+    position: sticky;
+    bottom: 3rem;
+    padding-left: 2rem;
 }
 
 .card-content-container {
