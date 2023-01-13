@@ -56,7 +56,7 @@ opacity: 0;
 }
 
 .ubut {
-    height: 25rem;
+    width: 100%;
     aspect-ratio: 3 / 2;
     padding: 0;
     overflow: hidden;
