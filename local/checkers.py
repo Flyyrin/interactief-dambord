@@ -92,7 +92,7 @@ def start():
     winner = 0
     playing = True
     while key != ord('q') or playing:
-        key = stdscr.getch()
+        # key = stdscr.getch()
         controller = readController()
         stdscr.addstr(1, 10, '                         ')
         stdscr.addstr(2, 10, 'Turn: Player-%d' % player)
@@ -109,7 +109,7 @@ def start():
 
         # CONTROLS
         
-        if key == curses.KEY_UP or controller == "boven":
+        if controller == "boven": # key == curses.KEY_UP
             # if 2nd row, move one up-left (diagonal)
             if pos_x == 1:
                 pos_x -= 1
