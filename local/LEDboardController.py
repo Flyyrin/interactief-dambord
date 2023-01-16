@@ -50,3 +50,8 @@ def LED_setTile(x,y,content):
     LED_board_dict[f"({x},{y})"] = content
     LEDboardController(LED_board)
     LED_board.clear()
+
+def LED_clear():
+    for x in range(8):
+        for y in range(8):
+            LED_setTile(x,y,"e")
