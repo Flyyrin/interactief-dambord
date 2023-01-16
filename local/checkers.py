@@ -7,7 +7,7 @@ import curses
 import threading
 import time
 import random
-from LEDboardController import LED_setTile
+from LEDboardController import LED_setTile, LED_clear
 from gpiozero import Button
 from time import sleep
 
@@ -49,9 +49,9 @@ def start():
     curses.cbreak()
     stdscr.keypad(1)
 
-    stdscr.addstr(0, 10, 'Hit \'q\' to quit')
-    stdscr.addstr(1, 10, 'Press any key to start...')
-    stdscr.addstr(2, 10, 'Turn:')
+    stdscr.addstr(0, 10, '                 ')
+    stdscr.addstr(1, 10, 'Klik willekeurige knop om te starten')
+    stdscr.addstr(2, 10, 'Aan de beurd:')
     stdscr.addstr(3, 10, '----- --------')
     stdscr.refresh()
 
@@ -65,14 +65,13 @@ def start():
     sel_disc = ''
     disc_selected = False
 
-    key = ''
     winner = 0
     playing = True
-    while key != ord('q') or playing:
+    while playing:
         # key = stdscr.getch()
         controller = readController()
         stdscr.addstr(1, 10, '                         ')
-        stdscr.addstr(2, 10, 'Turn: Player-%d' % player)
+        stdscr.addstr(2, 10, 'Aan de beurt: Speler %d' % player)
         tem_board = []
         for y in range(8):
             for i, x in enumerate(game_board[y]):
@@ -453,7 +452,10 @@ def is_required_to_capture(player, game_board, sel_disc):
 def end(winner):
     consolePrint("GAME ENDED")
     consolePrint(f"{winner} won")
-    time.sleep(5)
+    for x in range(8):
+        for y in range(8):
+            LED_setTile(x,y, str(winner))
+    LED_clear()
     start()
 
 def readController():
