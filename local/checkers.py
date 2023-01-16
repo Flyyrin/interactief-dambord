@@ -8,7 +8,6 @@ import threading
 import time
 import random
 from LEDboardController import LEDboardController
-from joystickController import trackJoystick
 from gpiozero import Button
 from time import sleep
 
@@ -25,8 +24,6 @@ joystick_links_pressed = False
 joystick_rechts_pressed = False
 joystick_button_pressed = False
 
-joystickControllerThread = threading.Thread(target=trackJoystick)
-joystickControllerThread.start()
 
 LED_board_dict = {}
 LED_board = []
@@ -486,7 +483,7 @@ def readController():
     if joystick_boven.is_pressed:
         if not joystick_boven_pressed:
             joystick_boven_pressed = True
-            print("Boven")
+            consolePrint("Boven")
     else:
         joystick_boven_pressed = False
 
