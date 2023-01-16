@@ -93,7 +93,7 @@ def start():
     playing = True
     while key != ord('q') or playing:
         key = stdscr.getch()
-        readController()
+        controller = readController()
         stdscr.addstr(1, 10, '                         ')
         stdscr.addstr(2, 10, 'Turn: Player-%d' % player)
         tem_board = []
@@ -109,7 +109,7 @@ def start():
 
         # CONTROLS
         
-        if key == curses.KEY_UP:
+        if key == curses.KEY_UP or controller == "boven":
             # if 2nd row, move one up-left (diagonal)
             if pos_x == 1:
                 pos_x -= 1
@@ -488,27 +488,34 @@ def readController():
                 joystick_boven_pressed = True
                 consolePrint("Boven")
                 any_pressed = True
+                return "boven"
         else:
             joystick_boven_pressed = False
 
         if joystick_onder.is_pressed:
             if not joystick_onder_pressed:
                 joystick_onder_pressed = True
-                print("Onder")
+                consolePrint("Onder")
+                any_pressed = True
+                return "onder"
         else:
             joystick_onder_pressed = False
 
         if joystick_links.is_pressed:
             if not joystick_links_pressed:
                 joystick_links_pressed = True
-                print("Links")
+                consolePrint("Links")
+                any_pressed = True
+                return "links"
         else:
             joystick_links_pressed = False
             
         if joystick_rechts.is_pressed:
             if not joystick_rechts_pressed:
                 joystick_rechts_pressed = True
-                print("Rechts")
+                consolePrint("Rechts")
+                any_pressed = True
+                return "rechts"
         else:
             joystick_rechts_pressed = False
         
@@ -516,6 +523,8 @@ def readController():
             if not joystick_button_pressed:
                 joystick_button_pressed = True
                 print("Knop")
+                any_pressed = True
+                return "knop"
         else:
             joystick_button_pressed = False
 
