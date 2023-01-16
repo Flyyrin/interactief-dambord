@@ -480,40 +480,44 @@ def end(winner):
     start()
 
 def readController():
-    if joystick_boven.is_pressed:
-        if not joystick_boven_pressed:
-            joystick_boven_pressed = True
-            consolePrint("Boven")
-    else:
-        joystick_boven_pressed = False
+    any_pressed = False
+    while not any_pressed:
+        time.sleep(0.2)
+        if joystick_boven.is_pressed:
+            if not joystick_boven_pressed:
+                joystick_boven_pressed = True
+                consolePrint("Boven")
+                any_pressed = True
+        else:
+            joystick_boven_pressed = False
 
-    if joystick_onder.is_pressed:
-        if not joystick_onder_pressed:
-            joystick_onder_pressed = True
-            print("Onder")
-    else:
-        joystick_onder_pressed = False
+        if joystick_onder.is_pressed:
+            if not joystick_onder_pressed:
+                joystick_onder_pressed = True
+                print("Onder")
+        else:
+            joystick_onder_pressed = False
 
-    if joystick_links.is_pressed:
-        if not joystick_links_pressed:
-            joystick_links_pressed = True
-            print("Links")
-    else:
-        joystick_links_pressed = False
+        if joystick_links.is_pressed:
+            if not joystick_links_pressed:
+                joystick_links_pressed = True
+                print("Links")
+        else:
+            joystick_links_pressed = False
+            
+        if joystick_rechts.is_pressed:
+            if not joystick_rechts_pressed:
+                joystick_rechts_pressed = True
+                print("Rechts")
+        else:
+            joystick_rechts_pressed = False
         
-    if joystick_rechts.is_pressed:
-        if not joystick_rechts_pressed:
-            joystick_rechts_pressed = True
-            print("Rechts")
-    else:
-        joystick_rechts_pressed = False
-    
-    if joystick_button.is_pressed:
-        if not joystick_button_pressed:
-            joystick_button_pressed = True
-            print("Knop")
-    else:
-        joystick_button_pressed = False
+        if joystick_button.is_pressed:
+            if not joystick_button_pressed:
+                joystick_button_pressed = True
+                print("Knop")
+        else:
+            joystick_button_pressed = False
 
 if __name__ == '__main__':
     start()
