@@ -480,9 +480,13 @@ def end(winner):
     start()
 
 def readController():
+    global joystick_boven_pressed
+    global joystick_onder_pressed
+    global joystick_links_pressed
+    global joystick_rechts_pressed
+    global joystick_button_pressed
     any_pressed = False
     while not any_pressed:
-        time.sleep(0.2)
         if joystick_boven.is_pressed:
             if not joystick_boven_pressed:
                 joystick_boven_pressed = True
