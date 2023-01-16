@@ -51,7 +51,7 @@ def start():
 
     stdscr.addstr(0, 10, '                 ')
     stdscr.addstr(1, 10, 'Klik willekeurige knop om te starten')
-    stdscr.addstr(2, 10, 'Aan de beurd:')
+    stdscr.addstr(2, 10, 'Aan de beurt:')
     stdscr.addstr(3, 10, '----- --------')
     stdscr.refresh()
 
@@ -70,7 +70,7 @@ def start():
     while playing:
         # key = stdscr.getch()
         controller = readController()
-        stdscr.addstr(1, 10, '                         ')
+        stdscr.addstr(1, 10, '                                          ')
         stdscr.addstr(2, 10, 'Aan de beurt: Speler %d' % player)
         tem_board = []
         for y in range(8):
@@ -199,7 +199,7 @@ def start():
                 if not is_in_right_direction:
                     illegal_move = True
                 
-                stdscr.addstr(8, 10, 'cur:  %s%s   ' % (pos_x, pos_y))
+                stdscr.addstr(8, 10, 'Geselecteerd: %s%s   ' % (pos_x, pos_y))
                 capture_required = False
                 if len(requirements_array) > 0:
                     capture_required = True
@@ -216,11 +216,11 @@ def start():
                             stdscr.addstr(get_act_x(reqs[0], reqs[1]), reqs[0], ' ', curses.color_pair(2))
 
                 if capture_required:
-                    stdscr.addstr(5, 10, '!! Capture required')
+                    stdscr.addstr(5, 10, '!Moet slaan!')
                 elif illegal_move:
-                    stdscr.addstr(5, 10, '!! Illegal move    ')
+                    stdscr.addstr(5, 10, '!Ongeldige zet!')
                 else:
-                    stdscr.addstr(5, 10, '                   ')
+                    stdscr.addstr(5, 10, '                    ')
                     # movement after if action is legal
                     for n, row in enumerate(game_board):
                         for i, x in enumerate(row):
@@ -234,7 +234,7 @@ def start():
                                 # check if end of the board and disc isn't already a king
                                 if is_at_end(pos_x, pos_y, player) and res_player < 3:
                                     res_player += 2
-                                    stdscr.addstr(6, 10, '!! Player-%d crowned a king' % player)
+                                    stdscr.addstr(6, 10, 'Speler %d krijgt een dam' % player)
                                 game_board[pos_y][get_res_x(pos_y, pos_x)] = res_player
                                 stdscr.addstr(pos_x, pos_y, str(res_player), curses.color_pair(1))
                                 # consolePrint(f"String in spot | x: {pos_x} | y: {pos_y} | content: {str(res_player)}")
@@ -275,7 +275,7 @@ def start():
 
             # notify that it is the opponent's turn when wrong disc is selected
             if (current_tile == str(1 if player == 2 else 2) or current_tile == str(3 if player == 2 else 4)) and not disc_selected:
-                stdscr.addstr(4, 10, '!! Player-%d\'s turn' % player)
+                stdscr.addstr(4, 10, 'Speler %d\'s beurt' % player)
             else:
                 stdscr.addstr(4, 10, '                    ')
             
