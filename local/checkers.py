@@ -488,7 +488,7 @@ def readController():
                 joystick_boven_pressed = True
                 consolePrint("Boven")
                 any_pressed = True
-                return "boven"
+                return "up"
         else:
             joystick_boven_pressed = False
 
@@ -497,34 +497,34 @@ def readController():
                 joystick_onder_pressed = True
                 consolePrint("Onder")
                 any_pressed = True
-                return "onder"
+                return "down"
         else:
             joystick_onder_pressed = False
 
         if joystick_links.is_pressed:
             if not joystick_links_pressed:
                 joystick_links_pressed = True
-                consolePrint("Links")
+                consolePrint("left")
                 any_pressed = True
-                return "links"
+                return "left"
         else:
             joystick_links_pressed = False
             
         if joystick_rechts.is_pressed:
             if not joystick_rechts_pressed:
                 joystick_rechts_pressed = True
-                consolePrint("Rechts")
+                consolePrint("right")
                 any_pressed = True
-                return "rechts"
+                return "right"
         else:
             joystick_rechts_pressed = False
         
         if joystick_button.is_pressed:
             if not joystick_button_pressed:
                 joystick_button_pressed = True
-                print("Knop")
+                print("press")
                 any_pressed = True
-                return "knop"
+                return "press"
         else:
             joystick_button_pressed = False
 
