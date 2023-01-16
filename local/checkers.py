@@ -7,7 +7,7 @@ import curses
 import threading
 import time
 import random
-from LEDboardController import LEDboardController
+from LEDboardController import LED_setTile
 from gpiozero import Button
 from time import sleep
 
@@ -23,29 +23,6 @@ joystick_onder_pressed = False
 joystick_links_pressed = False
 joystick_rechts_pressed = False
 joystick_button_pressed = False
-
-
-LED_board_dict = {}
-LED_board = []
-def LED_setTile(x,y,content):
-    try:
-        old_content = LED_board_dict[f"({x},{y})"]
-        if old_content != content:
-            LED_board.append({
-                "x": x,
-                "y": y,
-                "content": content.replace(" ","e")
-            })
-    except:
-        LED_board.append({
-            "x": x,
-            "y": y,
-            "content": content.replace(" ","e")
-        })
-                 
-    LED_board_dict[f"({x},{y})"] = content
-    LEDboardController(LED_board)
-    LED_board.clear()
 
 # Game Functions
 def consolePrint(text):

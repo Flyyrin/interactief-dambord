@@ -6,6 +6,7 @@ import random
 LED_board_opt = []
 chosenTile = 0
 pixels = neopixel.NeoPixel(board.D18, 128)
+
 with open('local/config.json') as boardConfig:
     BOARDCONFIG = json.load(boardConfig)
     board = dict(BOARDCONFIG["board"])
@@ -27,3 +28,25 @@ def LEDboardController(tileList):
             with open('console.txt', 'a') as console:
                 console.write(f"[LED_CONTROLLER] set cell {cell} to {tile['content']} = {tile_color}\n")
     LED_board_opt.clear()
+
+LED_board_dict = {}
+LED_board = []
+def LED_setTile(x,y,content):
+    try:
+        old_content = LED_board_dict[f"({x},{y})"]
+        if old_content != content:
+            LED_board.append({
+                "x": x,
+                "y": y,
+                "content": content.replace(" ","e")
+            })
+    except:
+        LED_board.append({
+            "x": x,
+            "y": y,
+            "content": content.replace(" ","e")
+        })
+                 
+    LED_board_dict[f"({x},{y})"] = content
+    LEDboardController(LED_board)
+    LED_board.clear()
