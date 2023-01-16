@@ -8,10 +8,22 @@ import threading
 import time
 import random
 from LEDboardController import LEDboardController
-from joystickController import trackJoystick
+from gpiozero import Button
+from time import sleep
 
-joystickControllerThread = threading.Thread(target=trackJoystick)
-joystickControllerThread.start()
+joystick_onder = Button(5, pull_up = 0) #rood
+joystick_boven = Button(6, pull_up = 0) #zwart
+joystick_links = Button(13, pull_up = 0) #blauw
+joystick_rechts = Button(23, pull_up = 0) #groen
+joystick_button = Button(24, pull_up = 0) #wit
+#oranje en grijs op 5v!
+
+joystick_boven_pressed = False
+joystick_onder_pressed = False
+joystick_links_pressed = False
+joystick_rechts_pressed = False
+joystick_button_pressed = False
+
 
 LED_board_dict = {}
 LED_board = []
@@ -42,9 +54,9 @@ def consolePrint(text):
 
 def start():
     game_board = [
-        [1, 1, 1, 1],
-        [1, 1, 1, 1],
-        [1, 1, 2, 1],
+        [2, 2, 2, 2],
+        [2, 2, 2, 2],
+        [2, 2, 2, 2],
         [' ', ' ', ' ', ' '],
         [' ', ' ', ' ', ' '],
         [1, 1, 1, 1],
@@ -80,7 +92,8 @@ def start():
     winner = 0
     playing = True
     while key != ord('q') or playing:
-        key = stdscr.getch()
+        # key = stdscr.getch()
+        controller = readController()
         stdscr.addstr(1, 10, '                         ')
         stdscr.addstr(2, 10, 'Turn: Player-%d' % player)
         tem_board = []
@@ -94,8 +107,9 @@ def start():
                 LED_setTile(add,y,str(x))
         stdscr.refresh()
 
-        # consolePrint(joystick_boven_pressed)
-        if joystick_boven_pressed:
+        # CONTROLS
+        
+        if controller == "up": # key == curses.KEY_UP
             # if 2nd row, move one up-left (diagonal)
             if pos_x == 1:
                 pos_x -= 1
@@ -103,7 +117,7 @@ def start():
             # else move two up (vertical)
             else:
                 pos_x = pos_x - 2 if pos_x - 2 > 0 else 0
-        if key == curses.KEY_DOWN:
+        if controller == "down":
             # if 7th row, move one bottom-right (diagonal)
             if pos_x == 6:
                 pos_x += 1
@@ -111,7 +125,7 @@ def start():
             # else move two down (vertical)
             else:
                 pos_x = pos_x + 2 if pos_x + 2 < 7 else 7
-        if key == curses.KEY_LEFT:
+        if controller == "left":
             # don't do anything at 0, 0 or x, 0
             if (pos_x == 0 and pos_y == 0) or pos_y == 0:
                 pass
@@ -131,7 +145,7 @@ def start():
             else:
                 pos_x += 1
                 pos_y -= 1
-        if key == curses.KEY_RIGHT:
+        if controller == "right":
             # don't do anything at 1, 7 or x, 7
             if (pos_x == 1 and pos_y == 7) or pos_y == 7:
                 pass
@@ -148,7 +162,7 @@ def start():
                 pos_x += 1
                 pos_y += 1
 
-        if key == 10:
+        if controller == "press":
             # clear cursor's position of clutter, e.g. b'1' into 1
             # FIXME: could probably use another replace instead of split join by single quote
             current_tile = str(''.join(str(stdscr.instr(pos_x, pos_y, 1)).split('\'')).replace('b', ''))
@@ -464,6 +478,59 @@ def end(winner):
     consolePrint(f"{winner} won")
     time.sleep(5)
     start()
+
+def readController():
+    global joystick_boven_pressed
+    global joystick_onder_pressed
+    global joystick_links_pressed
+    global joystick_rechts_pressed
+    global joystick_button_pressed
+    any_pressed = False
+    while not any_pressed:
+        if joystick_boven.is_pressed:
+            if not joystick_boven_pressed:
+                joystick_boven_pressed = True
+                consolePrint("Boven")
+                any_pressed = True
+                return "up"
+        else:
+            joystick_boven_pressed = False
+
+        if joystick_onder.is_pressed:
+            if not joystick_onder_pressed:
+                joystick_onder_pressed = True
+                consolePrint("Onder")
+                any_pressed = True
+                return "down"
+        else:
+            joystick_onder_pressed = False
+
+        if joystick_links.is_pressed:
+            if not joystick_links_pressed:
+                joystick_links_pressed = True
+                consolePrint("left")
+                any_pressed = True
+                return "left"
+        else:
+            joystick_links_pressed = False
+            
+        if joystick_rechts.is_pressed:
+            if not joystick_rechts_pressed:
+                joystick_rechts_pressed = True
+                consolePrint("right")
+                any_pressed = True
+                return "right"
+        else:
+            joystick_rechts_pressed = False
+        
+        if joystick_button.is_pressed:
+            if not joystick_button_pressed:
+                joystick_button_pressed = True
+                print("press")
+                any_pressed = True
+                return "press"
+        else:
+            joystick_button_pressed = False
 
 if __name__ == '__main__':
     start()
