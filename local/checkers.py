@@ -109,7 +109,7 @@ def start():
 
         # CONTROLS
         
-        if controller == "boven": # key == curses.KEY_UP
+        if controller == "up": # key == curses.KEY_UP
             # if 2nd row, move one up-left (diagonal)
             if pos_x == 1:
                 pos_x -= 1
@@ -117,7 +117,7 @@ def start():
             # else move two up (vertical)
             else:
                 pos_x = pos_x - 2 if pos_x - 2 > 0 else 0
-        if key == curses.KEY_DOWN:
+        if controller == "down":
             # if 7th row, move one bottom-right (diagonal)
             if pos_x == 6:
                 pos_x += 1
@@ -125,7 +125,7 @@ def start():
             # else move two down (vertical)
             else:
                 pos_x = pos_x + 2 if pos_x + 2 < 7 else 7
-        if key == curses.KEY_LEFT:
+        if controller == "left":
             # don't do anything at 0, 0 or x, 0
             if (pos_x == 0 and pos_y == 0) or pos_y == 0:
                 pass
@@ -145,7 +145,7 @@ def start():
             else:
                 pos_x += 1
                 pos_y -= 1
-        if key == curses.KEY_RIGHT:
+        if controller == "right":
             # don't do anything at 1, 7 or x, 7
             if (pos_x == 1 and pos_y == 7) or pos_y == 7:
                 pass
@@ -162,7 +162,7 @@ def start():
                 pos_x += 1
                 pos_y += 1
 
-        if key == 10:
+        if controller == "press":
             # clear cursor's position of clutter, e.g. b'1' into 1
             # FIXME: could probably use another replace instead of split join by single quote
             current_tile = str(''.join(str(stdscr.instr(pos_x, pos_y, 1)).split('\'')).replace('b', ''))
