@@ -7,7 +7,7 @@ LED_board_opt = []
 chosenTile = 0
 pixels = neopixel.NeoPixel(board.D18, 128)
 
-with open('local/config.json') as boardConfig:
+with open('local/main/config.json') as boardConfig:
     BOARDCONFIG = json.load(boardConfig)
     board = dict(BOARDCONFIG["board"])
 
