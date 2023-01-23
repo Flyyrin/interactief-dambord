@@ -1,4 +1,4 @@
-from LEDboardController import LED_setTile, LED_clear
+from boardFunctionsTEST import LED_setTile, LED_clear
 import random
 from time import sleep
 
