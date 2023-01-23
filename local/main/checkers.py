@@ -7,9 +7,7 @@ import curses
 import threading
 import time
 import random
-from LEDboardController import LED_setTile, LED_clear
-from joystickController import readController
-from consolePrint import consolePrint
+from boardFunctions import LEDboardController, readController, consolePrint
 from time import sleep
 
 def start():
