@@ -24,11 +24,11 @@ joystick_rechts1_pressed = False
 joystick_button1_pressed = False
 
 
-joystick_onder2 = Button(5, pull_up = 0) #rood
-joystick_boven2 = Button(6, pull_up = 0) #zwart
-joystick_links2 = Button(13, pull_up = 0) #blauw
-joystick_rechts2 = Button(23, pull_up = 0) #groen
-joystick_button2 = Button(24, pull_up = 0) #wit
+joystick_onder2 = Button(26, pull_up = 0) #rood
+joystick_boven2 = Button(21, pull_up = 0) #zwart
+joystick_links2 = Button(20, pull_up = 0) #blauw
+joystick_rechts2 = Button(16, pull_up = 0) #groen
+joystick_button2 = Button(19, pull_up = 0) #wit
 #oranje en grijs op 5v!
 joystick_boven2_pressed = False
 joystick_onder2_pressed = False
