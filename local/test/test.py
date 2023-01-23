@@ -1,7 +1,11 @@
 from LEDboardController import LED_setTile, LED_clear
+import random
+from time import sleep
 
-for x in range(8):
-    for y in range(8):
-        LED_setTile(x,y, "c")
+while True: 
+    x = random.randint(0,8)
+    y = random.randint(0,8)
+    LED_setTile(x,y, "w")
+    sleep(1)
 
 LED_clear()
