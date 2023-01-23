@@ -81,7 +81,7 @@ def start():
     playing = True
     while playing:
         # key = stdscr.getch()
-        controller = readController()
+        controller = readController(player)
         stdscr.addstr(1, 10, '                                          ')
         stdscr.addstr(2, 10, 'Aan de beurt: Speler %d' % player)
         tem_board = []
