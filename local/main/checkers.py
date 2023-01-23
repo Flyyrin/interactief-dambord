@@ -7,7 +7,7 @@ import curses
 import threading
 import time
 import random
-from boardFunctions import LEDboardController, readController, consolePrint
+from boardFunctions import LED_setTile, readController, consolePrint
 from time import sleep
 
 def start():
