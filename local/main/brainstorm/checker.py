@@ -37,6 +37,7 @@ def startGame():
     
     selected = 0
     highlighted = {"x": 0, "y": 0}
+    selected_tile = 0
     while not game.is_over():
         controller = readController(player)
 
@@ -72,12 +73,14 @@ def startGame():
                     selected = 0
                 else:
                     selected = new_selected
-                    color(highlighted_tile, "c")
+                    selected_tile = highlighted_tile
+        color(selected_tile, "c")
         color(highlighted_tile, "h")
 
         print()
         refresh()
         print(highlighted)
+        print(selected)
 
 
     print(game.get_winner())
