@@ -6,6 +6,8 @@ import json
 with open(r'local\main\brainstorm\layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
+show_moves = True
+
 board = {}
 old_board = {}
 def color(tile, color):
@@ -43,27 +45,26 @@ def refresh():
 
 def startGame():
     game = Game()
-    player = game.whose_turn()
     global layout
-    
+
+    moves = []   
     selected = 0
     highlighted = {"x": 0, "y": 0}
     selected_tile = False
     while not game.is_over():
+        player = game.whose_turn()
         controller = readController(player)
 
-        for i in range(64):
-            color(i, "e")
         pieces = []
         player1pieces = []
         player2pieces = []
         for piece in game.board.pieces:
-            color(layout['game'][str(piece.position)], piece.player)
-            pieces.append(piece.position)
-            if piece.player == 1:
-                player1pieces.append(piece.position)
-            if piece.player == 2:
-                player2pieces.append(piece.position)
+            if piece.position != None:
+                pieces.append(piece.position)
+                if piece.player == 1:
+                    player1pieces.append(piece.position)
+                if piece.player == 2:
+                    player2pieces.append(piece.position)
 
         empty = [x for x in [*range(1,33)] if x not in set(pieces)]    
         for position in empty:
@@ -97,15 +98,35 @@ def startGame():
                     if move in game.get_possible_moves():
                         selected = 0
                         selected_tile = False
+                        moves.clear()
                         print("Posible move")
+                        game.move(move)
                     print(game.get_possible_moves())
                 if allowed:
                     if selected == new_selected:
                         selected = 0
                         selected_tile = False
+                        moves.clear()
                     else:
                         selected = new_selected
                         selected_tile = highlighted_tile
+                        if show_moves:
+                            for move in game.get_possible_moves():
+                                if selected == move[0]:
+                                    moves.append(move)
+
+        for i in range(64):
+            color(i, "e")
+        for piece in game.board.pieces:
+            if piece.position != None:
+                player_piece = piece.player
+                if piece.king:
+                    player_piece += 2
+                color(layout['game'][str(piece.position)], player_piece)
+        
+        for move in moves:
+            print(move)
+            color(layout['game'][str(move[1])], "p")
         if selected_tile:
             color(selected_tile, "c")
         color(highlighted_tile, "h")
