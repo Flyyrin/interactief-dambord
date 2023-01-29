@@ -58,7 +58,7 @@ def startGame():
         player1pieces = []
         player2pieces = []
         for piece in game.board.pieces:
-            color(layout['game'][str(piece.position)], piece.position)
+            color(layout['game'][str(piece.position)], piece.player)
             pieces.append(piece.position)
             if piece.player == 1:
                 player1pieces.append(piece.position)

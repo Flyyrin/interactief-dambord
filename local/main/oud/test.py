@@ -68,7 +68,7 @@ dicti =  {
 
 secdict = {}
 
-for key, value in dicti:
+for key, value in dicti.items():
     secdict[key] = value + 1
 
 print(secdict)
