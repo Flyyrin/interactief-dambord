@@ -58,7 +58,7 @@ def startGame():
         player1pieces = []
         player2pieces = []
         for piece in game.board.pieces:
-            color(layout['game'][str(piece.position)], piece.player)
+            color(layout['game'][str(piece.position)], piece.position)
             pieces.append(piece.position)
             if piece.player == 1:
                 player1pieces.append(piece.position)
@@ -91,7 +91,14 @@ def startGame():
                     allowed = True
                 if player == 2 and new_selected in player2pieces:
                     allowed = True
-                print(allowed)
+                if selected:
+                    move = [selected, new_selected]
+                    print(move)
+                    if move in game.get_possible_moves():
+                        selected = 0
+                        selected_tile = False
+                        print("Posible move")
+                    print(game.get_possible_moves())
                 if allowed:
                     if selected == new_selected:
                         selected = 0
