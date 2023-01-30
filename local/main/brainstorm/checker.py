@@ -5,6 +5,7 @@ import json
 import platform
 import time
 import os
+import keyboard
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -15,19 +16,42 @@ RPI = platform.system() != "Windows"
 if RPI:
     import neopixel
     import board
-    from controller import readController
-else:
-    from kcontroller import readController
+    from gpiozero import Button
+        
+#     from controller import readController
+# else:
+#     from kcontroller import readController
 
 if RPI:
     options.add_argument('--headless')
     pixels = neopixel.NeoPixel(board.D18, 128)
     driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=options)
+    joystick_onder1 = Button(5, pull_up = 0)
+    joystick_boven1 = Button(6, pull_up = 0)
+    joystick_links1 = Button(13, pull_up = 0)
+    joystick_rechts1 = Button(23, pull_up = 0)
+    joystick_button1 = Button(24, pull_up = 0)
+    joystick_onder2 = Button(26, pull_up = 0)
+    joystick_boven2 = Button(21, pull_up = 0)
+    joystick_links2 = Button(20, pull_up = 0)
+    joystick_rechts2 = Button(16, pull_up = 0)
+    joystick_button2 = Button(19, pull_up = 0)
 else:
     driver = webdriver.Chrome('chromedriver.exe', chrome_options=options)
 
 with open(r'local\main\brainstorm\layout.json') as layoutFile:
     layout = json.load(layoutFile)
+
+joystick_boven1_pressed = False
+joystick_onder1_pressed = False
+joystick_links1_pressed = False
+joystick_rechts1_pressed = False
+joystick_button1_pressed = False
+joystick_boven2_pressed = False
+joystick_onder2_pressed = False
+joystick_links2_pressed = False
+joystick_rechts2_pressed = False
+joystick_button2_pressed = False
 
 show_moves = True
 colors = {
@@ -81,17 +105,19 @@ def refresh():
         {b[8]} {b[9]} {b[10]} {b[11]} {b[12]} {b[13]} {b[14]} {b[15]} 
         {b[7]} {b[6]} {b[5]} {b[4]} {b[3]} {b[2]} {b[1]} {b[0]}    
     """)
-
+running = False
 def startGame():
     game = Game()
     global layout
+    global running
 
+    running = True
     started = False
     moves = []   
     selected = 0
     highlighted = {"x": 0, "y": 0}
     selected_tile = False
-    while not game.is_over():
+    while not game.is_over() and running:
         player = game.whose_turn()
         if started:
             controller = readController(player)
@@ -176,7 +202,11 @@ def startGame():
         color(highlighted_tile, "h")
         refresh()
 
-    print(game.get_winner())
+    winner = game.get_winner()
+    if winner != None:
+        print(f"{winner} won!")
+    start()
+
 
 def start():
     driver.get(os.path.join(os.getcwd(), "local/main/brainstorm/gui/start.html"))
@@ -191,5 +221,155 @@ def start():
             driver.get(os.path.join(os.getcwd(), "local/main/brainstorm/gui/game.html"))
             startGame()
         time.sleep(1)
+
+def readController(player):
+    global joystick_boven1_pressed
+    global joystick_onder1_pressed
+    global joystick_links1_pressed
+    global joystick_rechts1_pressed
+    global joystick_button1_pressed
+    global joystick_boven2_pressed
+    global joystick_onder2_pressed
+    global joystick_links2_pressed
+    global joystick_rechts2_pressed
+    global joystick_button2_pressed
+
+    global running
+
+    any_pressed = False
+    if RPI:
+        while not any_pressed:
+            value = driver.find_element(By.CLASS_NAME, "stop").get_attribute('value')
+            if value == "True":
+                running = False
+                return
+            if player == 1:
+                if joystick_boven1.is_pressed:
+                    if not joystick_boven1_pressed:
+                        joystick_boven1_pressed = True
+                        any_pressed = True
+                        return "up"
+                else:
+                    joystick_boven1_pressed = False
+
+                if joystick_onder1.is_pressed:
+                    if not joystick_onder1_pressed:
+                        joystick_onder1_pressed = True
+                        any_pressed = True
+                        return "down"
+                else:
+                    joystick_onder1_pressed = False
+
+                if joystick_links1.is_pressed:
+                    if not joystick_links1_pressed:
+                        joystick_links1_pressed = True
+                        any_pressed = True
+                        return "left"
+                else:
+                    joystick_links1_pressed = False
+                    
+                if joystick_rechts1.is_pressed:
+                    if not joystick_rechts1_pressed:
+                        joystick_rechts1_pressed = True
+                        any_pressed = True
+                        return "right"
+                else:
+                    joystick_rechts1_pressed = False
+                
+                if joystick_button1.is_pressed:
+                    if not joystick_button1_pressed:
+                        joystick_button1_pressed = True
+                        any_pressed = True
+                        return "press"
+                else:
+                    joystick_button1_pressed = False
+
+            if player == 2:
+                if joystick_boven2.is_pressed:
+                    if not joystick_boven2_pressed:
+                        joystick_boven2_pressed = True
+                        any_pressed = True
+                        return "up"
+                else:
+                    joystick_boven2_pressed = False
+
+                if joystick_onder2.is_pressed:
+                    if not joystick_onder2_pressed:
+                        joystick_onder2_pressed = True
+                        any_pressed = True
+                        return "down"
+                else:
+                    joystick_onder2_pressed = False
+
+                if joystick_links2.is_pressed:
+                    if not joystick_links2_pressed:
+                        joystick_links2_pressed = True
+                        any_pressed = True
+                        return "left"
+                else:
+                    joystick_links2_pressed = False
+                    
+                if joystick_rechts2.is_pressed:
+                    if not joystick_rechts2_pressed:
+                        joystick_rechts2_pressed = True
+                        any_pressed = True
+                        return "right"
+                else:
+                    joystick_rechts2_pressed = False
+                
+                if joystick_button2.is_pressed:
+                    if not joystick_button2_pressed:
+                        joystick_button2_pressed = True
+                        any_pressed = True
+                        return "press"
+                else:
+                    joystick_button2_pressed = False
+    else:
+        while not any_pressed:
+            if True:
+                value = driver.find_element(By.CLASS_NAME, "stop").get_attribute('value')
+                if value == "True":
+                    running = False
+                    return
+                if keyboard.is_pressed('w'):
+                    if not joystick_boven1_pressed:
+                        joystick_boven1_pressed = True
+                        any_pressed = True
+                        return "up"
+                else:
+                    joystick_boven1_pressed = False
+
+                if keyboard.is_pressed('s'):
+                    if not joystick_onder1_pressed:
+                        joystick_onder1_pressed = True
+                        any_pressed = True
+                        return "down"
+                else:
+                    joystick_onder1_pressed = False
+
+                if keyboard.is_pressed('a'):
+                    if not joystick_links1_pressed:
+                        joystick_links1_pressed = True
+                        any_pressed = True
+                        return "left"
+                else:
+                    joystick_links1_pressed = False
+                    
+                if keyboard.is_pressed('d'):
+                    if not joystick_rechts1_pressed:
+                        joystick_rechts1_pressed = True
+                        any_pressed = True
+                        return "right"
+                else:
+                    joystick_rechts1_pressed = False
+                
+                if keyboard.is_pressed('q'):
+                    if not joystick_button1_pressed:
+                        joystick_button1_pressed = True
+                        any_pressed = True
+                        return "press"
+                else:
+                    joystick_button1_pressed = False
+
 
 start()

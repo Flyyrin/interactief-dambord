@@ -1,4 +1,5 @@
 import keyboard 
+from checker import checkStop
 
 joystick_boven1_pressed = False
 joystick_onder1_pressed = False
@@ -26,6 +27,7 @@ def readController(player):
     any_pressed = False
     while not any_pressed:
         if True:
+            checkStop()
             if keyboard.is_pressed('w'):
                 if not joystick_boven1_pressed:
                     joystick_boven1_pressed = True
