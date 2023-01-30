@@ -1,7 +1,14 @@
 # https://pypi.org/project/imparaai-checkers/
+# sudo apt-get install chromium-chromedriver
 from checkers.game import Game
 import json
 import platform
+import time
+import os
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+options = webdriver.ChromeOptions()
 
 RPI = platform.system() != "Windows"
 
@@ -13,7 +20,11 @@ else:
     from kcontroller import readController
 
 if RPI:
+    options.add_argument('--headless')
     pixels = neopixel.NeoPixel(board.D18, 128)
+    driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=options)
+else:
+    driver = webdriver.Chrome('chromedriver.exe', chrome_options=options)
 
 with open(r'local\main\brainstorm\layout.json') as layoutFile:
     layout = json.load(layoutFile)
@@ -75,13 +86,18 @@ def startGame():
     game = Game()
     global layout
 
+    started = False
     moves = []   
     selected = 0
     highlighted = {"x": 0, "y": 0}
     selected_tile = False
     while not game.is_over():
         player = game.whose_turn()
-        controller = readController(player)
+        if started:
+            controller = readController(player)
+        else:
+            controller = False
+        started = True
 
         pieces = []
         player1pieces = []
@@ -162,4 +178,18 @@ def startGame():
 
     print(game.get_winner())
 
-startGame()
+def start():
+    driver.get(os.path.join(os.getcwd(), "local/main/brainstorm/gui/start.html"))
+    driver.maximize_window()
+    while True:
+        value = driver.find_element(By.CLASS_NAME, "start").get_attribute('value')
+        if value == "True":
+            name1 = driver.find_element(By.CLASS_NAME, "player1name").get_attribute('value')
+            name2 = driver.find_element(By.CLASS_NAME, "player2name").get_attribute('value')
+            color1 = driver.find_element(By.CLASS_NAME, "color1").get_attribute('value')
+            color2 = driver.find_element(By.CLASS_NAME, "color2").get_attribute('value')
+            driver.get(os.path.join(os.getcwd(), "local/main/brainstorm/gui/game.html"))
+            startGame()
+        time.sleep(1)
+
+start()
