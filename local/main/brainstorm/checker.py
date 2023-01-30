@@ -126,6 +126,7 @@ def startGame():
                         selected_tile = False
                         moves.clear()
                     else:
+                        moves.clear()
                         selected = new_selected
                         selected_tile = highlighted_tile
                         if show_moves:
