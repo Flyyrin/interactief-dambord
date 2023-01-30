@@ -1,4 +1,5 @@
 from gpiozero import Button
+import time
 
 joystick_onder1 = Button(5, pull_up = 0)
 joystick_boven1 = Button(6, pull_up = 0)
@@ -35,6 +36,7 @@ def readController(player):
 
     any_pressed = False
     while not any_pressed:
+        time.sleep(0.1)
         if player == 1:
             if joystick_boven1.is_pressed:
                 if not joystick_boven1_pressed:

@@ -1,9 +1,12 @@
 from checkers.game import Game
 from controller import readController
 import json
+import board
+import neopixel 
 # https://pypi.org/project/imparaai-checkers/
 
-with open(r'local\main\brainstorm\layout.json') as layoutFile:
+pixels = neopixel.NeoPixel(board.D18, 128)
+with open(r'local/main/brainstorm/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 show_moves = True
@@ -29,15 +32,20 @@ def refresh():
     global board
     global old_board
     for tile, color in board.items():
+        tile_color = eval(colors[str(color)])
         try:
             if old_board[tile] != color:
                 led1 = tile*2
                 led2 = tile*2+1
+                pixels[led1] = tile_color
+                pixels[led2] = tile_color
                 print(f"{tile}: {color}")
 
         except:
             led1 = tile*2
             led2 = tile*2+1
+            pixels[led1] = tile_color
+            pixels[led2] = tile_color
             print(f"{tile}: {color}")
     
     old_board = dict(board)
