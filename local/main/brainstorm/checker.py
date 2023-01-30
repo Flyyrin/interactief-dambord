@@ -12,6 +12,7 @@ from selenium.webdriver.common.by import By
 options = webdriver.ChromeOptions()
 
 RPI = platform.system() != "Windows"
+print(RPI)
 
 if RPI:
     import neopixel
@@ -25,7 +26,7 @@ if RPI:
 if RPI:
     options.add_argument('--headless')
     pixels = neopixel.NeoPixel(board.D18, 128)
-    driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=options)
+    driver = webdriver.Chrome('chromedriverrpi.exe', chrome_options=options)
     joystick_onder1 = Button(5, pull_up = 0)
     joystick_boven1 = Button(6, pull_up = 0)
     joystick_links1 = Button(13, pull_up = 0)
