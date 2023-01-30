@@ -1,7 +1,19 @@
-from checkers.game import Game
-from controller import readController
-import json
 # https://pypi.org/project/imparaai-checkers/
+from checkers.game import Game
+import json
+import platform
+
+RPI = platform.system() != "Windows"
+
+if RPI:
+    import neopixel
+    import board
+    from controller import readController
+else:
+    from kcontroller import readController
+
+if RPI:
+    pixels = neopixel.NeoPixel(board.D18, 128)
 
 with open(r'local\main\brainstorm\layout.json') as layoutFile:
     layout = json.load(layoutFile)
@@ -22,11 +34,16 @@ def refresh():
             if old_board[tile] != color:
                 led1 = tile*2
                 led2 = tile*2+1
+                if RPI:
+                    pixels[led1] = color
+                    pixels[led2] = color
                 print(f"{tile}: {color}")
-
         except:
             led1 = tile*2
             led2 = tile*2+1
+            if RPI:
+                pixels[led1] = color
+                pixels[led2] = color
             print(f"{tile}: {color}")
     
     old_board = dict(board)
@@ -130,7 +147,6 @@ def startGame():
         if selected_tile:
             color(selected_tile, "c")
         color(highlighted_tile, "h")
-
         refresh()
 
     print(game.get_winner())
