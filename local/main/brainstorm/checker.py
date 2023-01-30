@@ -8,6 +8,17 @@ with open(r'local\main\brainstorm\layout.json') as layoutFile:
 
 show_moves = True
 
+colors = {
+    "e": "(255,0,0)",
+    "h": "(255,0,0)",
+    "c": "(255,0,0)",
+    "p": "(255,0,0)",
+    "1": "(255,0,0)",
+    "2": "(255,0,0)",
+    "3": "(255,0,0)",
+    "4": "(255,0,0)"
+}
+
 board = {}
 old_board = {}
 def color(tile, color):
