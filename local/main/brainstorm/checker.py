@@ -19,6 +19,16 @@ with open(r'local\main\brainstorm\layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 show_moves = True
+colors = {
+    "e": "(255,0,0)",
+    "h": "(255,0,0)",
+    "c": "(255,0,0)",
+    "p": "(255,0,0)",
+    "1": "(255,0,0)",
+    "2": "(255,0,0)",
+    "3": "(255,0,0)",
+    "4": "(255,0,0)"
+}
 
 board = {}
 old_board = {}
@@ -30,20 +40,21 @@ def refresh():
     global board
     global old_board
     for tile, color in board.items():
+        tile_color = eval(colors[str(color)])
         try:
             if old_board[tile] != color:
                 led1 = tile*2
                 led2 = tile*2+1
                 if RPI:
-                    pixels[led1] = color
-                    pixels[led2] = color
+                    pixels[led1] = tile_color
+                    pixels[led2] = tile_color
                 print(f"{tile}: {color}")
         except:
             led1 = tile*2
             led2 = tile*2+1
             if RPI:
-                pixels[led1] = color
-                pixels[led2] = color
+                pixels[led1] = tile_color
+                pixels[led2] = tile_color
             print(f"{tile}: {color}")
     
     old_board = dict(board)
