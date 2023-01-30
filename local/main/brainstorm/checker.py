@@ -26,7 +26,7 @@ if RPI:
 if RPI:
     options.add_argument('--headless')
     pixels = neopixel.NeoPixel(board.D18, 128)
-    driver = webdriver.Chrome('chromedriverrpi', chrome_options=options)
+    driver = webdriver.Chrome(r"/home/rpi/Documents/GIP-2022-2023/local/main/brainstorm/chromedriver", chrome_options=options)
     joystick_onder1 = Button(5, pull_up = 0)
     joystick_boven1 = Button(6, pull_up = 0)
     joystick_links1 = Button(13, pull_up = 0)
