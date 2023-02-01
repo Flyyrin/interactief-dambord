@@ -6,7 +6,7 @@ Placeholder
 ### :dart: Onderdelen
 - local: Progamma van het dambord en de lokale website
 - server: Progamma van de server
-- website: Root van de website
+- website: Root van de [website](https://dambord.netlify.app/)
 
 ### :camera: Dambord
 <div align="center"> 
