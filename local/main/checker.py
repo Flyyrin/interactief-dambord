@@ -6,7 +6,7 @@ import neopixel
 # https://pypi.org/project/imparaai-checkers/
 
 pixels = neopixel.NeoPixel(board.D18, 128)
-with open(r'local/main/brainstorm/layout.json') as layoutFile:
+with open(r'local/main/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 show_moves = True
