@@ -1,7 +1,7 @@
 # GIP-2022-2023
 
 ### :star2: Over Ons Project
-Placeholder
+Voor ons project hebben wij de opdracht gekregen om een elektronisch dambord te maken.
 
 ### :dart: Onderdelen
 - local: Progamma van het dambord en de lokale website
