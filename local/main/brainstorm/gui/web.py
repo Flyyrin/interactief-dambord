@@ -22,4 +22,4 @@ class Api:
 
 if __name__ == '__main__':
     api = Api()
-    window = webview.create_window('Start', os.path.join(os.getcwd(), "local/main/brainstorm/gui/start.html"), js_api=api)
+    window = webview.create_window('Start', os.path.join(os.getcwd(), "local/main/brainstorm/gui/start.html"), js_api=api, fullscreen=True)

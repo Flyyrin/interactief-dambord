@@ -52,7 +52,7 @@ window.onload = function() {
 
     $(".submit").on("click", function(){
         if (!$(".submit").hasClass("disabled")) {
-            pywebview.api.start($(".player1name")+"&"+$(".player2name")+"&"+cp1+"&"+cp2) 
+            pywebview.api.start($(".player1name").val()+"&"+$(".player2name").val()+"&"+cp1+"&"+cp2) 
         }
     });
 }
