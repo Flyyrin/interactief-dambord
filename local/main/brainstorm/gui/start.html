@@ -9,6 +9,7 @@
     <script src="js/start.js"></script>
 </head>
 <body>
+    <button onclick="exit()" id="myBtn" title="Go to top">X</button>
     <div class="submitcontainer">
         <div class="submitcontainerinhoud l">
           <input type="text" placeholder="Naam Speler 1" class="player1name">
@@ -44,7 +45,7 @@
         </div>
     </div>
     <script>
-      pywebview.api.start("1", "2", c1, c2)
+      function exit() { pywebview.api.destroy() }
     </script>
 </body>
 </html>
