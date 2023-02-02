@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/win.js"></script>
+</head>
+<body>
+    <button onclick="exit()" id="myBtn" title="Go to top">X</button>
+    <div class="submitcontainer">
+        <div class="submitcontainerinhoud2 l">
+            <div class="col align-middle">
+                <img class="crown p1w" src="/local/main/brainstorm/gui/img/crown.svg">
+                <div class="playerwtagcontainer">
+                    <h2 class="player1tag playerwtag">-</h2>
+                </div>
+            </div>
+          </div>
+          <div class="submitcontainerinhoud2 r">
+            <div class="col align-middle">
+                <img class="crown p2w" src="/local/main/brainstorm/gui/img/crown.svg">
+                <div class="playerwtagcontainer">
+                    <h2 class="player2tag playerwtag">-</h2>
+                </div>
+            </div>
+          </div>
+    
+        <div class="titlecontainer">
+          <p class="titletag">Winner</p>
+        </div>
+        <div class="restartcontainer">
+            <button class="replay">Speel Opnieuw</button>
+          </div>
+    </div>
+    <script>
+      function exit() { 
+        pywebview.api.exit("") 
+      }
+    </script>
+</body>
+</html>

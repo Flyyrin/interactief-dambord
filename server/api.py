@@ -78,5 +78,19 @@ def media(id):
     else:
         return send_file(os.path.join(BASE, "notfound.png"), mimetype='image/gif')
 
+gameongoingvar = False
+winner = 0
+@app.route('/gameongoing/', methods=['GET','POST'])
+@cross_origin()
+def gameongoing():
+    global gameongoingvar
+    global winner
+    if request.method == 'POST': 
+        gameongoingvar = bool(request.get_json()["gameongoing"])
+        winner = request.get_json()["winner"]
+        return ""
+    if request.method == 'GET':
+        return json.dumps({"gameongoing": gameongoingvar, "winner": winner})
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

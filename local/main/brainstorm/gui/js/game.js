@@ -44,4 +44,14 @@ window.onload = function() {
             window.location = window.location.href.replace('game', 'start');
         }
     });
+
+   
+    setInterval(function() {
+        $.get( "http://flyyrin.pythonanywhere.com/gameongoing", function( data ) {
+            data = JSON.parse(data);
+            if (data["gameongoing"] == false && data["winner"] != 0) {
+                window.location = window.location.href.replace('game.html?', `win.html?winner=${String(data["winner"])}&`);
+            }
+        });
+    }, 1000);
 }
