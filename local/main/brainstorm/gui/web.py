@@ -17,7 +17,7 @@ class Api:
         subprocess.Popen("killall python", shell=True, stdout=subprocess.PIPE)
     
     def start(self,cp):
-        cp1,cp2 = cp.split("-")
+        np1,np2,cp1,cp2 = cp.split("&")
         print(cp1,cp2)
 
 if __name__ == '__main__':
