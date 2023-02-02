@@ -17,7 +17,7 @@ class Api:
     
     def start(self,cp):
         np1,np2,cp1,cp2 = cp.split("&")
-        print(cp1,cp2)
+        print(np1,np2,cp1,cp2)
 
 if __name__ == '__main__':
     api = Api()
