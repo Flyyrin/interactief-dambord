@@ -1,9 +1,8 @@
+# sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0 gir1.2-webkit2-4.0 pywebview
+
 import webview
 import os
 import subprocess
-
-# sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0 gir1.2-webkit2-4.0 pywebview
-
 
 class Api:
     def __init__(self):
