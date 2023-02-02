@@ -1,8 +1,26 @@
 var gameTime = 0
 var timerIntervalId
 var start
+var clicked = 0
 
 window.onload = function() {
+    document.body.style.zoom = 1.5
+
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null) {
+           return null;
+        }
+        return decodeURI(results[1]) || 0;
+    }
+
+    var np1 = $.urlParam('np1');
+    var np2 = $.urlParam('np2');
+    var cp1 = $.urlParam('cp1');
+    var cp2 = $.urlParam('cp2');
+    console.log(np1, np2, cp1, cp2)
+
+
     var start = Date.now()
     var delta = Date.now() - start; 
     var seconds = Math.floor(delta / 1000)
@@ -18,7 +36,12 @@ window.onload = function() {
     }
 
     $(".restart").on("click", function(){
-        $(".timevalue").attr("value",gameTime);
-        $(".stop").attr("value","True");
+        clicked += 1
+        $(".restart").html("Zeker?")
+        setTimeout(function() { $(".restart").html("Stop"); clicked = 0 }, 3000);
+        if (clicked == 2) {
+            pywebview.api.stop("")
+            window.location = window.location.href.replace('game', 'start');
+        }
     });
 }

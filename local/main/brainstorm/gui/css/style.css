@@ -267,6 +267,7 @@ h1 {
 	left: 50%;
 	-ms-transform: translateX(-50%);
 	transform: translateX(-50%);
+	color: white;
 }
 
 .submitcontainerinhoud2 {

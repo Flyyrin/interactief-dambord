@@ -1,4 +1,5 @@
 window.onload = function() {
+    document.body.style.zoom = 1.5
     var cp1 = $(".cp1 > .selected").attr('class').split(' ')[0];
     var cp2 = $(".cp2 > .selected").attr('class').split(' ')[0];
 
@@ -52,7 +53,10 @@ window.onload = function() {
 
     $(".submit").on("click", function(){
         if (!$(".submit").hasClass("disabled")) {
-            pywebview.api.start($(".player1name").val()+"&"+$(".player2name").val()+"&"+cp1+"&"+cp2) 
+            var np1 = $(".player1name").val()
+            var np2 = $(".player2name").val()
+            pywebview.api.start(np1+"&"+np2+"&"+cp1+"&"+cp2)
+            window.location = window.location.href.replace('start.html', `game.html?np1=${np1}&np2=${np2}&cp1=${cp1}&cp2=${cp2}`);
         }
     });
 }

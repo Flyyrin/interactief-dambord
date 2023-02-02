@@ -13,11 +13,15 @@ class Api:
         pass
 
     def exit(self,nodig):
+        print("Board uit")
         subprocess.Popen("killall python", shell=True, stdout=subprocess.PIPE)
     
     def start(self,cp):
         np1,np2,cp1,cp2 = cp.split("&")
         print(np1,np2,cp1,cp2)
+    
+    def stop(self,nodig):
+        print("Reset board")
 
 if __name__ == '__main__':
     api = Api()
