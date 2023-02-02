@@ -52,9 +52,7 @@ window.onload = function() {
 
     $(".submit").on("click", function(){
         if (!$(".submit").hasClass("disabled")) {
-            $(".color1").attr("value",cp1);
-            $(".color2").attr("value",cp2);
-            $(".start").attr("value","True");
+            pywebview.api.start(cp1+"-"+cp2) 
         }
     });
 }
