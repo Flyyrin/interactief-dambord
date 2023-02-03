@@ -13,7 +13,7 @@ class Api:
 
     def exit(self,nodig):
         print("Board uit")
-        subprocess.Popen("killall python", shell=True, stdout=subprocess.PIPE)
+        subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
         quit()
     
     def start(self,cp):
@@ -27,6 +27,6 @@ class Api:
     
 if __name__ == '__main__':
     api = Api()
-    window = webview.create_window('Start', os.path.join(os.getcwd(), "local/main/brainstorm/gui/start.html"), js_api=api, fullscreen=True)
+    window = webview.create_window('Start', os.path.join(os.getcwd(), "/home/rpi/Documents/GIP-2022-2023/local/main/brainstorm/gui/start.html"), js_api=api, fullscreen=True)
 
 # win: requests.post(url = f"{URL}gameongoing", json = {'gameongoing': False, 'winner': winner})
