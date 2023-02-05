@@ -35,20 +35,24 @@ window.onload = function() {
     });
 
     $(".player1name").on("input", function(){
-        if ($(this).val() == "") {
+        if ($(this).val() == "" || $(this).val().length > 8) {
             $(".submit").addClass("disabled")
+            $(this).addClass("invalid");
         } else {
-            if ($(".player2name").val() != "") {
+            $(this).removeClass("invalid");
+            if ($(".player2name").val() != "" && ($(".player2name").val().length > 8) != true) {
                 $(".submit").removeClass("disabled")
             }
         }
     });
 
     $(".player2name").on("input", function(){
-        if ($(this).val() == "") {
+        if ($(this).val() == "" || $(this).val().length  > 8) {
             $(".submit").addClass("disabled")
+            $(this).addClass("invalid");
         } else {
-            if ($(".player1name").val() != "") {
+            $(this).removeClass("invalid");
+            if ($(".player1name").val() != "" && ($(".player1name").val().length > 8) != true) {
                 $(".submit").removeClass("disabled")
             }
         }
