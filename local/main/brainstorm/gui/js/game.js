@@ -20,6 +20,11 @@ window.onload = function() {
     var cp2 = $.urlParam('cp2');
     console.log(np1, np2, cp1, cp2)
 
+    $(".player1tag").html(np1)
+    $(".player2tag").html(np2)
+    $(".player1tag").addClass(cp1+"t")
+    $(".player2tag").addClass(cp2+"t")
+
 
     var start = Date.now()
     var delta = Date.now() - start; 
