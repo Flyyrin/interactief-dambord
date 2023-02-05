@@ -10,6 +10,7 @@ window.onload = function() {
     }
 
     var winner = $.urlParam('winner');
+    var time = $.urlParam('time');
     var np1 = $.urlParam('np1');
     var np2 = $.urlParam('np2');
     var cp1 = $.urlParam('cp1');
@@ -17,6 +18,7 @@ window.onload = function() {
     console.log(winner, np1, np2, cp1, cp2)
     $(".player1tag").html(np1)
     $(".player2tag").html(np2)
+    $(".timertag").html(time)
     $(".player1tag").addClass(cp1+"t")
     $(".player2tag").addClass(cp2+"t")
     if (winner == 1) {

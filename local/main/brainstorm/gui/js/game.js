@@ -50,7 +50,7 @@ window.onload = function() {
         $.get( "http://flyyrin.pythonanywhere.com/gameongoing", function( data ) {
             data = JSON.parse(data);
             if (data["gameongoing"] == false && data["winner"] != 0) {
-                window.location = window.location.href.replace('game.html?', `win.html?winner=${String(data["winner"])}&`);
+                window.location = window.location.href.replace('game.html?', `win.html?winner=${String(data["winner"])}&time=${gameTime}&`);
             }
         });
     }, 1000);

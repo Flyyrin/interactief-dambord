@@ -354,3 +354,12 @@ h1 {
 .winner {
 	visibility: visible;
 }
+
+.timerw{
+	top: 20%;
+}
+
+.submitcontainerinhoud {
+    flex: 1;
+    text-align: center;
+}

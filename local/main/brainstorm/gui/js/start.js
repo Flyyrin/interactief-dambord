@@ -1,5 +1,8 @@
 window.onload = function() {
     document.body.style.zoom = 1.5
+    if (window.location.href.split('?')[1]) {
+        window.location = window.location.href.split('?')[0]
+    }
     var cp1 = $(".cp1 > .selected").attr('class').split(' ')[0];
     var cp2 = $(".cp2 > .selected").attr('class').split(' ')[0];
 
