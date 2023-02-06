@@ -2,9 +2,9 @@ import requests
 
 URL = "http://flyyrin.pythonanywhere.com/"
 jsondata = {
-    "gameongoing": True, 
-    "winner": 0, 
-    "player": 1,
+    "gameongoing": False, 
+    "winner": 1, 
+    "player": 2,
     "game": {
         "p1": {
             "pieces": 16,

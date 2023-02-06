@@ -62,7 +62,7 @@ window.onload = function() {
         if (!$(".submit").hasClass("disabled")) {
             var np1 = $(".player1name").val()
             var np2 = $(".player2name").val()
-            // pywebview.api.start(np1+"&"+np2+"&"+cp1+"&"+cp2)
+            pywebview.api.start(np1+"&"+np2+"&"+cp1+"&"+cp2)
             window.location = window.location.href.replace('start.html', `game.html?np1=${np1}&np2=${np2}&cp1=${cp1}&cp2=${cp2}`);
         }
     });

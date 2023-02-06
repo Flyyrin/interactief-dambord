@@ -44,7 +44,7 @@ window.onload = function() {
         $(".restart").html("Zeker?")
         setTimeout(function() { $(".restart").html("Stop"); clicked = 0 }, 3000);
         if (clicked == 2) {
-            // pywebview.api.stop("")
+            pywebview.api.stop("")
             window.location = window.location.href.replace('game', 'start');
         }
     });
