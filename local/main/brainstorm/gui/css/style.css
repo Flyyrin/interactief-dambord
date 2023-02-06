@@ -371,18 +371,29 @@ h1 {
 }
 
 .grid-container {
-
 	display: grid;
 	grid-template-columns: auto auto auto auto auto auto;
 	padding: 0;
-
-
 }
 
 .grid-item {
 	padding: 20px;
 	font-size: 30px;
 	text-align: center;
+}
+
+.piece {
+	padding-top: 0px;
+	padding-right: 0;
+}
+
+.opiece {
+	color: #000000;
+}
+
+.data {
+	padding-top: 5px;
+	padding-left: 0;
 }
 
 .ra {
@@ -399,4 +410,8 @@ h1 {
 
 .invalid {
 	color: #fc4c4f;
+}
+
+.playing {
+	transform: scale(1.2)
 }

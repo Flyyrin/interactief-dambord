@@ -25,7 +25,6 @@ window.onload = function() {
     $(".player1tag").addClass(cp1+"t")
     $(".player2tag").addClass(cp2+"t")
 
-
     var start = Date.now()
     var delta = Date.now() - start; 
     var seconds = Math.floor(delta / 1000)
@@ -54,6 +53,20 @@ window.onload = function() {
     setInterval(function() {
         $.get( "http://flyyrin.pythonanywhere.com/gameongoing", function( data ) {
             data = JSON.parse(data);
+            if (data["player"] == 1) {
+                $(".player1tag").addClass("playing")
+                $(".player2tag").removeClass("playing")
+            }
+            if (data["player"] == 2) {
+                $(".player2tag").addClass("playing")
+                $(".player1tag").removeClass("playing")
+            }
+            $(".p1p").html(": "+data["game"]["p1"]["pieces"])
+            $(".p1k").html(": "+data["game"]["p1"]["kings"])
+            $(".p1c").html(": "+data["game"]["p1"]["captured"])
+            $(".p2p").html(": "+data["game"]["p2"]["pieces"])
+            $(".p2k").html(": "+data["game"]["p2"]["kings"])
+            $(".p2c").html(": "+data["game"]["p2"]["captured"])
             if (data["gameongoing"] == false && data["winner"] != 0) {
                 window.location = window.location.href.replace('game.html?', `win.html?winner=${String(data["winner"])}&time=${gameTime}&`);
             }
