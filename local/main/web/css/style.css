@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@font-face {
+    font-family: NexaText;
+    src: url(../fonts/NexaText.ttf);
+}
+html, body {
+    background-color: rgb(90, 90, 90) !important;
+	height: 100%;
+    font-family: 'Roboto', sans-serif !important;
+	overflow: hidden;
+}
+
+.header {
+    font-size: 8rem;
+	margin-top: 5rem !important;
+}
+
+.time {
+	font-size: 2rem;
+}
+
+.playertag {
+	font-size: 7rem;
+}
+
+.playing {
+	transform: scale(1.5);
+}
+
+.pieces {
+	font-size: 3rem;
+	color: white;
+}
+
+.oponent-piece {
+	color: black
+}
+
+.red-text{
+	color: #fc4c4f;
+}
+
+.blue-text {
+	color: #4fa3fc;
+}
+
+.yellow-text {
+	color: #ECD13F;
+}
+
+.green-text {
+	color: #4bec3f;
+}
+
+.purple-text {
+	color: #cf3fec;
+}
+
+.versus {
+	font-size: 10rem;
+	font-family: 'NexaText';
+}
+
+.black-text-shadow {
+	text-shadow: 0px 5px 15px #000000;
+}
+
+.light-text-shadow {
+	text-shadow: 0px 5px 15px #0000006c;
+}
+
+.black-shadow {
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.button {
+	border-radius: 4px;
+	border: none;
+	font-size: 1.5rem;
+}
+
+.button:focus {
+	outline: none;
+}
+
+.restart {
+	background-color:#4fa3fc;
+}
