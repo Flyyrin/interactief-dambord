@@ -1,5 +1,8 @@
 from checkers.game import Game
-from kcontroller import readController
+from queue import Queue 
+from threading import Thread 
+from kcontroller import readInput
+from web import startWeb
 import json
 # import board
 # import neopixel 
@@ -55,7 +58,7 @@ def refresh():
         {b[7]} {b[6]} {b[5]} {b[4]} {b[3]} {b[2]} {b[1]} {b[0]}    
     """)
 
-def startGame():
+def startGame(queue):
     game = Game()
     global layout
 
@@ -63,9 +66,10 @@ def startGame():
     selected = 0
     highlighted = {"x": 0, "y": 0}
     selected_tile = False
-    while not game.is_over():
+    playing = True
+    while playing:
         player = game.whose_turn()
-        controller = readController(player)
+        input = readInput(player, queue)
 
         pieces = []
         player1pieces = []
@@ -82,21 +86,26 @@ def startGame():
         for position in empty:
             color(layout['game'][str(position)], "e")
 
-        if controller == "up":
+        if input == "stop" or game.is_over():
+            print("stopped")
+            playing = False
+            quit()
+
+        if input == "up":
             if highlighted["y"] < 7:
                 highlighted["y"] += 1
-        if controller == "down":
+        if input == "down":
             if 0 < highlighted["y"]:
                 highlighted["y"] -= 1
-        if controller == "left":
+        if input == "left":
             if 0 < highlighted["x"]:
                 highlighted["x"] -= 1
-        if controller == "right":
+        if input == "right":
             if highlighted["x"] < 7:
                 highlighted["x"] += 1
         highlighted_tile = layout["board"][f"({highlighted['x']},{highlighted['y']})"]
 
-        if controller == "press":
+        if input == "press":
             if highlighted_tile in layout["game"].values():
                 allowed = False
                 new_selected = int([k for k, v in layout["game"].items() if v == highlighted_tile][0])
@@ -146,6 +155,20 @@ def startGame():
 
         refresh()
 
-    print(game.get_winner())
+    winner = game.get_winner()
+    if winner:
+        print("winner", winner)
 
-startGame()
+def setupGame(queue):
+    stared = False
+    while not stared:
+        if readInput(0, queue) == "start":
+            stared = True
+        checkerGame = Thread(target = startGame, args =(queue, )) 
+        checkerGame.start() 
+
+queue = Queue()
+checkerSetupGame = Thread(target = setupGame, args =(queue, )) 
+checkerSetupGame.start() 
+
+startWeb(queue)

@@ -11,7 +11,7 @@ joystick_links2_pressed = False
 joystick_rechts2_pressed = False
 joystick_button2_pressed = False
 
-def readController(player):
+def readInput(player, queue):
     global joystick_boven1_pressed
     global joystick_onder1_pressed
     global joystick_links1_pressed
@@ -65,3 +65,12 @@ def readController(player):
                     return "press"
             else:
                 joystick_button1_pressed = False
+            
+            try:
+                data = queue.get_nowait()
+                if data == "stop":
+                    return data
+                if data == "start":
+                    return data
+            except:
+                pass
