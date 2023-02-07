@@ -15,6 +15,59 @@ html, body {
 	margin-top: 5rem !important;
 }
 
+.exit {
+	position: fixed;
+	top: 2rem;
+	right: 3rem;
+	font-size: 2rem !important;
+	background-color: #fc4c4f !important;
+	color: white !important;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 4rem;
+	height: 4rem;
+	z-index: 999;
+}
+
+.exit:focus {
+	border: none !important;
+}
+
+.playerinput {
+	font-size: 2rem;
+	border: none;
+	border-radius: 1rem;
+	color: #2C3E50;
+}
+
+.color:hover{
+	opacity: 50%;
+}
+
+.colors .color{
+	height: 5rem;
+	width: 5rem;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.playerinput:focus{
+    outline: none;
+}
+
+.selected {
+	cursor: default !important;
+	border: 0.3rem solid white;
+}
+
+.selected:hover {
+	opacity: 100%;
+}
+
+.disabled {
+	cursor: not-allowed !important;
+}
+
 .time {
 	font-size: 2rem;
 }
@@ -24,7 +77,7 @@ html, body {
 }
 
 .playing {
-	transform: scale(1.5);
+	-webkit-text-stroke: 0.15rem white;
 }
 
 .pieces {
@@ -36,7 +89,27 @@ html, body {
 	color: black
 }
 
-.red-text{
+.red {
+	background-color: #fc4c4f;
+}
+
+.blue {
+	background-color: #4fa3fc;
+}
+
+.yellow {
+	background-color: #ECD13F;
+}
+
+.green {
+	background-color: #4bec3f;
+}
+
+.purple {
+	background-color: #cf3fec;
+}
+
+.red-text {
 	color: #fc4c4f;
 }
 
@@ -85,4 +158,12 @@ html, body {
 
 .restart {
 	background-color:#4fa3fc;
+}
+
+.stop {
+	background-color:#fc4c4f;
+}
+
+.start {
+	background: linear-gradient(120deg, rgb(252, 76, 79) 50%, rgb(207, 63, 236) 50%);
 }
