@@ -43,13 +43,13 @@ window.onload = function() {;
                 $(".player2").addClass("playing")
                 $(".player1").removeClass("playing")
             }
-            $(".player1-pieces").html($(".player1-pieces").html().split(":")[0] + ": " + data["game"]["p1"]["pieces"])
-            $(".player1-kings").html($(".player1-kings").html().split(":")[0] + ": " +  data["game"]["p1"]["kings"])
-            $(".player1-captured").html($(".player1-captured").html().split(":")[0] + ": " + data["game"]["p1"]["captured"])
-            $(".player2-pieces").html($(".player2-pieces").html().split(":")[0] + ": " + data["game"]["p2"]["pieces"])
-            $(".player2-kings").html($(".player2-kings").html().split(":")[0] + ": " +  data["game"]["p2"]["kings"])
-            $(".player2-captured").html($(".player2-captured").html().split(":")[0] + ": " + data["game"]["p2"]["captured"])
-            if (data["gameongoing"] == false && data["winner"] != 0) {
+            $(".player1-pieces").html($(".player1-pieces").html().split(":")[0] + ": " + data["game"]["player1"]["pieces"])
+            $(".player1-kings").html($(".player1-kings").html().split(":")[0] + ": " +  data["game"]["player1"]["kings"])
+            $(".player1-captured").html($(".player1-captured").html().split(":")[0] + ": " + data["game"]["player1"]["captured"])
+            $(".player2-pieces").html($(".player2-pieces").html().split(":")[0] + ": " + data["game"]["player2"]["pieces"])
+            $(".player2-kings").html($(".player2-kings").html().split(":")[0] + ": " +  data["game"]["player2"]["kings"])
+            $(".player2-captured").html($(".player2-captured").html().split(":")[0] + ": " + data["game"]["player2"]["captured"])
+            if (data["playing"] == false && data["winner"] != 0) {
                 window.location = window.location.href.replace('game.html?', `win.html?winner=${String(data["winner"])}&time=${gameTime}&`);
             }
         });

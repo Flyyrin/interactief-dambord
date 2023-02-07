@@ -7,43 +7,23 @@ import requests
 
 URL = "http://flyyrin.pythonanywhere.com/"
 
-jsondata = {
-    "gameongoing": True, 
-    "winner": 0, 
-    "player": 1,
-    "game": {
-        "p1": {
-            "pieces": 0,
-            "kings": 0,
-            "captured": 0
-        },
-        "p2": {
-            "pieces": 0,
-            "kings": 0,
-            "captured": 0
-        }
-    }
-}
-
 class Api:
     def __init__(self):
         pass
 
     def exit(self,nodig):
-        print("Board uit")
-        # subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
-        quit()
+        print("exit")
+        subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
     
-    def start(self,cp):
-        np1,np2,cp1,cp2 = cp.split("&")
+    def start(self,playerData):
+        print("start")
+        np1,np2,cp1,cp2 = playerData.split("&")
         print(np1,np2,cp1,cp2)
-        requests.post(url = f"{URL}gameongoing", json = jsondata)
+        requests.post(url = URL, params = {"type": "start"})
     
     def stop(self,nodig):
-        print("Reset board")
-        customdata = dict(jsondata)
-        customdata["gameongoing"] = False
-        requests.post(url = f"{URL}gameongoing", json = customdata)
+        print("stop")
+        requests.post(url = URL, params = {"type": "stop"})
     
 if __name__ == '__main__':
     api = Api()

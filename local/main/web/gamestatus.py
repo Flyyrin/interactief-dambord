@@ -1,22 +1,13 @@
 import requests
 
-URL = "http://flyyrin.pythonanywhere.com/"
-jsondata = {
-    "gameongoing": False, 
-    "winner": 1, 
-    "player": 2,
-    "game": {
-        "p1": {
-            "pieces": 16,
-            "kings": 2,
-            "captured": 5
-        },
-        "p2": {
-            "pieces": 13,
-            "kings": 0,
-            "captured": 0
-        }
-    }
-}
-r = requests.post(url = f"{URL}gameongoing", json = jsondata)
+URL = "http://flyyrin.pythonanywhere.com/game"
+
+keuze = input("stop, start, win: ")
+
+if keuze == "win":
+    r = requests.post(url = URL, params = {"type": "winner"}, json = {"winner": 1})
+if keuze == "stop":
+    r = requests.post(url = URL, params = {"type": "stop"})
+if keuze == "start":
+    r = requests.post(url = URL, params = {"type": "start"})
 print(r.status_code)

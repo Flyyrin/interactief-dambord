@@ -73,24 +73,47 @@ def blogs():
 @cross_origin()
 def media(id):
     filepath = os.path.join(UPLOAD_FOLDER_PATH, id)
-    if os.path.exists(filepath):
-        return send_file(filepath, mimetype='image/gif')
-    else:
-        return send_file(os.path.join(BASE, "notfound.png"), mimetype='image/gif')
+    return send_file(filepath, mimetype='image/gif')
 
-gameongoingvar = False
+game = False
 winner = 0
-@app.route('/gameongoing/', methods=['GET','POST'])
+gameData = {
+    "current-player": 0,
+    "pieces": {
+        "player1": {
+            "pieces": 0,
+            "kings": 0,
+            "captured": 0
+        },
+        "player2": {
+            "pieces": 0,
+            "kings": 0,
+            "captured": 0
+        }
+    }
+}
+@app.route('/game', methods=['GET','POST'])
 @cross_origin()
 def gameongoing():
-    global gameongoingvar
+    global game
     global winner
+    global gameData
     if request.method == 'POST': 
-        gameongoingvar = bool(request.get_json()["gameongoing"])
-        winner = request.get_json()["winner"]
+        type = request.args.get("type")
+        if type == "winner":
+            game = False
+            winner = request.get_json()["winner"]
+        if type == "start":
+            winner = 0
+            game = True
+        if type == "stop":
+            winner = 0
+            game = False
+        if type == "gameData":
+            gameData = request.get_json()["gameData"]
         return ""
     if request.method == 'GET':
-        return json.dumps({"gameongoing": gameongoingvar, "winner": winner})
+        return json.dumps({"game":game, "winner":winner, "gameData":gameData})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
