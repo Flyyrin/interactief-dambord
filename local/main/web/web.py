@@ -27,5 +27,5 @@ class Api:
     
 if __name__ == '__main__':
     api = Api()
-    window = webview.create_window('Start', os.path.join(os.getcwd(), "C:/Users/bounc/Documents/GitHub/GIP-2022-2023/local/main/brainstorm/gui/start.html"), js_api=api, fullscreen=True) # /home/rpi/Documents/GIP-2022-2023/local/main/brainstorm/gui/start.html
+    window = webview.create_window('Start', os.path.join(os.getcwd(), "C:/Users/bounc/Documents/GitHub/GIP-2022-2023/local/main/web/start.html"), js_api=api, fullscreen=True) # /home/rpi/Documents/GIP-2022-2023/local/main/brainstorm/gui/start.html
     webview.start()
