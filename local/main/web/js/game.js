@@ -64,4 +64,4 @@ window.onload = function() {;
     $(".exit").on("click", function(){
         pywebview.api.exit("") 
     });
-}
+} 
