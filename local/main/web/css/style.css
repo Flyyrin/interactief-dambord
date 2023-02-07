@@ -40,6 +40,10 @@ html, body {
 	color: #2C3E50;
 }
 
+.invalid {
+	color: red;
+}
+
 .color:hover{
 	opacity: 50%;
 }

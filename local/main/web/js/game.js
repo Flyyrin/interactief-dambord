@@ -32,7 +32,7 @@ window.onload = function() {;
         }
     });
 
-    setInterval(function() {
+    function updateGame() {
         $.get( "http://flyyrin.pythonanywhere.com/game", function( data ) {
             data = JSON.parse(data);
             if (data["gameData"]["current-player"] == 1) {
@@ -49,10 +49,16 @@ window.onload = function() {;
             $(".player2-pieces").html($(".player2-pieces").html().split(":")[0] + ": " + data["gameData"]["pieces"]["player2"]["pieces"])
             $(".player2-kings").html($(".player2-kings").html().split(":")[0] + ": " +  data["gameData"]["pieces"]["player2"]["kings"])
             $(".player2-captured").html($(".player2-captured").html().split(":")[0] + ": " + data["gameData"]["pieces"]["player2"]["captured"])
-            if (data["gameongoing"] == false && data["winner"] != 0) {
+            console.log(data["game"])
+            if (data["game"] == false && data["winner"] != 0) {
                 window.location = window.location.href.replace('game.html?', `win.html?winner=${String(data["winner"])}&time=${gameTime}&`);
             }
         });
+    }
+
+    updateGame()
+    setInterval(function() {
+        updateGame();
     }, 1000);
 
     $(".exit").on("click", function(){
