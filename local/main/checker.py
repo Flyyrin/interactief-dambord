@@ -1,11 +1,17 @@
 from checkers.game import Game
 from kcontroller import readController
 import json
+from queue import Queue
+from web import startWeb
+import threading
+import requests
 # import board
 # import neopixel 
 # https://pypi.org/project/imparaai-checkers/
 
 # pixels = neopixel.NeoPixel(board.D18, 128)
+
+URL = "http://flyyrin.pythonanywhere.com/game"
 
 with open(r'local/main/config.json') as configFile:
     config = json.load(configFile)
@@ -14,6 +20,34 @@ with open(r'local/main/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 show_moves = True
+
+
+playerData = {
+    "player1": {
+        "name": "",
+        "color": ""
+    },
+    "player2": {
+        "name": "",
+        "color": ""
+    }
+}
+
+gameData = {
+    "current-player": 0,
+    "pieces": {
+        "player1": {
+            "pieces": 12,
+            "kings": 0,
+            "captured": 0
+        },
+        "player2": {
+            "pieces": 12,
+            "kings": 0,
+            "captured": 0
+        }
+    }
+}
 
 board = {}
 old_board = {}
@@ -25,7 +59,17 @@ def refresh():
     global board
     global old_board
     for tile, color in board.items():
-        tile_color = eval(config["colors"][str(color)])
+        if color == 1:
+            tile_color = eval(config["colors"][playerData["player1"]["color"]])
+        elif color == 2:
+            tile_color = eval(config["colors"][playerData["player2"]["color"]])
+        elif color == 3:
+            tile_color = eval(config["colors"]["dark-"+playerData["player1"]["color"]])
+        elif color == 4:
+            tile_color = eval(config["colors"]["dark-"+playerData["player2"]["color"]])
+        else:
+            tile_color = eval(config["colors"][str(color)])
+        print(tile_color)
         try:
             if old_board[tile] != color:
                 led1 = tile*2
@@ -55,7 +99,7 @@ def refresh():
         {b[7]} {b[6]} {b[5]} {b[4]} {b[3]} {b[2]} {b[1]} {b[0]}    
     """)
 
-def startGame():
+def startGame(queue):
     game = Game()
     global layout
 
@@ -63,10 +107,42 @@ def startGame():
     selected = 0
     highlighted = {"x": 0, "y": 0}
     selected_tile = False
-    while not game.is_over():
+    playing = True
+    startup = True
+    while playing:
+        winner = game.get_winner()
+        if winner:
+            requests.post(url = URL, params = {"type": "winner"}, json = {"winner": winner})
+            # requests.post(url = URL, json = {"winner": winner})
+            # {
+            #     "player1": {
+            #         "name": "Rafael",
+            #         "color": "green"
+            #     },
+            #     "player2": {
+            #         "name": "Romeo",
+            #         "color": "red"
+            #     },
+            #     "winner": 2,
+            #     "date": 1670231294871
+            # }
+            playing = False
+            exit()
         player = game.whose_turn()
         controller = readController(player)
 
+        if startup:
+            requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
+            controller = "-"
+            startup = False
+
+        try:
+            if queue.get_nowait() == "stop":
+                playing = False
+                exit()
+        except:
+            pass
+        
         pieces = []
         player1pieces = []
         player2pieces = []
@@ -128,24 +204,72 @@ def startGame():
                                 if selected == move[0]:
                                     moves.append(move)
 
-        for i in range(64):
-            color(i, "e")
-        for piece in game.board.pieces:
-            if piece.position != None:
-                player_piece = piece.player
-                if piece.king:
-                    player_piece += 2
-                color(layout['game'][str(piece.position)], player_piece)
+            try:
+                player1piecesAmount = 0
+                player2piecesAmount = 0
+                player1kingsAmount = 0
+                player2kingsAmount = 0
+                for piece in game.board.pieces:
+                    if piece.position != None:
+                        if piece.player == 1:
+                            if piece.king:
+                                player1kingsAmount += 1
+                            else:
+                                player1piecesAmount += 1
+                        if piece.player == 2:
+                            if piece.king:
+                                player2kingsAmount += 1
+                            else:
+                                player2piecesAmount += 1
+            
+                gameData["pieces"]["player1"]["pieces"] = player1piecesAmount
+                gameData["pieces"]["player2"]["pieces"] = player2piecesAmount
+                gameData["pieces"]["player1"]["kings"] = player1kingsAmount
+                gameData["pieces"]["player2"]["kings"] = player2kingsAmount
+                gameData["pieces"]["player1"]["captured"] = 12 - (player2piecesAmount + player2kingsAmount)
+                gameData["pieces"]["player2"]["captured"] = 12 - (player1piecesAmount + player1kingsAmount)
+            except Exception as e:
+                print(e)
+            gameData["current-player"] = game.whose_turn()
+            requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
         
-        for move in moves:
-            print(move)
-            color(layout['game'][str(move[1])], "p")
-        if selected_tile:
-            color(selected_tile, "c")
-        color(highlighted_tile, "h")
+        
+        if controller:
+            for i in range(64):
+                color(i, "e")
+            for piece in game.board.pieces:
+                if piece.position != None:
+                    player_piece = piece.player
+                    if piece.king:
+                        player_piece += 2
+                    color(layout['game'][str(piece.position)], player_piece)
+            
+            for move in moves:
+                print(move)
+                color(layout['game'][str(move[1])], "p")
+            if selected_tile:
+                color(selected_tile, "c")
+            color(highlighted_tile, "h")
 
-        refresh()
+            refresh()
 
-    print(game.get_winner())
+def setupGame(queue):
+    while True:
+        try:
+            data = queue.get()
+            if "start" in data:
+                global playerData
+                np1,np2,cp1,cp2 = data.split("|")[1].split("&")
+                playerData["player1"]["name"] = np1
+                playerData["player2"]["name"] = np2
+                playerData["player1"]["color"] = cp1
+                playerData["player2"]["color"] = cp2
+                startGame(queue)
+        except:
+            pass
 
-startGame()
+
+queue = Queue()
+gameThread = threading.Thread(target=setupGame, args=(queue,))
+gameThread.start()
+startWeb(queue)
