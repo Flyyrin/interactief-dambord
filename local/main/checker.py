@@ -1,25 +1,19 @@
 from checkers.game import Game
-from controller import readController
+from kcontroller import readController
 import json
-import board
-import neopixel 
+# import board
+# import neopixel 
 # https://pypi.org/project/imparaai-checkers/
 
-pixels = neopixel.NeoPixel(board.D18, 128)
+# pixels = neopixel.NeoPixel(board.D18, 128)
+
+with open(r'local/main/config.json') as configFile:
+    config = json.load(configFile)
+
 with open(r'local/main/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 show_moves = True
-colors = {
-    "e": "(0,0,0)",
-    "h": "(255,0,255)",
-    "c": "(255,255,0)",
-    "p": "(255,0,0)",
-    "1": "(0,255,0)",
-    "2": "(0,0,255)",
-    "3": "(0,0,0)",
-    "4": "(0,0,0)"
-}
 
 board = {}
 old_board = {}
@@ -31,20 +25,20 @@ def refresh():
     global board
     global old_board
     for tile, color in board.items():
-        tile_color = eval(colors[str(color)])
+        tile_color = eval(config["colors"][str(color)])
         try:
             if old_board[tile] != color:
                 led1 = tile*2
                 led2 = tile*2+1
-                pixels[led1] = tile_color
-                pixels[led2] = tile_color
+                # pixels[led1] = tile_color
+                # pixels[led2] = tile_color
                 print(f"{tile}: {color}")
 
         except:
             led1 = tile*2
             led2 = tile*2+1
-            pixels[led1] = tile_color
-            pixels[led2] = tile_color
+            # pixels[led1] = tile_color
+            # pixels[led2] = tile_color
             print(f"{tile}: {color}")
     
     old_board = dict(board)
