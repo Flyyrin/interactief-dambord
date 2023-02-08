@@ -5,6 +5,7 @@ from queue import Queue
 from web import startWeb
 import threading
 import requests
+import time
 # import board
 # import neopixel 
 # https://pypi.org/project/imparaai-checkers/
@@ -13,10 +14,10 @@ import requests
 
 URL = "http://flyyrin.pythonanywhere.com/game"
 
-with open(r'local/main/config.json') as configFile:
+with open(r'local/main/json/config.json') as configFile:
     config = json.load(configFile)
 
-with open(r'local/main/layout.json') as layoutFile:
+with open(r'local/main/json/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 show_moves = True
@@ -113,20 +114,13 @@ def startGame(queue):
         winner = game.get_winner()
         if winner:
             requests.post(url = URL, params = {"type": "winner"}, json = {"winner": winner})
-            # requests.post(url = URL, json = {"winner": winner})
-            # {
-            #     "player1": {
-            #         "name": "Rafael",
-            #         "color": "green"
-            #     },
-            #     "player2": {
-            #         "name": "Romeo",
-            #         "color": "red"
-            #     },
-            #     "winner": 2,
-            #     "date": 1670231294871
-            # }
+            winData = dict(playerData)
+            winData["winner"] = winner  
+            winData["winner"] = int(time.time() * 1000)
+            requests.post(url = URL, json = winData)
             playing = False
+            for i in range(64):
+                color(i, str(winner))
             exit()
         player = game.whose_turn()
         controller = readController(player)
