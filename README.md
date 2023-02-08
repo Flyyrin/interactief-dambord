@@ -13,6 +13,11 @@ Voor ons project hebben wij de opdracht gekregen om een elektronisch dambord te 
   <img src="img1.png" alt="screenshot" />
 </div>
 
+### :camera: Kleuren
+<div align="center"> 
+  <img src="2.png" alt="screenshot" />
+</div>
+
 ### :camera: Foto
 <div align="center"> 
   <img src="https://placehold.co/600x400?text=Image+2" alt="screenshot" />
