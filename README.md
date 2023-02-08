@@ -15,7 +15,7 @@ Voor ons project hebben wij de opdracht gekregen om een elektronisch dambord te 
 
 ### :camera: Kleuren
 <div align="center"> 
-  <img src="2.png" alt="screenshot" />
+  <img src="img2.png" alt="screenshot" />
 </div>
 
 ### :camera: Foto
