@@ -65,9 +65,9 @@ def refresh():
         elif color == 2:
             tile_color = eval(config["colors"][playerData["player2"]["color"]])
         elif color == 3:
-            tile_color = eval(config["colors"]["dark-"+playerData["player1"]["color"]])
+            tile_color = eval(config["colors"]["king-"+playerData["player1"]["color"]])
         elif color == 4:
-            tile_color = eval(config["colors"]["dark-"+playerData["player2"]["color"]])
+            tile_color = eval(config["colors"]["king-"+playerData["player2"]["color"]])
         else:
             tile_color = eval(config["colors"][str(color)])
         print(tile_color)
