@@ -1,23 +1,23 @@
 from checkers.game import Game
-from kcontroller import readController
+from controller import readController
 import json
 from queue import Queue
 from web import startWeb
 import threading
 import requests
 import time
-# import board
-# import neopixel 
+import board
+import neopixel 
 # https://pypi.org/project/imparaai-checkers/
 
-# pixels = neopixel.NeoPixel(board.D18, 128)
+pixels = neopixel.NeoPixel(board.D18, 128)
 
 URL = "http://flyyrin.pythonanywhere.com/game"
 
-with open(r'local/main/json/config.json') as configFile:
+with open(r'/home/rpi/Documents/GIP-2022-2023/local/main/json/config.json') as configFile:
     config = json.load(configFile)
 
-with open(r'local/main/json/layout.json') as layoutFile:
+with open(r'/home/rpi/Documents/GIP-2022-2023/local/main/json/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 show_moves = True
@@ -75,15 +75,15 @@ def refresh():
             if old_board[tile] != color:
                 led1 = tile*2
                 led2 = tile*2+1
-                # pixels[led1] = tile_color
-                # pixels[led2] = tile_color
+                pixels[led1] = tile_color
+                pixels[led2] = tile_color
                 print(f"{tile}: {color}")
 
         except:
             led1 = tile*2
             led2 = tile*2+1
-            # pixels[led1] = tile_color
-            # pixels[led2] = tile_color
+            pixels[led1] = tile_color
+            pixels[led2] = tile_color
             print(f"{tile}: {color}")
     
     old_board = dict(board)
