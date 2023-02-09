@@ -134,6 +134,9 @@ def startGame(queue):
 
         try:
             if queue.get_nowait() == "stop":
+                for i in range(64):
+                    color(i, "c")
+                refresh()
                 playing = False
                 exit()
         except:
