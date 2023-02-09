@@ -30,5 +30,5 @@ def startWeb(queue):
         
     requests.post(url = URL, params = {"type": "stop"})
     api = Api()
-    window = webview.create_window('Start', os.path.join(os.getcwd(), "/home/rpi/Documents/GIP-2022-2023/local/main/web/start.html"), js_api=api, fullscreen=False) # /home/rpi/Documents/GIP-2022-2023/local/main/brainstorm/gui/start.html
+    window = webview.create_window('Start', os.path.join(os.getcwd(), "/home/rpi/Documents/GIP-2022-2023/local/main/web/start.html"), js_api=api, fullscreen=True) # /home/rpi/Documents/GIP-2022-2023/local/main/brainstorm/gui/start.html
     webview.start()

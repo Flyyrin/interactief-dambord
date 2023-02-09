@@ -116,16 +116,18 @@ def startGame(queue):
             requests.post(url = URL, params = {"type": "winner"}, json = {"winner": winner})
             winData = dict(playerData)
             winData["winner"] = winner  
-            winData["winner"] = int(time.time() * 1000)
+            winData["date"] = int(time.time() * 1000)
             requests.post(url = URL, json = winData)
             playing = False
             for i in range(64):
                 color(i, str(winner))
+            refresh()
             exit()
         player = game.whose_turn()
         controller = readController(player)
 
         if startup:
+            gameData["current-player"] = game.whose_turn()
             requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
             controller = "-"
             startup = False
@@ -248,6 +250,9 @@ def startGame(queue):
             refresh()
 
 def setupGame(queue):
+    for i in range(64):
+        color(i, "c")
+    refresh()
     while True:
         try:
             data = queue.get()
