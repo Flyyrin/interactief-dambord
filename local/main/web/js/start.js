@@ -19,6 +19,7 @@ window.onload = function() {
             $(`.color-player2 > .${cp1}`).siblings().removeClass("disabled");
             $(`.color-player2 > .${cp1}`).addClass("disabled")
             updateButton()
+            pywebview.api.color(cp1+"&"+cp2)
         }
     });
 
@@ -31,6 +32,7 @@ window.onload = function() {
             $(`.color-player1 > .${cp2}`).siblings().removeClass("disabled");
             $(`.color-player1 > .${cp2}`).addClass("disabled")
             updateButton()
+            pywebview.api.color(cp1+"&"+cp2)
         }
     });
 
