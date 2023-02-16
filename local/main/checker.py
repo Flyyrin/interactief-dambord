@@ -188,6 +188,10 @@ def startGame(queue):
                         moves.clear()
                         print("Posible move")
                         game.move(move)
+                        if game.whose_turn() == 1:
+                            highlighted_tile = 4
+                        if game.whose_turn() == 2:
+                            highlighted_tile = 60
                     print(game.get_possible_moves())
                 if allowed:
                     if selected == new_selected:
