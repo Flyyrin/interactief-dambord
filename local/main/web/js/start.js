@@ -7,6 +7,7 @@ window.onload = function() {
     var cp2 = $(".color-player2 > .selected").attr('class').split(' ')[2];
 
     function updateButton() {
+        pywebview.api.color(cp1+"&"+cp2)
         $(".start").css({background: `linear-gradient(120deg, ${$(".color-player1 > .selected").css("background-color")} 50%, ${$(".color-player2 > .selected").css("background-color")} 50%)`});
     }
 
@@ -19,7 +20,6 @@ window.onload = function() {
             $(`.color-player2 > .${cp1}`).siblings().removeClass("disabled");
             $(`.color-player2 > .${cp1}`).addClass("disabled")
             updateButton()
-            pywebview.api.color(cp1+"&"+cp2)
         }
     });
 
@@ -32,7 +32,6 @@ window.onload = function() {
             $(`.color-player1 > .${cp2}`).siblings().removeClass("disabled");
             $(`.color-player1 > .${cp2}`).addClass("disabled")
             updateButton()
-            pywebview.api.color(cp1+"&"+cp2)
         }
     });
 

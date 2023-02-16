@@ -23,9 +23,9 @@ def startWeb(queue):
             print(np1,np2,cp1,cp2)
             requests.post(url = URL, params = {"type": "start"})
 
-        def start(self,colorData):
-            print("color")
-            queue.put("color|"+colorData)
+        # def color(self,colorData):
+        #     print("color")
+        #     queue.put("color|"+colorData)
         
         def stop(self,nodig):
             print("stop")
