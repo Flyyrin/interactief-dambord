@@ -272,6 +272,7 @@ def setupGame(queue):
                 playerData["player2"]["color"] = cp2
                 startGame(queue)
             if "color" in data:
+                print("color 2")
                 cp1,cp2 = data.split("|")[1].split("&")
                 color1 = eval(config["colors"][str(cp1)])
                 color2 = eval(config["colors"][str(cp2)])
