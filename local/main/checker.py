@@ -204,8 +204,13 @@ def startGame(queue):
                         selected_tile = highlighted_tile
                         if show_moves:
                             for move in game.get_possible_moves():
-                                if selected == move[0] or len(game.get_possible_moves()) == 1:
+                                if selected == move[0]:
                                     moves.append(move)
+
+                    print(len(game.get_possible_moves()))
+                    if len(game.get_possible_moves()) == 1:
+                        for move in game.get_possible_moves():
+                            moves.append(move)
 
             try:
                 player1piecesAmount = 0
