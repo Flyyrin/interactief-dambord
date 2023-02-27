@@ -171,3 +171,18 @@ html, body {
 .start {
 	background: linear-gradient(120deg, rgb(252, 76, 79) 50%, rgb(207, 63, 236) 50%);
 }
+
+.assist .form-check-input{
+	padding-top: 2rem;
+	scale: 4;
+}
+
+.assist .form-check-label {
+	font-size: xx-large;
+	padding-left: 2rem;
+	color: #FFF;
+}
+
+.form-check-input {
+	background-color: #4bec3f !important;
+}

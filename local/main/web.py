@@ -19,8 +19,8 @@ def startWeb(queue):
         def start(self,playerData):
             print("start")
             queue.put("start|"+playerData)
-            np1,np2,cp1,cp2 = playerData.split("&")
-            print(np1,np2,cp1,cp2)
+            np1,np2,cp1,cp2,assist = playerData.split("&")
+            print(np1,np2,cp1,cp2, assist)
             requests.post(url = URL, params = {"type": "start"})
 
         def color(self,colorData):
