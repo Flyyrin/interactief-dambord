@@ -117,7 +117,7 @@ def startGame(queue):
             winData = dict(playerData)
             winData["winner"] = winner  
             winData["date"] = int(time.time() * 1000)
-            requests.post(url = URL, json = winData)
+            requests.post(url = URL+"s" , json = winData)
             playing = False
             for i in range(64):
                 color(i, str(winner))
@@ -271,14 +271,14 @@ def setupGame(queue):
                 playerData["player1"]["color"] = cp1
                 playerData["player2"]["color"] = cp2
                 startGame(queue)
-            # if "color" in data:
-            #     cp1,cp2 = data.split("|")[1].split("&")
-            #     color1 = eval(config["colors"][str(cp1)])
-            #     color2 = eval(config["colors"][str(cp2)])
-            #     for i in range(32):
-            #         color(i, color1)
-            #     for i in range(32,64):
-            #         color(i, color2)
+            if "color" in data:
+                cp1,cp2 = data.split("|")[1].split("&")
+                color1 = eval(config["colors"][str(cp1)])
+                color2 = eval(config["colors"][str(cp2)])
+                for i in range(32):
+                    color(i, color1)
+                for i in range(32,64):
+                    color(i, color2)
         except:
             pass
 
