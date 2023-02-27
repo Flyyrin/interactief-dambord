@@ -277,6 +277,7 @@ def setupGame(queue):
                 print(cp1,cp2)
                 color1 = eval(config["colors"][str(cp1)])
                 color2 = eval(config["colors"][str(cp2)])
+                print(color1, color2)
                 for i in range(32):
                     color(i, color1)
                 for i in range(32,64):
