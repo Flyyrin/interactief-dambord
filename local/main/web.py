@@ -25,7 +25,7 @@ def startWeb(queue):
 
         def color(self,colorData):
             print("color")
-            queue.put("color|"+colorData)
+            # queue.put("color|"+colorData)
         
         def stop(self,nodig):
             print("stop")
