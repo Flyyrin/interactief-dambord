@@ -282,6 +282,7 @@ def setupGame(queue):
                     color(i, color1)
                 for i in range(32,64):
                     color(i, color2)
+                refresh()
         except:
             pass
 
