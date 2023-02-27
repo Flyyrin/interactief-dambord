@@ -70,35 +70,35 @@ def refresh():
             tile_color = eval(config["colors"]["king-"+playerData["player2"]["color"]])
         else:
             tile_color = eval(config["colors"][str(color)])
-        print(tile_color)
+        # print(tile_color)
         try:
             if old_board[tile] != color:
                 led1 = tile*2
                 led2 = tile*2+1
                 pixels[led1] = tile_color
                 pixels[led2] = tile_color
-                print(f"{tile}: {color}")
+                # print(f"{tile}: {color}")
 
         except:
             led1 = tile*2
             led2 = tile*2+1
             pixels[led1] = tile_color
             pixels[led2] = tile_color
-            print(f"{tile}: {color}")
+            # print(f"{tile}: {color}")
     
     old_board = dict(board)
 
     b = board
-    print(f"""     
-        {b[56]} {b[57]} {b[58]} {b[59]} {b[60]} {b[61]} {b[62]} {b[63]} 
-        {b[55]} {b[54]} {b[53]} {b[52]} {b[51]} {b[50]} {b[49]} {b[48]} 
-        {b[40]} {b[41]} {b[42]} {b[43]} {b[44]} {b[45]} {b[46]} {b[47]} 
-        {b[39]} {b[38]} {b[37]} {b[36]} {b[35]} {b[34]} {b[33]} {b[32]} 
-        {b[24]} {b[25]} {b[26]} {b[27]} {b[28]} {b[29]} {b[30]} {b[31]} 
-        {b[23]} {b[22]} {b[21]} {b[20]} {b[19]} {b[18]} {b[17]} {b[16]} 
-        {b[8]} {b[9]} {b[10]} {b[11]} {b[12]} {b[13]} {b[14]} {b[15]} 
-        {b[7]} {b[6]} {b[5]} {b[4]} {b[3]} {b[2]} {b[1]} {b[0]}    
-    """)
+    # print(f"""     
+    #     {b[56]} {b[57]} {b[58]} {b[59]} {b[60]} {b[61]} {b[62]} {b[63]} 
+    #     {b[55]} {b[54]} {b[53]} {b[52]} {b[51]} {b[50]} {b[49]} {b[48]} 
+    #     {b[40]} {b[41]} {b[42]} {b[43]} {b[44]} {b[45]} {b[46]} {b[47]} 
+    #     {b[39]} {b[38]} {b[37]} {b[36]} {b[35]} {b[34]} {b[33]} {b[32]} 
+    #     {b[24]} {b[25]} {b[26]} {b[27]} {b[28]} {b[29]} {b[30]} {b[31]} 
+    #     {b[23]} {b[22]} {b[21]} {b[20]} {b[19]} {b[18]} {b[17]} {b[16]} 
+    #     {b[8]} {b[9]} {b[10]} {b[11]} {b[12]} {b[13]} {b[14]} {b[15]} 
+    #     {b[7]} {b[6]} {b[5]} {b[4]} {b[3]} {b[2]} {b[1]} {b[0]}    
+    # """)
 
 def startGame(queue):
     game = Game()
@@ -181,18 +181,18 @@ def startGame(queue):
                     allowed = True
                 if selected:
                     move = [selected, new_selected]
-                    print(move)
+                    # print(move)
                     if move in game.get_possible_moves():
                         selected = 0
                         selected_tile = False
                         moves.clear()
-                        print("Posible move")
+                        # print("Posible move")
                         game.move(move)
                         # if game.whose_turn() == 1:
                         #     highlighted = {"x": 3, "y": 0}
                         # if game.whose_turn() == 2:
                         #     highlighted = {"x": 5, "y": 7}
-                    print(game.get_possible_moves())
+                    # print(game.get_possible_moves())
                 if allowed:
                     if selected == new_selected:
                         selected = 0
@@ -237,7 +237,7 @@ def startGame(queue):
                 gameData["pieces"]["player1"]["captured"] = 12 - (player2piecesAmount + player2kingsAmount)
                 gameData["pieces"]["player2"]["captured"] = 12 - (player1piecesAmount + player1kingsAmount)
             except Exception as e:
-                print(e)
+                print(e)    
             gameData["current-player"] = game.whose_turn()
             requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
         
@@ -253,7 +253,7 @@ def startGame(queue):
                     color(layout['game'][str(piece.position)], player_piece)
             
             for move in moves:
-                print(move)
+                # print(move)
                 color(layout['game'][str(move[1])], "p")
             if selected_tile:
                 color(selected_tile, "c")
@@ -279,12 +279,12 @@ def setupGame(queue):
                 playerData["player2"]["color"] = cp2
                 startGame(queue)
             if "color" in data:
-                print("color 2")
+                # print("color 2")
                 cp1,cp2 = data.split("|")[1].split("&")
-                print(cp1,cp2)
+                # print(cp1,cp2)
                 color1 = eval(config["colors"][str(cp1)])
                 color2 = eval(config["colors"][str(cp2)])
-                print(color1, color2)
+                # print(color1, color2)
                 for i in range(32):
                     color(i, cp1)
                 for i in range(32,64):
