@@ -264,11 +264,12 @@ def setupGame(queue):
             data = queue.get()
             if "start" in data:
                 global playerData
-                np1,np2,cp1,cp2 = data.split("|")[1].split("&")
+                np1,np2,cp1,cp2,assist = data.split("|")[1].split("&")
                 playerData["player1"]["name"] = np1
                 playerData["player2"]["name"] = np2
                 playerData["player1"]["color"] = cp1
                 playerData["player2"]["color"] = cp2
+                print("assist:", assist)
                 startGame(queue)
             if "color" in data:
                 # print("color 2")
