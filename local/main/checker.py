@@ -204,7 +204,7 @@ def startGame(queue):
                         selected_tile = highlighted_tile
                         if show_moves:
                             for move in game.get_possible_moves():
-                                if selected == move[0]:
+                                if selected == move[0] or len(game.get_possible_moves()) == 1:
                                     moves.append(move)
 
             try:
@@ -281,7 +281,6 @@ def setupGame(queue):
             #         color(i, color2)
         except:
             pass
-
 
 queue = Queue()
 gameThread = threading.Thread(target=setupGame, args=(queue,))
