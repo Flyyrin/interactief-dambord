@@ -209,40 +209,31 @@ def startGame(queue):
                                 if selected == move[0]:
                                     moves.append(move)
 
-                print(len(game.get_possible_moves()))
-                if len(game.get_possible_moves()) == 1:
-                    for move in game.get_possible_moves():
-                        moves.append(move)
-
-            try:
-                player1piecesAmount = 0
-                player2piecesAmount = 0
-                player1kingsAmount = 0
-                player2kingsAmount = 0
-                for piece in game.board.pieces:
-                    if piece.position != None:
-                        if piece.player == 1:
-                            if piece.king:
-                                player1kingsAmount += 1
-                            else:
-                                player1piecesAmount += 1
-                        if piece.player == 2:
-                            if piece.king:
-                                player2kingsAmount += 1
-                            else:
-                                player2piecesAmount += 1
-            
-                gameData["pieces"]["player1"]["pieces"] = player1piecesAmount
-                gameData["pieces"]["player2"]["pieces"] = player2piecesAmount
-                gameData["pieces"]["player1"]["kings"] = player1kingsAmount
-                gameData["pieces"]["player2"]["kings"] = player2kingsAmount
-                gameData["pieces"]["player1"]["captured"] = 12 - (player2piecesAmount + player2kingsAmount)
-                gameData["pieces"]["player2"]["captured"] = 12 - (player1piecesAmount + player1kingsAmount)
-            except Exception as e:
-                print(e)    
+            player1piecesAmount = 0
+            player2piecesAmount = 0
+            player1kingsAmount = 0
+            player2kingsAmount = 0
+            for piece in game.board.pieces:
+                if piece.position != None:
+                    if piece.player == 1:
+                        if piece.king:
+                            player1kingsAmount += 1
+                        else:
+                            player1piecesAmount += 1
+                    if piece.player == 2:
+                        if piece.king:
+                            player2kingsAmount += 1
+                        else:
+                            player2piecesAmount += 1
+        
+            gameData["pieces"]["player1"]["pieces"] = player1piecesAmount
+            gameData["pieces"]["player2"]["pieces"] = player2piecesAmount
+            gameData["pieces"]["player1"]["kings"] = player1kingsAmount
+            gameData["pieces"]["player2"]["kings"] = player2kingsAmount
+            gameData["pieces"]["player1"]["captured"] = 12 - (player2piecesAmount + player2kingsAmount)
+            gameData["pieces"]["player2"]["captured"] = 12 - (player1piecesAmount + player1kingsAmount)
             gameData["current-player"] = game.whose_turn()
             requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
-        
         
         if controller:
             for i in range(64):
@@ -260,7 +251,6 @@ def startGame(queue):
             if selected_tile:
                 color(selected_tile, "c")
             color(highlighted_tile, "h")
-
             refresh()
 
 def setupGame(queue):
