@@ -209,10 +209,10 @@ def startGame(queue):
                                 if selected == move[0]:
                                     moves.append(move)
 
-                    print(len(game.get_possible_moves()))
-                    if len(game.get_possible_moves()) == 1:
-                        for move in game.get_possible_moves():
-                            moves.append(move)
+                print(len(game.get_possible_moves()))
+                if len(game.get_possible_moves()) == 1:
+                    for move in game.get_possible_moves():
+                        moves.append(move)
 
             try:
                 player1piecesAmount = 0
