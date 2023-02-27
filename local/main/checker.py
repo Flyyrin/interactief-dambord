@@ -279,9 +279,9 @@ def setupGame(queue):
                 color2 = eval(config["colors"][str(cp2)])
                 print(color1, color2)
                 for i in range(32):
-                    color(i, color1)
+                    color(i, cp1)
                 for i in range(32,64):
-                    color(i, color2)
+                    color(i, cp2)
                 refresh()
         except:
             pass
