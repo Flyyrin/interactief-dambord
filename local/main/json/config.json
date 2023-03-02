@@ -9,10 +9,10 @@
         "yellow": "(255,255,0)",
         "green": "(0,255,0)",
         "purple": "(255,0,255)",
-        "king-red": "(255,0,0)",
-        "king-blue": "(0,0,255)",
-        "king-yellow": "(255,255,0)",
-        "king-green": "(0,255,0)",
-        "king-purple": "(255,0,255)"
+        "king-red": "(127,0,0)",
+        "king-blue": "(0,0,127)",
+        "king-yellow": "(127,127,0)",
+        "king-green": "(0,127,0)",
+        "king-purple": "(127,0,127)"
     }
 }
