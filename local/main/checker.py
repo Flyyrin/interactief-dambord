@@ -289,6 +289,11 @@ def setupGame(queue):
                 for i in range(32,64):
                     color(i, cp2)
                 refresh()
+            if queue.get_nowait() == "exit":
+                for i in range(64):
+                    color(i, "c")
+                refresh()
+                exit()
         except:
             pass
 
