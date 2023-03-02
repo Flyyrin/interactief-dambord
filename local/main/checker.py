@@ -269,7 +269,7 @@ def setupGame(queue):
                 playerData["player2"]["name"] = np2
                 playerData["player1"]["color"] = cp1
                 playerData["player2"]["color"] = cp2
-                print("assist:", assist)
+                print("assist:", assist, type(assist))
                 startGame(queue)
             if "color" in data:
                 # print("color 2")
