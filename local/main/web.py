@@ -14,6 +14,8 @@ def startWeb(queue):
 
         def exit(self,nodig):
             print("exit")
+            requests.post(url = URL, params = {"type": "stop"})
+            queue.put("stop")
             subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
         
         def start(self,playerData):
