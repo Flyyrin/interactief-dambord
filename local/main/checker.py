@@ -293,7 +293,7 @@ def setupGame(queue):
                 refresh()
             if data == "exit":
                 for i in range(64):
-                    color(i, "c")
+                    color(i, "e")
                 refresh()
                 exit()
         except:
