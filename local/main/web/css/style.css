@@ -186,3 +186,7 @@ html, body {
 .form-check-input {
 	background-color: #4bec3f !important;
 }
+
+.assist-div {
+	margin-bottom: 14rem;
+}
