@@ -22,7 +22,6 @@ with open(r'/home/rpi/Documents/GIP-2022-2023/local/main/json/layout.json') as l
 
 show_moves = True
 
-
 playerData = {
     "player1": {
         "name": "",
@@ -278,6 +277,11 @@ def setupGame(queue):
                 playerData["player1"]["color"] = cp1
                 playerData["player2"]["color"] = cp2
                 print("assist:", assist, type(assist))
+                global show_moves
+                if assist == "true":
+                    show_moves = True
+                if assist == "false":
+                    show_moves = False
                 startGame(queue)
             if "color" in data:
                 # print("color 2")
