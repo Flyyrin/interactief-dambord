@@ -4,6 +4,7 @@ import webview
 import os
 import subprocess
 import requests
+import time
 
 URL = "http://flyyrin.pythonanywhere.com/game"
 
@@ -16,6 +17,7 @@ def startWeb(queue):
             print("exit")
             requests.post(url = URL, params = {"type": "stop"})
             queue.put("stop")
+            time.sleep(1)
             subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
         
         def start(self,playerData):
