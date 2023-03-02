@@ -14,7 +14,7 @@ def startWeb(queue):
 
         def exit(self,nodig):
             print("exit")
-            # subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
+            subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
         
         def start(self,playerData):
             print("start")
