@@ -16,7 +16,7 @@ def startWeb(queue):
         def exit(self,nodig):
             print("exit")
             requests.post(url = URL, params = {"type": "stop"})
-            queue.put("stop")
+            queue.put("exit")
             time.sleep(1)
             subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
         
