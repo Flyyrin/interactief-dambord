@@ -1,0 +1,14 @@
+[
+    {
+        "player1": {
+            "name": "Rafael",
+            "color": "green"
+        },
+        "player2": {
+            "name": "Romeo",
+            "color": "red"
+        },
+        "winner": 2,
+        "date": 1670231294871
+    }
+]
