@@ -49,7 +49,6 @@ window.onload = function() {;
             $(".player2-pieces").html($(".player2-pieces").html().split(":")[0] + ": " + data["gameData"]["pieces"]["player2"]["pieces"])
             $(".player2-kings").html($(".player2-kings").html().split(":")[0] + ": " +  data["gameData"]["pieces"]["player2"]["kings"])
             $(".player2-captured").html($(".player2-captured").html().split(":")[0] + ": " + data["gameData"]["pieces"]["player2"]["captured"])
-            console.log(data["game"])
             if (data["game"] == false && data["winner"] != 0) {
                 window.location = window.location.href.replace('game.html?', `win.html?winner=${String(data["winner"])}&time=${gameTime}&`);
             }
