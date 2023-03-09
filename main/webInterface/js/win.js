@@ -21,7 +21,7 @@ window.onload = function() {
     }
 
     $(".restart").on("click", function(){
-        pywebview.api.exit("") 
+        pywebview.api.stop("") 
         window.location = window.location.href.replace('win', 'start');
     });
 
