@@ -83,7 +83,6 @@ def refresh():
             pixels[led2] = tile_color
     old_board = dict(board)
 
-
 def startGame(queue):
     global layout
     game = Game()
@@ -103,7 +102,7 @@ def startGame(queue):
             requests.post(url = URL+"s" , json = winData)
             playing = False
             for i in range(64):
-                color(i, str(winner))
+                color(i, winner)
             refresh()
             exit()
         player = game.whose_turn()
