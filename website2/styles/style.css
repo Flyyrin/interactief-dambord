@@ -50,9 +50,18 @@
     background-color: #ffffff;
 }
 
-.blog-section img,
+
 .blog-section .item-img {
     width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+.blog-section img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .blog-section .slide-content {
