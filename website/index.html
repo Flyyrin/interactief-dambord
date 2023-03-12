@@ -1,35 +1,685 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico">
-        <title>Dambord</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">    
+        <title>LED Dambord</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
-        <link rel="stylesheet" href="css/header.css">
-        <link rel="stylesheet" href="css/bg.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/footer.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="js/main.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/socicon@3.0.5/css/socicon.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs.min.css">
+        <link rel="stylesheet" href="https://cdn.pythonanywhere.com/bootstrap/additional-styles.css">
+        <link rel="stylesheet" href="styles/style.css" type="text/css">
+        <link rel="stylesheet" href="styles/games.css" type="text/css">
+        <link rel="stylesheet" href="styles/placeholder.css" type="text/css">
     </head>
     <body>
-        <div class="header"></div>
-        <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-            <div class="box-area my-auto placeholder-background">
-                <div class="inner cover my-auto">
-                <h1 class="cover-heading">Project Dambord.</h1>
-                <p class="lead">Ons doel is om het klassieke damspel naar het digitale tijdperk te brengen.</p>
-                <p class="lead">
-                    <a href="info" class="btn btn-lg btn-secondary">Informatie</a>
-                </p>
+        <section class="menu navbar-section">
+            <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+                <div class="container-fluid">
+                    <div class="navbar-brand">
+                        <span class="navbar-logo">
+                                <a href="#top"><img src="images/logo.png" alt="logo" style="height: 3rem;"></a>
+                        </span>
+                        <span class="navbar-caption-wrap"><a class="navbar-caption text-white text-primary display-7" href="#top">LED Dambord</a></span>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <div class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                            <li class="nav-item"><a class="nav-link link text-white display-4" href="#games">Games</a></li>
+                            <li class="nav-item"><a class="nav-link link text-white show text-primary display-4" href="#info" aria-expanded="false">Introductie</a></li>
+                            <li class="nav-item"><a class="nav-link link text-white display-4" href="#blog">Blog</a></li>
+                            <li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" href="#code" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Uitleg</a>
+                                <div class="dropdown-menu">
+                                    <a class="text-white show dropdown-item text-primary display-4" href="#hardware">Hardware</a>
+                                    <a class="text-white show dropdown-item text-primary display-4" href="#schema">Schema</a>
+                                    <a class="text-white show dropdown-item text-primary display-4" href="#software">Software</a>
+                                    <a class="text-white show dropdown-item text-primary display-4" href="#code">Code</a>
+                                </div>
+                            </li>
+                            <li class="nav-item"><a class="nav-link link text-white show text-primary display-4" href="#resultaat">Resultaat</a></li>
+                            <li class="nav-item"><a class="nav-link link text-white display-4" href="#contact">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link link text-white display-4" href="https://github.com/Flyyrin/GIP-2022-2023" target="_blank"><span class="socicon socicon-github bs-iconfont bs-iconfont-btn"></span>Github</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+        <section class="main-section bs-fullscreen">
+            <div class="bs-overlay" style="opacity: 0.2; background-color: rgb(35, 35, 35);"></div>
+            <div class="align-center container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-6">
+                        <h1 class="bs-section-title bs-fonts-style mb-3 display-1"><strong>LED Dambord</strong></h1>  
+                        <p class="bs-text bs-fonts-style display-7">Ons doel is om het klassieke damspel naar het digitale tijdperk te brengen met ons geavanceerde ontwerp.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section" id="games">
+            <div class="container">
+                <div class="bs-section-head">
+                    <h3 class="bs-section-title bs-fonts-style mb-0 display-2"><strong>Laatste Games</strong></h3>
+                </div>
+                <div class="row mt-4 w-75 mx-auto placeholder">
+
+                    <div class="row game-row align-items-center text-center placeholder-background">
+                        <div class="col game-col align-middle invis">
+                            <img class="crown p1w winner w-auto" src="/images/crown.svg">
+                            <p>-</p>
+                        </div>
+                        <div class="col game-col align-middle invis">
+                            <p class="timeTag align-top p">-</p>
+                            <h1 class="header">VS</h1>
+                        </div>
+                        <div class="col game-col align-middle invis">
+                            <img class="crown p2w w-auto" src="/images/crown.svg">
+                            <p>-</p>
+                        </div>
+                    </div>
+
+                    <div class="row game-row align-items-center text-center placeholder-background">
+                        <div class="col game-col align-middle invis">
+                            <img class="crown p1w winner w-auto" src="/images/crown.svg">
+                            <p>-</p>
+                        </div>
+                        <div class="col game-col align-middle invis">
+                            <p class="timeTag align-top p">-</p>
+                            <h1 class="header">VS</h1>
+                        </div>
+                        <div class="col game-col align-middle invis">
+                            <img class="crown p2w w-auto" src="/images/crown.svg">
+                            <p>-</p>
+                        </div>
+                    </div>
+
+                    <div class="row game-row align-items-center text-center placeholder-background">
+                        <div class="col game-col align-middle invis">
+                            <img class="crown p1w winner w-auto" src="/images/crown.svg">
+                            <p>-</p>
+                        </div>
+                        <div class="col game-col align-middle invis">
+                            <p class="timeTag align-top p">-</p>
+                            <h1 class="header">VS</h1>
+                        </div>
+                        <div class="col game-col align-middle invis">
+                            <img class="crown p2w w-auto" src="/images/crown.svg">
+                            <p>-</p>
+                        </div>
+                    </div>
+ 
+                </div>
+                <div class="row mt-4 w-75 mx-auto games"></div>
+            </div>
+        </section>
+
+        <section class="info-section bs-fullscreen" id="info">
+            <div class="align-center container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        <h1 class="bs-section-title bs-fonts-style bs-white mb-3 display-1"><strong>Het Project</strong></h1>
+                        <p class="bs-text bs-white bs-fonts-style display-7">Welkom bij ons dambord project. Ons doel is om het klassieke damspel naar het digitale tijdperk te brengen met dit geavanceerde ontwerp. Het bord wordt bestuurd door twee joysticks, waardoor spelers een interactieve spelervaring krijgen. Bovendien hebben spelers toegang tot, en controle over het bord via een gebruiksvriendelijke webinterface, waardoor het voor iedereen gemakkelijk is om het spel te overzien. De LED-lampjes, die zowel de stukken als het bord verlichten, voegen een vleugje hightech verfijning toe aan het spel en spelers kunnen hun ervaring aanpassen met verschillende kleuropties. Met zijn innovatieve ontwerp en geavanceerde technologie belooft ons LED Checkers Board bestuurd door joysticks en een webinterface een game-changer te worden in de wereld van checkers. Maak je klaar om je damspel naar een hoger niveau te tillen!</p> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <h3 class="bs-section-title bs-fonts-style align-center mb-4 display-2"><strong>Over Ons</strong></h3>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card-wrap">
+                            <div class="image-wrap">
+                                <img src="images/michael.png" alt="Michael">
+                            </div>
+                            <div class="content-wrap">
+                                <h5 class="bs-section-title card-title bs-fonts-style align-center m-0 display-5"><strong>Michael</strong></h5>
+                                <h6 class="bs-role bs-fonts-style align-center mb-3 display-4"><strong>Hardware - 6iict</strong></h6>
+                                <p class="card-text bs-fonts-style align-center display-7">Ik studeer momenteel ICT. Ik heb een passie voor hardware en alles wat te maken heeft met het ontwerpen en bouwen van computers en andere elektronische apparaten.</p> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card-wrap">
+                            <div class="image-wrap">
+                                <img src="images/rafael.png" alt="Rafael">
+                            </div>
+                            <div class="content-wrap">
+                                <h5 class="bs-section-title card-title bs-fonts-style align-center m-0 display-5"><strong>Rafael</strong></h5>
+                                <h6 class="bs-role bs-fonts-style align-center mb-3 display-4"><strong>Software - 6iict</strong></h6>
+                                <p class="card-text bs-fonts-style align-center display-7">Ik ben een software developer. Ik heb een passie voor het ontwikkelen van software en het creëren van oplossingen die het leven van mensen gemakkelijker maken.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bs-embla blog-section" id="blog">
+            <div class="position-relative text-center">
+                <div class="bs-section-head">
+                    <h4 class="bs-section-title bs-fonts-style align-center mb-0 display-2"><strong>Blog</strong></h4>
+                </div>
+                <div class="embla mt-4 w-75 mx-auto" data-skip-snaps="true" data-align="center" data-contain-scroll="trimSnaps" data-auto-play-interval="2" data-draggable="true">
+                    <div class="embla__viewport container-fluid">
+                        <div class="embla__container">
+                        <!-- begin blog container -->
+                            
+                            <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                                <div class="slide-content">
+                                    <div class="item-wrapper">
+                                        <div class="item-img">
+                                            <img src="images/blog/blog1.png" alt="Blog">
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h5 class="item-title bs-fonts-style display-7"><strong> Week 1 : 26 - 30 september </strong></h5>
+                                        <p class="bs-text bs-fonts-style mt-3 display-7">
+                                            <strong>maandag 26 september:</strong> Uitleg project gekregen. Github en Team aangemaakt. Werking led strip uitgezocht. Nagedacht over website maken.
+                                            <br><br>
+                                            <strong>Donderdag 29 september:</strong> Repository voor de website aangemaakt Website opgebouwd en basis gemaakt.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                                <div class="slide-content">
+                                    <div class="item-wrapper">
+                                        <div class="item-img">
+                                            <img src="images/blog/blog2.png" alt="Blog">
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h5 class="item-title bs-fonts-style display-7"><strong> Week 2 : 3 - 7 oktober </strong></h5>
+                                        <p class="bs-text bs-fonts-style mt-3 display-7"> <h3> Maandag 3 oktober: </h3>
+                        
+                        Blog post programma gemaakt, led code voorbereid om te testen.
+                        Verder site opbouwen.
+                        
+                        <h3> Donderdag 7 oktober: </h3>
+                        
+                        Site afgemaakt en getest, voorbereidingen voor code. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                                <div class="slide-content">
+                                    <div class="item-wrapper">
+                                        <div class="item-img">
+                                            <img src="images/blog/http://flyyrin.pythonanywhere.com/media/7d4f64a6-1f11-493d-872c-9ba6512b6b9d.png.jpg" alt="Blog">
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h5 class="item-title bs-fonts-style display-7"><strong> Week 3: 10 - 14 oktober </strong></h5>
+                                        <p class="bs-text bs-fonts-style mt-3 display-7"> <h3> Maandag 10 oktober: </h3>
+                        
+                        Joystick werking en bekabeling afmaken.
+                        Voorbereiding joystick detectie code.
+                        
+                        <h3> Donderdag 13 oktober: </h3>
+                        
+                        Dambord lay-out uitgewerkt en led-aansturing hier op aangepast zodat iedere cel coördinaten heeft en aangestuurd kan worden. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                                <div class="slide-content">
+                                    <div class="item-wrapper">
+                                        <div class="item-img">
+                                            <img src="images/blog/http://flyyrin.pythonanywhere.com/media/9f06acd8-3e94-474b-9c94-432fed1169ca.png.jpg" alt="Blog">
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h5 class="item-title bs-fonts-style display-7"><strong> Week 4 : 17 - 21 oktober </strong></h5>
+                                        <p class="bs-text bs-fonts-style mt-3 display-7"> <h3> Maandag 17 oktober: </h3>
+                        
+                        Beide joysticks gesoldeerd en werking gecontroleerd.
+                        
+                        <h3> Donderdag 20 oktober: </h3>
+                        
+                        Joystick herkenningscode af en begin damspel. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                                <div class="slide-content">
+                                    <div class="item-wrapper">
+                                        <div class="item-img">
+                                            <img src="images/blog/http://flyyrin.pythonanywhere.com/media/2f7398f2-1e69-4c82-ba12-2105c4540171.png.jpg" alt="Blog">
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h5 class="item-title bs-fonts-style display-7"><strong> Week 5 : 21 - 25 november </strong></h5>
+                                        <p class="bs-text bs-fonts-style mt-3 display-7"> <h3> Maandag 21 november: </h3>
+                        
+                        Website verder opgeknapt. Begonnen met regels toevoegen aan damspel.
+                        
+                        <h3> Donderdag  25 november </h3>
+                        
+                        Website home en blogpagina afgemaakt en damspel regels toegevoegd.  </p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                                <div class="slide-content">
+                                    <div class="item-wrapper">
+                                        <div class="item-img">
+                                            <img src="images/blog/http://flyyrin.pythonanywhere.com/media/315a9130-9147-4c15-8965-82a57dbc3817.png.jpg" alt="Blog">
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h5 class="item-title bs-fonts-style display-7"><strong> Week 6 : 28 november - 2 december </strong></h5>
+                                        <p class="bs-text bs-fonts-style mt-3 display-7"> <h3> Maandag 28 november: </h3>
+                        
+                        Damspel verder afwerken en testen.
+                        
+                        <h3> Donderdag 2 december: </h3>
+                        
+                        Damspel werkend gekregen met 1 joystick en een deel van de regels. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                                <div class="slide-content">
+                                    <div class="item-wrapper">
+                                        <div class="item-img">
+                                            <img src="images/blog/http://flyyrin.pythonanywhere.com/media/6405bf7a-d313-4df9-a557-f2664b74e4ce.jpg.jpg" alt="Blog">
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h5 class="item-title bs-fonts-style display-7"><strong> Week 7 t/m 9 : Kerstvakantie </strong></h5>
+                                        <p class="bs-text bs-fonts-style mt-3 display-7"> Lay-out van website verbeterd, Ganttproject planning gemaakt.
+                        
+                        Verdere regels afgewerkt van damspel en begonnen met werking van 2 spelers en dus 2 joysticks. </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- begin blog -->
+                            <div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
+                                <div class="slide-content">
+                                    <div class="item-wrapper">
+                                        <div class="item-img">
+                                            <img src="images/blog/blog1.jpg" alt="Blog">
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h5 class="item-title bs-fonts-style display-7"><strong>Week 10 t/m 12 : 9 - 27 januari</strong></h5>
+                                        <p class="bs-text bs-fonts-style mt-3 display-7">Opruimen van GitHub, site lay-out opnieuw verbeterd, verbeteringen van de regels in het damspel, werking met 2 joysticks afgemaakt en begonnen met toevoegen van extra idee'n zoals led animaties in het spel.</p>
+                                    </div> 
+                                </div>
+                            </div>
+                            <!-- einde blog -->
+                        
+                        <!-- einde blog container -->
+                        </div>
+                    </div>
+                    <button class="embla__button embla__button--prev">
+                        <span class="bi bi-caret-left-fill" aria-hidden="true"></span>
+                        <span class="sr-only visually-hidden visually-hidden">Vorige</span>
+                    </button>
+                    <button class="embla__button embla__button--next">
+                        <span class="bi bi-caret-right-fill" aria-hidden="true"></span>
+                        <span class="sr-only visually-hidden visually-hidden">Volgende</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="hardware-section" id="hardware">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="title col-md-12 col-lg-10">
+                        <h3 class="bs-section-title bs-fonts-style align-center mb-4 display-2"><strong>Hardware Componenten</strong></h3> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="joystick-section" id="joystick">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-6">
+                        <div class="image-wrapper">
+                            <img src="images/joystick.png" alt="Joystick">  
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <div class="text-wrapper">
+                            <h3 class="bs-section-title bs-fonts-style mb-3 display-5"><strong>Joysticks</strong></h3>
+                            <p class="bs-text bs-fonts-style display-7">Use Banana website building software to create multiple sites for commercial and non-profit projects. Click on the image in this block to replace it. You can add a description below your image, or on the side. If you want to hide some of the text fields, open the Block parameters, and uncheck relevant options.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="led-section" id="led">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-6">
+                        <div class="image-wrapper">
+                            <img src="images/leds.png" alt="Leds">  
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <div class="text-wrapper">
+                            <h3 class="bs-section-title bs-fonts-style mb-3 display-5"><strong>NeoPixel WS2812B LED Strip</strong></h3>
+                            <p class="bs-text bs-fonts-style display-7">Use Banana website building software to create multiple sites for commercial and non-profit projects. Click on the image in this block to replace it. You can add a description below your image, or on the side. If you want to hide some of the text fields, open the Block parameters, and uncheck relevant options.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="rpi-section" id="rpi">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-6">
+                        <div class="image-wrapper">
+                            <img src="images/rpi.png" alt="Raspberry Pi">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <div class="text-wrapper">
+                            <h3 class="bs-section-title bs-fonts-style mb-3 display-5"><strong>Raspberry Pi</strong></h3>
+                            <p class="bs-text bs-fonts-style display-7">Use Banana website building software to create multiple sites for commercial and non-profit projects. Click on the image in this block to replace it. You can add a description below your image, or on the side. If you want to hide some of the text fields, open the Block parameters, and uncheck relevant options.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="schema-section" id="schema">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="title col-md-12 col-lg-10">
+                        <h3 class="bs-section-title bs-fonts-style align-center mb-4 display-2"><strong>Elektrisch Schema</strong></h3> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="schema-img-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-7">
+                        <div class="image-wrapper">
+                            <img src="images/schema.png" alt="Schema" usemap="#schema-map">
+                            <map name="schema-map" id="schema-map">
+                                <area alt="Rasberry Pi" title="Rasberry Pi" href="#rpi" coords="678,32,1557,585" shape="rect">
+                                <area alt="NeoPixel WS2812B" title="NeoPixel WS2812B" href="#led" coords="816,1127,-1,977" shape="rect">
+                                <area alt="Arcade Joystick" title="Arcade Joystick" href="#joystick" coords="1730,1760,2302,1348" shape="rect">
+                                <area alt="Arcade Joystick" title="Arcade Joystick" href="#joystick" coords="1726,1287,2302,880" shape="rect">
+                                <area alt="Arcade Button" title="Arcade Button" href="#joystick" coords="670,1594,137" shape="circle">
+                                <area alt="Arcade Button" title="Arcade Button" href="#joystick" coords="668,1306,136" shape="circle">
+                            </map>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <div class="text-wrapper">
+                            <p class="bs-text bs-fonts-style display-7">Use Banana website building software to create multiple sites for commercial and non-profit projects. Click on the image in this block to replace it. You can add a description below your image, or on the side. If you want to hide some of the text fields, open the Block parameters, and uncheck relevant options.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="software-section" id="software">
+            <div class="container"> 
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-10">
+                            <div class="section-head align-center mb-4">
+                                <h3 class="bs-section-title mb-0 bs-fonts-style display-2"><strong>Software</strong></h3>   
+                            </div>
+                            <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
+                                <div class="card mb-3">
+                                    <div class="card-header" role="tab" id="titel1">
+                                        <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Programmeeromgeving</strong></h6>
+                                            <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                        </a>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                        <div class="panel-body">
+                                            <p class="bs-fonts-style panel-text display-7">
+                                                Voor ons project hebben we <strong>Visual Studio Code</strong> gebruikt als onze belangrijkste code-editor om onze code te schrijven, te bewerken en te testen. Dankzij de gebruiksvriendelijke interface en de uitgebreide mogelijkheden van Visual Studio Code hebben we ons project efficiënt en effectief kunnen programmeren.
+                                                <br><br>
+                                                Om ons progamma makkelijk te kunnen uitvoeren hebben wij <strong>Geany</strong> gebruikt.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-header" role="tab" id="titel2">
+                                        <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Programmeertalen</strong></h6>
+                                            <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                        </a>
+                                    </div>
+                                    <div id="collapse2" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel2">
+                                        <div class="panel-body">
+                                            <p class="bs-fonts-style panel-text display-7">
+                                                We gebruiken <strong>Python</strong> op de Raspberry Pi om het damspel te laten werken, LED-dambord aan te sturen, de joystick en knoppen te laten werken, de webinterface weer te geven en onze server te vertellen wat die moet doen bij het krijgen en geven van data.
+                                                <br><br>
+                                                Voor de website hebben we <strong>JavaScript</strong> gebruikt om verschillende onderdelen te programmeren. Zo hebben we bijvoorbeeld een responsieve image map toegevoegd, die zich aanpast aan de grootte van het scherm waarop de website wordt bekeken. Ook gebruiken we dit om de gespeelde games te laten zien op onze website.
+                                                <br><br>
+                                                Om de website te maken, hebben we gebruik gemaakt van <strong>HTML</strong>. Dit is een belangrijke taal voor webontwikkeling, waarmee de structuur van de website wordt gedefinieerd en de inhoud wordt weergegeven. Hierdoor is onze website overzichtelijk en gemakkelijk te navigeren.
+                                                <br><br>
+                                                Naast HTML hebben we ook <strong>CSS</strong> gebruikt om onze website te stylen naar onze wensen. CSS is een belangrijke taal voor het definiëren van de visuele stijl en lay-out van een website. Dit geeft onze website een professionele uitstraling en maakt het aantrekkelijk voor bezoekers.
+                                                <br><br>
+                                                We gebruiken <strong>Json</strong> om instellingen en configuraties gemakkelijk bij te houden en om de speldata op onze server op te slaan. Json is een handige taal voor het opslaan en delen van gegevens tussen verschillende systemen en applicaties. Hierdoor kunnen we ons project gemakkelijk aanpassen en configureren, en hebben we altijd toegang tot onze speldata.
+                                                <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-header" role="tab" id="titel3">
+                                        <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Python Modules</strong></h6>
+                                            <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                        </a>
+                                    </div>
+                                    <div id="collapse3" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel3">
+                                        <div class="panel-body">
+                                            <p class="bs-fonts-style panel-text display-7">
+                                                We gebruiken de <strong>json</strong> module om onze gegevens te coderen en decoderen. zodat we deze kunnen lezen, aanpassen, verzenden naar en opslaan op onze server.
+                                                <br><br>
+                                                <strong>neopixel</strong> is Een module die wordt gebruikt voor het aansturen van de NeoPixel-LED-strip, die individueel adresseerbare RGB-leds bevat. Hiermee kunnen we elke tegel van ons dambord apart aansturen.
+                                                <br><br>
+                                                <strong>board</strong> is en module die wordt gebruikt om de pinconfiguratie van de Raspberry Pi in te stellen. Het helpt ons om externe apparaten aan te sluiten met de gpio pinnen.
+                                                <br><br>
+                                                We gebruiken de <strong>queue</strong> module om gegevens te delen tussen threads of processen. Hierdoor kunnen wij gegevens delen tussen de webinterface en het damspel.
+                                                <br><br>
+                                                De <strong>threading</strong> module die wordt gebruikt om meerdere threads in een Python-programma te maken. Hiermee kunnen we het damspel en de webinterface parallel uitvoeren.
+                                                <br><br>
+                                                <strong>requests</strong> is een module die wordt gebruikt om HTTP-verzoeken te sturen en te ontvangen. We gebruiken het om spelgegevens te versturen naar onze server.
+                                                <br><br>
+                                                <strong>time</strong> is een module die wordt gebruikt om tijd-gerelateerde functies uit te voeren. Hiermee kunnen we vaststellen om welke tijd een spel wordt gespeeld.
+                                                <br><br>
+                                                <strong>os</strong> is een module die toegang biedt tot enkele functies van het besturingssysteem. We gebruiken deze module om de locatie van configuratie bestanden te bepalen.
+                                                <br><br>
+                                                Met de <strong>subprocess</strong> module kan je externe commando's uitvoeren. Hiermee kunnen we onze webinterface sluiten.
+                                                <br><br>
+                                                De <strong>webview</strong> module is een module die een eenvoudige manier biedt om webgebaseerde gebruikersinterfaces te maken in Python. Hierdoor kunnen we een webinterface maken die eruitzien en werken als een normale website, maar data kan doorgeven aan ons python progamma.
+                                                <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+<section class="code-section" id="code">
+    <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10">
+                    <div class="section-head align-center mb-4">
+                        <h3 class="bs-section-title mb-0 bs-fonts-style display-2"><strong>Code</strong></h3>    
+                    </div>
+                    <div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
+
+                        <div class="card mb-3">
+                            <div class="card-header" role="tab" id="titel1">
+                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#code-collapse1" aria-expanded="false" aria-controls="collapse1">
+                                    <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Game</strong></h6>
+                                    <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                </a>
+                            </div>
+                            <div id="code-collapse1" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                <div class="panel-body">
+                                    <pre><code class="language-python code-block code-block-1">-</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header" role="tab" id="titel1">
+                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#code-collapse2" aria-expanded="false" aria-controls="collapse1">
+                                    <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>WebInterface</strong></h6>
+                                    <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                </a>
+                            </div>
+                            <div id="code-collapse2" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                <div class="panel-body">
+                                    <pre><code class="language-python code-block code-block-2">-</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header" role="tab" id="titel1">
+                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#code-collapse3" aria-expanded="false" aria-controls="collapse1">
+                                    <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Controller</strong></h6>
+                                    <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                </a>
+                            </div>
+                            <div id="code-collapse3" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                <div class="panel-body">
+                                    <pre><code class="language-python code-block code-block-3">-</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header" role="tab" id="titel1">
+                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-bs-toggle="collapse" data-core="" href="#code-collapse4" aria-expanded="false" aria-controls="collapse1">
+                                    <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Start</strong></h6>
+                                    <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                </a>
+                            </div>
+                            <div id="code-collapse4" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                <div class="panel-body">
+                                    <pre><code class="language-python code-block code-block-4">-</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="footer"></div>
+</section>
 
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
+        <section class="cid-txV780YKti" id="resultaat">
+            <div class="container">
+                <div class="bs-section-head">
+                    <h4 class="bs-section-title bs-fonts-style mb-0 display-2"><strong>Resultaat</strong></h4>
+                    <h5 class="bs-section-subtitle bs-fonts-style mb-0 mt-2 display-7">Click on the video in this block to set the link to your own video.</h5>
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-12 col-md-10 video-block">
+                        <div class="video-wrapper"><iframe class="bs-embedded-video" src="https://www.youtube.com/embed/gKJliWqw2Yg?rel=0&amp;amp;&amp;showinfo=0&amp;autoplay=0&amp;loop=0" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="bs-section-head">
+                    <h3 class="bs-section-title bs-fonts-style align-center mb-0 display-2"><strong>Contact</strong></h3>
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-lg-8 mx-auto bs-form" data-form-type="formoid">
+                        <form action="https://formsubmit.co/lera100405@leerling.mosa-rt.be" method="POST" class="bs-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="NRu+TCG9m7DDhgZHmIqh7YIs9kjw1tWd9gHSW+eS0k8vpfLyeJ6+8ctYVYqVCebDcbEi6t+c5MLLT5agL42ZnecU/n4YikqesigKcs3RTCL9qlUF58pbO2BM7ZHIfT4G">
+                            <div class="row">
+                                <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.</div>
+                                <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Er is een probleem!</div>
+                            </div>
+                            <div class="dragArea row">
+                                <div class="col-md col-sm-12 form-group mb-3" data-for="name">
+                                    <input type="text" name="name" placeholder="Naam" data-form-field="name" class="form-control" value="" id="name-contact">
+                                </div>
+                                <div class="col-md col-sm-12 form-group mb-3" data-for="email">
+                                    <input type="email" name="email" placeholder="E-mail" data-form-field="email" class="form-control" value="" id="email-contact">
+                                </div>
+                                
+                                <div class="col-12 form-group mb-3" data-for="textarea">
+                                    <textarea name="textarea" placeholder="Bericht" data-form-field="textarea" class="form-control" id="textarea-contact"></textarea>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 align-center bs-section-btn"><button type="submit" class="btn btn-primary display-4">Stuur Bericht</button></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-section">
+            <div class="container">
+                <div class="media-container-row align-center bs-white">
+                    <div class="col-12">
+                        <p class="bs-text mb-0 bs-fonts-style display-7">© Copyright 2023 Project LED Dambord | Gehost op <a href="https://netlify.app/" class="text-primary" target="_blank">Netlify </a>| Makers: <a href="https://github.com/Flyyrin" class="text-primary" target="_blank">Rafael </a>en <a href="https://github.com/Vami220805" class="text-primary" target="_blank">Michael</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
+        <script src="https://cdn.pythonanywhere.com/bootstrap/functions.js"></script>  
+        <script src="https://cdn.pythonanywhere.com/embla/embla.js"></script>  
+        <script src="https://cdn.pythonanywhere.com/embla/script.js"></script> 
+        <script src="https://cdn.pythonanywhere.com/imageMapResizer.js"></script>   
+        <script src="https://cdn.pythonanywhere.com/formoid.js"></script>  
+        <script src="scripts/resizeMap.js"></script> 
+        <script src="scripts/code.js"></script>  
+        <script src="scripts/collapse.js"></script>  
+        <script src="scripts/games.js"></script>  
     </body>
 </html>
