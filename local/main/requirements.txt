@@ -1,0 +1,4 @@
+imparaai-checkers
+neopixel
+board
+gpiozero

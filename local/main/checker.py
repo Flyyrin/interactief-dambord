@@ -1,19 +1,9 @@
 from checkers.game import Game
-from queue import Queue 
-from threading import Thread 
-from kcontroller import readInput
-from web import startWeb
+from controller import readController
 import json
-# import board
-# import neopixel 
 # https://pypi.org/project/imparaai-checkers/
 
-# pixels = neopixel.NeoPixel(board.D18, 128)
-
-with open(r'local/main/config.json') as configFile:
-    config = json.load(configFile)
-
-with open(r'local/main/layout.json') as layoutFile:
+with open(r'local\main\brainstorm\layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 show_moves = True
@@ -28,20 +18,15 @@ def refresh():
     global board
     global old_board
     for tile, color in board.items():
-        tile_color = eval(config["colors"][str(color)])
         try:
             if old_board[tile] != color:
                 led1 = tile*2
                 led2 = tile*2+1
-                # pixels[led1] = tile_color
-                # pixels[led2] = tile_color
                 print(f"{tile}: {color}")
 
         except:
             led1 = tile*2
             led2 = tile*2+1
-            # pixels[led1] = tile_color
-            # pixels[led2] = tile_color
             print(f"{tile}: {color}")
     
     old_board = dict(board)
@@ -58,7 +43,7 @@ def refresh():
         {b[7]} {b[6]} {b[5]} {b[4]} {b[3]} {b[2]} {b[1]} {b[0]}    
     """)
 
-def startGame(queue):
+def startGame():
     game = Game()
     global layout
 
@@ -66,10 +51,9 @@ def startGame(queue):
     selected = 0
     highlighted = {"x": 0, "y": 0}
     selected_tile = False
-    playing = True
-    while playing:
+    while not game.is_over():
         player = game.whose_turn()
-        input = readInput(player, queue)
+        controller = readController(player)
 
         pieces = []
         player1pieces = []
@@ -86,26 +70,21 @@ def startGame(queue):
         for position in empty:
             color(layout['game'][str(position)], "e")
 
-        if input == "stop" or game.is_over():
-            print("stopped")
-            playing = False
-            quit()
-
-        if input == "up":
+        if controller == "up":
             if highlighted["y"] < 7:
                 highlighted["y"] += 1
-        if input == "down":
+        if controller == "down":
             if 0 < highlighted["y"]:
                 highlighted["y"] -= 1
-        if input == "left":
+        if controller == "left":
             if 0 < highlighted["x"]:
                 highlighted["x"] -= 1
-        if input == "right":
+        if controller == "right":
             if highlighted["x"] < 7:
                 highlighted["x"] += 1
         highlighted_tile = layout["board"][f"({highlighted['x']},{highlighted['y']})"]
 
-        if input == "press":
+        if controller == "press":
             if highlighted_tile in layout["game"].values():
                 allowed = False
                 new_selected = int([k for k, v in layout["game"].items() if v == highlighted_tile][0])
@@ -129,7 +108,6 @@ def startGame(queue):
                         selected_tile = False
                         moves.clear()
                     else:
-                        moves.clear()
                         selected = new_selected
                         selected_tile = highlighted_tile
                         if show_moves:
@@ -155,20 +133,6 @@ def startGame(queue):
 
         refresh()
 
-    winner = game.get_winner()
-    if winner:
-        print("winner", winner)
+    print(game.get_winner())
 
-def setupGame(queue):
-    stared = False
-    while not stared:
-        if readInput(0, queue) == "start":
-            stared = True
-        checkerGame = Thread(target = startGame, args =(queue, )) 
-        checkerGame.start() 
-
-queue = Queue()
-checkerSetupGame = Thread(target = setupGame, args =(queue, )) 
-checkerSetupGame.start() 
-
-startWeb(queue)
+startGame()

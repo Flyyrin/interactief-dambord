@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/game.js"></script>
+</head>
+<body>
+    <button onclick="exit()" id="myBtn">X</button>
+    <div class="submitcontainer">
+
+        <div class="submitcontainerinhoud2 l">
+            <div class="col align-middle">
+                <div class="playerwtagcontainer">
+                    <h2 class="player1tag playerwtag ra">-</h2>
+                    <div class="grid-container ra">
+                      <div class="grid-item piece">⛀</div>
+                      <div class="grid-item data p1p">-</div>
+                      <div class="grid-item piece">⛁</div>  
+                      <div class="grid-item data p1k">-</div>
+                      <div class="grid-item piece opiece">⛀</div>
+                      <div class="grid-item data p1c">-</div>  
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="submitcontainerinhoud2 r">
+            <div class="col align-middle">
+                <div class="playerwtagcontainer">
+                    <h2 class="player2tag playerwtag la">-</h2>
+                    <div class="grid-container ra">
+                      <div class="grid-item piece opiece">⛀</div>
+                      <div class="grid-item data p2p">-</div>
+                      <div class="grid-item piece opiece">⛁</div>  
+                      <div class="grid-item data p2k">-</div>
+                      <div class="grid-item piece">⛀</div>
+                      <div class="grid-item data p2c">-</div>  
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        <div class="timercontainer">
+          <p class="timertag">00:00</p>
+        </div>
+        <div class="restartcontainer">
+          <button class="restart">Stop</button>
+        </div>
+      </div>
+</body>
+</html>

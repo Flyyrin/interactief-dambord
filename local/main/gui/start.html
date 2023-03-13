@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/start.js"></script>
+</head>
+<body>
+    <button onclick="exit()" id="myBtn">X</button>
+    <div class="submitcontainer">
+        <div class="submitcontainerinhoud l">
+          <input type="text" placeholder="Naam Speler 1" class="player1name">
+          <ul class="controls cp1">
+            <li class="red selected"></li>
+            <li class="blue"></li>
+            <li class="yellow"></li>
+            <li class="green"></li>
+            <li class="purple disabled"></li>
+          </ul>
+        </div>
+        <div class="submitcontainerinhoud r">
+          <input type="text" placeholder="Naam Speler 2" class="player2name">
+          <ul class="controls cp2">
+            <li class="red disabled"></li>
+            <li class="blue"></li>
+            <li class="yellow"></li>
+            <li class="green"></li>
+            <li class="purple selected"></li>
+          </ul>
+        </div>
+    
+        <div class="titlecontainer">
+          <p class="titletag">Dambord</p>
+        </div>
+        <div class="submitcontainer2">
+          <button class="submit disabled">Start</button>
+        </div>
+    </div>
+    <script>
+      function exit() { 
+        pywebview.api.exit("") 
+      }
+    </script>
+</body>
+</html>

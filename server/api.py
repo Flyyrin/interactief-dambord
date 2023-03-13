@@ -70,5 +70,32 @@ def gameongoing():
     if request.method == 'GET':
         return json.dumps({"game":game, "winner":winner, "gameData":gameData})
 
+data = {
+    "gameongoing": False, 
+    "winner": 0, 
+    "player": 0,
+    "game": {
+        "p1": {
+            "pieces": 0,
+            "kings": 0,
+            "captured": 0
+        },
+        "p2": {
+            "pieces": 0,
+            "kings": 0,
+            "captured": 0
+        }
+    }
+}
+@app.route('/gameongoing/', methods=['GET','POST'])
+@cross_origin()
+def gameongoing():
+    global data
+    if request.method == 'POST': 
+        data = request.get_json()
+        return ""
+    if request.method == 'GET':
+        return json.dumps(data)
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
