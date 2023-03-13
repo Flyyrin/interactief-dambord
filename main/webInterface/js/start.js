@@ -64,6 +64,7 @@ window.onload = function() {
             var np1 = $(".name-player1").val()
             var np2 = $(".name-player2").val()
             var assist = $(".assist").is(':checked')
+            var AI = $(".AI").is(':checked')
             pywebview.api.start(np1+"&"+np2+"&"+cp1+"&"+cp2+"&"+assist)
             window.location = window.location.href.replace('start.html', `game.html?np1=${np1}&np2=${np2}&cp1=${cp1}&cp2=${cp2}`);
         }
