@@ -1,0 +1,167 @@
+.main-section {
+    background-image: url("../../../images/wallpaper.jpg");
+}
+
+.hardware-section {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    background-color: #ffffff;
+}
+
+.game-section .card-wrapper {
+    background-color: #fafafa;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    background: #fafafa;
+    transition: all 0.3s;
+    padding: 2rem;
+    padding-top: 3rem;
+}
+
+.game-section {
+    padding-top: 2rem;
+    padding-bottom: 0rem;
+    background-color: #ffffff;
+}
+
+.info-section {
+    background-color: #ffffff;
+}
+
+.about-section {
+    padding-top: 0rem;
+    padding-bottom: 6rem;
+    background: #ffffff;
+}
+
+.about-section .card-wrap {
+    background: #ffffff;
+    border-radius: 4px;
+}
+
+.about-section .team-card {
+    margin-bottom: 2rem;
+    transition: all 0.3s;
+}
+
+.blog-section {
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+    background-color: #ffffff;
+}
+
+
+.blog-section .item-img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+.blog-section img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.blog-section .slide-content {
+    position: relative;
+    border-radius: 4px;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    flex-flow: column nowrap;
+    background-color: #e6e6e6;;
+}
+
+.blog-section .item-content {
+    height: 15rem;
+    overflow: auto;
+    text-align: center;
+    mask-image: linear-gradient(180deg, #00000000 0%, #000 15%, #000 85%, #00000000 100%);
+    -webkit-mask-image: linear-gradient(180deg, #00000000 0%, #000 15%, #000 85%, #00000000 100%);
+}
+
+.blog-section .item-title, .blog-section .item-subtitle, .blog-section .item-text {
+    text-align: center;
+}
+
+.blog-section .item-content::-webkit-scrollbar {
+    display:none;
+  }
+
+.joystick-section {
+    padding-top: 0rem;
+    padding-bottom: 2rem;
+    background-color: #ffffff;
+}
+
+.led-section {
+    padding-top: 0rem;
+    padding-bottom: 2rem;
+    background-color: #ffffff;
+}
+
+.rpi-section {
+    padding-top: 0rem;
+    padding-bottom: 6rem;
+    background-color: #ffffff;
+}
+
+.schema-section {
+    padding-top: 2rem;
+    padding-bottom: 0rem;
+    background-color: #ffffff;
+}
+
+.schema-img-section {
+    padding-top: 0rem;
+    padding-bottom: 6rem;
+    background-color: #ffffff;
+}
+
+.software-section {
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+    background-color: #ffffff;
+}
+
+.software-section .card .card-header {
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+.software-section .panel-text {
+    text-align: left;
+}
+
+.code-section {
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+    background-color: #ffffff;
+}
+
+.code-section .card .card-header {
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+.code-block {
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    max-height: 30rem;
+    overflow: auto;
+}
+
+.contact-section {
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+    background-color: #ffffff;
+}
+
+.footer-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #232323;
+    overflow: hidden;
+}
