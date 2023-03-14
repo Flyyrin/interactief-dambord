@@ -250,16 +250,19 @@ def setupGame(queue):
             if "start" in data:
                 global playerData
                 global show_moves
-                np1,np2,cp1,cp2,assist = data.split("|")[1].split("&")
+                np1,np2,cp1,cp2,assist,opponent_ai = data.split("|")[1].split("&")
                 playerData["player1"]["name"] = np1
                 playerData["player2"]["name"] = np2
                 playerData["player1"]["color"] = cp1
                 playerData["player2"]["color"] = cp2
                 print("assist:", assist, type(assist))
+                print("opponent_ai:", opponent_ai, type(opponent_ai))
                 if assist == "true":
                     show_moves = True
                 if assist == "false":
                     show_moves = False
+                if assist == "true":
+
                 startGame(queue)
 
             if "color" in data:

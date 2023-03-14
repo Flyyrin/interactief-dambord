@@ -22,8 +22,8 @@ def startWebInterface(queue):
             print("start")
             queue.put("start|"+playerData)
             print(playerData)
-            np1,np2,cp1,cp2,assist = playerData.split("&")
-            print(np1,np2,cp1,cp2,assist)
+            np1,np2,cp1,cp2,assist,opponent_ai = playerData.split("&")
+            print(np1,np2,cp1,cp2,assist,opponent_ai)
             requests.post(url = URL, params = {"type": "start"})
 
         def color(self,colorData):
