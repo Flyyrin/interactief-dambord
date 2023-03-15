@@ -74,6 +74,22 @@ window.onload = function() {
         window.location = window.location.href.replace('start.html', `start_AI.html`);
     });
 
+    $(".start").ready(function() {
+        //set initial state.
+        $('#AI_switch').val(this.checked);
+    
+        $('#AI_switch').change(function() {
+            if(this.checked) {
+                $('.name-player2').attr('disabled', 'disabled');
+                $('.name-player2').val('AI_tegenstander').change();
+            } else{
+                $('.name-player2').removeAttr('disabled');
+                $('.name-player2').val("").change();
+            }
+            $('#textbox1').val(this.checked);        
+        });
+    });
+
     $(".exit").on("click", function(){
         pywebview.api.exit("")
     });
