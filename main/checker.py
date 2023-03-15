@@ -261,8 +261,8 @@ def setupGame(queue):
                     show_moves = True
                 if assist == "false":
                     show_moves = False
-                if assist == "true":
-
+                if opponent_ai == "true":
+                    pass
                 startGame(queue)
 
             if "color" in data:
