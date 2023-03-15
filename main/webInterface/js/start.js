@@ -70,10 +70,6 @@ window.onload = function() {
         }
     });
 
-    $(".start").on('click','#AI_switch:checked',function(e){
-        window.location = window.location.href.replace('start.html', `start_AI.html`);
-    });
-
     $(".start").ready(function() {
         //set initial state.
         $('#AI_switch').val(this.checked);
