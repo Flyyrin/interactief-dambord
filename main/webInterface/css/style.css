@@ -115,6 +115,10 @@ html, body {
 	background-color: #cf3fec;
 }
 
+.white {
+	background-color: #ffffff;
+}
+
 .red-text {
 	color: #fc4c4f;
 }
@@ -133,6 +137,10 @@ html, body {
 
 .purple-text {
 	color: #cf3fec;
+}
+
+.white-text {
+	color: #ffffff;
 }
 
 .versus {

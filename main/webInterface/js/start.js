@@ -70,20 +70,46 @@ window.onload = function() {
         }
     });
 
-    $(".start").ready(function() {
-        //set initial state.
-        $('#AI_switch').val(this.checked);
-    
-        $('#AI_switch').change(function() {
-            if(this.checked) {
-                $('.name-player2').attr('disabled', 'disabled');
-                $('.name-player2').val('AI_tegenstander').change();
-            } else{
-                $('.name-player2').removeAttr('disabled');
-                $('.name-player2').val("").change();
-            }
-            $('#textbox1').val(this.checked);        
-        });
+
+    $('#AI_switch').change(function() {
+        if(this.checked) {
+            $('.name-player2').attr('disabled', 'disabled');
+            $('.name-player2').val('AI_tegenstander').change();
+            $(".name-player2").addClass("disabled")
+
+            cp2 = "AI"
+            $(".color-player2 > .color").removeClass("selected");
+            $(".color-player1 > .color").removeClass("disabled");
+            $(".color-player2 > .color:eq(2)").addClass("selected");
+            $(".color-player2 > .color:eq(2)").removeClass("yellow");
+            $(".color-player2 > .color:eq(2)").addClass("white");
+            $(".color-player2 > .color:eq(0)").css("opacity", 0) ;
+            $(".color-player2 > .color:eq(1)").css("opacity", 0) ;
+            $(".color-player2 > .color:eq(3)").css("opacity", 0) ;
+            $(".color-player2 > .color:eq(4)").css("opacity", 0) ;
+        } else{
+            $('.name-player2').removeAttr('disabled');
+            $('.name-player2').val("").change();
+            $(".name-player2").removeClass("disabled");
+
+            $(".color-player2 > .color").removeClass("selected");
+            $(".color-player2 > .color").removeClass("disabled");
+
+            $(".color-player2 > .color:eq(0)").css("opacity", 100) ;
+            $(".color-player2 > .color:eq(1)").css("opacity", 100) ;
+            $(".color-player2 > .color:eq(3)").css("opacity", 100) ;
+            $(".color-player2 > .color:eq(4)").css("opacity", 100) ;
+            
+            $(".color-player2 > .color:eq(4)").addClass("selected");
+            $(".color-player1> .color:eq(4)").addClass("disabled");
+            $(".color-player2> .color:eq(0)").addClass("disabled");
+            $(".color-player1 > .color").removeClass("selected");
+            $(".color-player1 > .color:eq(0)").addClass("selected");
+            $(".color-player2 > .color:eq(2)").removeClass("white");
+            $(".color-player2 > .color:eq(2)").addClass("yellow");
+            cp1 = "red"
+            cp2 = "purple"
+        }
     });
 
     $(".exit").on("click", function(){

@@ -18,7 +18,8 @@ with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/config.json') as configF
 with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
-show_moves = True
+show_moves = False
+opponent_ai = False
 
 playerData = {
     "player1": {
@@ -259,10 +260,9 @@ def setupGame(queue):
                 print("opponent_ai:", opponent_ai, type(opponent_ai))
                 if assist == "true":
                     show_moves = True
-                if assist == "false":
-                    show_moves = False
                 if opponent_ai == "true":
-                    pass
+                    opponent_ai = True
+
                 startGame(queue)
 
             if "color" in data:
