@@ -115,6 +115,10 @@ html, body {
 	background-color: #cf3fec;
 }
 
+.ai_color {
+	background-color: #ffffff;
+}
+
 .red-text {
 	color: #fc4c4f;
 }
@@ -133,6 +137,10 @@ html, body {
 
 .purple-text {
 	color: #cf3fec;
+}
+
+.ai_color-text {
+	color: #ffffff;
 }
 
 .versus {
@@ -174,12 +182,12 @@ html, body {
 	background: linear-gradient(120deg, rgb(252, 76, 79) 50%, rgb(207, 63, 236) 50%);
 }
 
-.assist .form-check-input{
+.selections .form-check-input{
 	padding-top: 2rem;
 	scale: 4;
 }
 
-.assist .form-check-label {
+.selections .form-check-label {
 	font-size: xx-large;
 	padding-left: 2rem;
 	color: #FFF;
@@ -187,8 +195,4 @@ html, body {
 
 .form-check-input {
 	background-color: #4bec3f !important;
-}
-
-.assist-div {
-	margin-bottom: 14rem;
 }
