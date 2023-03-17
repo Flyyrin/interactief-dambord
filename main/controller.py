@@ -6,10 +6,10 @@ joystick_boven1 = Button(6, pull_up = 0)
 joystick_links1 = Button(13, pull_up = 0)
 joystick_rechts1 = Button(23, pull_up = 0)
 joystick_button1 = Button(24, pull_up = 0)
-joystick_onder2 = Button(26, pull_up = 0)
+joystick_onder2 = Button(27, pull_up = 0)
 joystick_boven2 = Button(21, pull_up = 0)
 joystick_links2 = Button(20, pull_up = 0)
-joystick_rechts2 = Button(16, pull_up = 0)
+joystick_rechts2 = Button(17, pull_up = 0)
 joystick_button2 = Button(19, pull_up = 0)
 joystick_boven1_pressed = False
 joystick_onder1_pressed = False
