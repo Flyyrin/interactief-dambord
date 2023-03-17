@@ -260,8 +260,12 @@ def setupGame(queue):
                 print("opponent_ai:", opponent_ai, type(opponent_ai))
                 if assist == "true":
                     show_moves = True
+                else: 
+                    show_moves = False
                 if opponent_ai == "true":
                     opponent_ai = True
+                else: 
+                    show_moves = False
 
                 startGame(queue)
 
