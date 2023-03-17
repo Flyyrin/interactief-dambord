@@ -263,7 +263,9 @@ def setupGame(queue):
                 if assist == "false":
                     show_moves = False
                 if opponent_ai == "true":
-                    pass
+                    ai_active = True
+                if opponent_ai == "false":
+                    ai_active = False
 
                 startGame(queue)
 
