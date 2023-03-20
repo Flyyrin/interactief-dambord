@@ -150,9 +150,9 @@ def startGame(queue):
         for position in empty:
             color(layout['game'][str(position)], "e")
 
-        if ai_active == True & player == 2:
-            move = random.choice(game.get_possible_moves())
+        if ai_active and player == 2:
             print("making move")
+            move = random.choice(game.get_possible_moves())
             time.sleep(3)
             controller = "-"
             game.move(move)
