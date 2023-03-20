@@ -20,7 +20,7 @@ with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/layout.json') as layoutF
     layout = json.load(layoutFile)
 
 show_moves = True
-opponent_ai = True
+ai_active = True
 
 playerData = {
     "player1": {
