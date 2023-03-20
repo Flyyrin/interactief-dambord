@@ -66,7 +66,7 @@ def ai_move(move):
             print(pos_1_x + x + 1, pos_1_y)
         for y in range(abs(delta_y)):
             print(pos_1_x , pos_1_y + x + 1)
-        print(pos_1_x, pos_2_x,pos_1_y, pos_2_y)
+        print(pos_1_x, pos_1_y,pos_2_x, pos_2_y)
     except Exception as e:
         print("error")
         print(e)
