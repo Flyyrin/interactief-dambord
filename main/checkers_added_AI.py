@@ -62,9 +62,9 @@ def ai_move(move):
         pos_2_x, pos_2_y = eval([k for k, v in layout["board"].items() if v == layout["game"][str(move[1])]][0])
         delta_x = pos_2_x - pos_1_x
         delta_y = pos_2_y - pos_1_y
-        for x in range(delta_x):
+        for x in range(abs(delta_x)):
             print(x)
-        for y in range(delta_y):
+        for y in range(abs(delta_y)):
             print(y)
         print(pos_1_x, pos_2_x,pos_1_y, pos_2_y)
     except Exception as e:
