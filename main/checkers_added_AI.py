@@ -52,6 +52,11 @@ gameData = {
 def postNoWait(URL, params, json):
     requests.post(url = URL, params = params, json = json)
 
+def ai_move(move):
+    pos_board= layout["board"][f"({move[0]},{move[1]})"]
+    pos_final = int([k for k, v in layout["game"].items() if v == pos_board][0])
+    print(move, pos_board, pos_final)
+
 board = {}
 old_board = {}
 def color(tile, color):
@@ -152,9 +157,9 @@ def startGame(queue):
 
         if ai_active and player == 2:
             print("making move")
-            move = random.choice(game.get_possible_moves())
-            time.sleep(3)
             controller = "-"
+            move = random.choice(game.get_possible_moves())
+            ai_move(move)
             game.move(move)
         else:
             if controller == "up":
