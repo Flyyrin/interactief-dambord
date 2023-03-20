@@ -8,6 +8,7 @@ import requests
 import time
 import board
 import neopixel 
+import random
 
 pixels = neopixel.NeoPixel(board.D18, 128)
 URL = "http://flyyrin.pythonanywhere.com/game"
@@ -19,7 +20,7 @@ with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/layout.json') as layoutF
     layout = json.load(layoutFile)
 
 show_moves = True
-opponent_ai = True
+ai_active = True
 
 playerData = {
     "player1": {
@@ -149,52 +150,59 @@ def startGame(queue):
         for position in empty:
             color(layout['game'][str(position)], "e")
 
-        if controller == "up":
-            if highlighted["y"] < 7:
-                highlighted["y"] += 1
+        if ai_active and player == 2:
+            print("making move")
+            move = random.choice(game.get_possible_moves())
+            time.sleep(3)
+            controller = "-"
+            game.move(move)
+        else:
+            if controller == "up":
+                if highlighted["y"] < 7:
+                    highlighted["y"] += 1
 
-        if controller == "down":
-            if 0 < highlighted["y"]:
-                highlighted["y"] -= 1
+            if controller == "down":
+                if 0 < highlighted["y"]:
+                    highlighted["y"] -= 1
 
-        if controller == "left":
-            if 0 < highlighted["x"]:
-                highlighted["x"] -= 1
+            if controller == "left":
+                if 0 < highlighted["x"]:
+                    highlighted["x"] -= 1
 
-        if controller == "right":
-            if highlighted["x"] < 7:
-                highlighted["x"] += 1
+            if controller == "right":
+                if highlighted["x"] < 7:
+                    highlighted["x"] += 1
 
-        highlighted_tile = layout["board"][f"({highlighted['x']},{highlighted['y']})"]
+            highlighted_tile = layout["board"][f"({highlighted['x']},{highlighted['y']})"]
 
-        if controller == "press":
-            if highlighted_tile in layout["game"].values():
-                allowed = False
-                new_selected = int([k for k, v in layout["game"].items() if v == highlighted_tile][0])
-                if player == 1 and new_selected in player1pieces:
-                    allowed = True
-                if player == 2 and new_selected in player2pieces:
-                    allowed = True
-                if selected:
-                    move = [selected, new_selected]
-                    if move in game.get_possible_moves():
-                        selected = 0
-                        selected_tile = False
-                        moves.clear()
-                        game.move(move)
-                if allowed:
-                    if selected == new_selected:
-                        selected = 0
-                        selected_tile = False
-                        moves.clear()
-                    else:
-                        moves.clear()
-                        selected = new_selected
-                        selected_tile = highlighted_tile
-                        if show_moves:
-                            for move in game.get_possible_moves():
-                                if selected == move[0]:
-                                    moves.append(move)
+            if controller == "press":
+                if highlighted_tile in layout["game"].values():
+                    allowed = False
+                    new_selected = int([k for k, v in layout["game"].items() if v == highlighted_tile][0])
+                    if player == 1 and new_selected in player1pieces:
+                        allowed = True
+                    if player == 2 and new_selected in player2pieces:
+                        allowed = True
+                    if selected:
+                        move = [selected, new_selected]
+                        if move in game.get_possible_moves():
+                            selected = 0
+                            selected_tile = False
+                            moves.clear()
+                            game.move(move)
+                    if allowed:
+                        if selected == new_selected:
+                            selected = 0
+                            selected_tile = False
+                            moves.clear()
+                        else:
+                            moves.clear()
+                            selected = new_selected
+                            selected_tile = highlighted_tile
+                            if show_moves:
+                                for move in game.get_possible_moves():
+                                    if selected == move[0]:
+                                        moves.append(move)
 
             player1piecesAmount = 0
             player2piecesAmount = 0
@@ -265,6 +273,7 @@ def setupGame(queue):
                     show_moves = False
                 if opponent_ai == "true":
                     ai_active = True
+                    print("ai active")
                 if opponent_ai == "false":
                     ai_active = False
 
