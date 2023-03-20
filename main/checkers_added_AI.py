@@ -53,9 +53,14 @@ def postNoWait(URL, params, json):
     requests.post(url = URL, params = params, json = json)
 
 def ai_move(move):
-    pos_board= layout["board"][f"({move[0]},{move[1]})"]
-    pos_final = int([k for k, v in layout["game"].items() if v == pos_board][0])
-    print(move, pos_board, pos_final)
+    try:
+        # pos_board= layout["board"][f"({move[0]},{move[1]})"]
+        pos_1_xy = [k for k, v in layout["board"].items() if v == layout["game"][str(move[0])]][0]
+        pos_2_xy = [k for k, v in layout["board"].items() if v == layout["game"][str(move[1])]][0]
+        print(move, pos_1_xy, pos_2_xy)
+    except Exception as e:
+        print("error")
+        print(e)
     time.sleep(3)
 
 board = {}
