@@ -86,19 +86,18 @@ window.onload = function() {
             $(".color-player2 > .color:eq(3)").css("opacity", 0) ;
             $(".color-player2 > .color:eq(4)").css("opacity", 0) ;
             updateButton()
-        } else{
+        } else {
+            cp1 = "red"
+            cp2 = "purple"
             $('.name-player2').removeAttr('disabled');
             $('.name-player2').val("").change();
             $(".name-player2").removeClass("disabled");
-
             $(".color-player2 > .color").removeClass("selected");
             $(".color-player2 > .color").removeClass("disabled");
-
             $(".color-player2 > .color:eq(0)").css("opacity", 100) ;
             $(".color-player2 > .color:eq(1)").css("opacity", 100) ;
             $(".color-player2 > .color:eq(3)").css("opacity", 100) ;
             $(".color-player2 > .color:eq(4)").css("opacity", 100) ;
-            
             $(".color-player2 > .color:eq(4)").addClass("selected");
             $(".color-player1> .color:eq(4)").addClass("disabled");
             $(".color-player2> .color:eq(0)").addClass("disabled");
@@ -106,8 +105,6 @@ window.onload = function() {
             $(".color-player1 > .color:eq(0)").addClass("selected");
             $(".color-player2 > .color:eq(2)").removeClass("ai");
             $(".color-player2 > .color:eq(2)").addClass("yellow");
-            cp1 = "red"
-            cp2 = "purple"
             updateButton()
         }
     });

@@ -18,8 +18,8 @@ with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/config.json') as configF
 with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
-show_moves = True
-opponent_ai = True
+show_moves = False
+ai = False
 
 playerData = {
     "player1": {
@@ -86,6 +86,8 @@ def refresh():
 
 def startGame(queue):
     global layout
+    global show_moves
+    global ai
     game = Game()
     moves = []   
     selected = 0
@@ -251,7 +253,7 @@ def setupGame(queue):
             if "start" in data:
                 global playerData
                 global show_moves
-                global ai_active
+                global ai
                 np1,np2,cp1,cp2,assist,opponent_ai = data.split("|")[1].split("&")
                 playerData["player1"]["name"] = np1
                 playerData["player2"]["name"] = np2
@@ -261,12 +263,8 @@ def setupGame(queue):
                 print("opponent_ai:", opponent_ai, type(opponent_ai))
                 if assist == "true":
                     show_moves = True
-                if assist == "false":
-                    show_moves = False
                 if opponent_ai == "true":
                     ai_active = True
-                if opponent_ai == "false":
-                    ai_active = False
 
                 startGame(queue)
 
