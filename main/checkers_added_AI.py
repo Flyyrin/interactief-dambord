@@ -57,8 +57,10 @@ def ai_move(move):
         # pos_board= layout["board"][f"({move[0]},{move[1]})"]
         pos_1_x, pos_1_y = eval([k for k, v in layout["board"].items() if v == layout["game"][str(move[0])]][0])
         pos_2_x, pos_2_y = eval([k for k, v in layout["board"].items() if v == layout["game"][str(move[1])]][0])
-
-        print(move, pos_1_x, pos_1_y, pos_2_x, pos_2_y)
+        for x in range(pos_1_x, pos_2_x):
+            print(x)
+        for y in range(pos_1_y, pos_2_y):
+            print(y)
     except Exception as e:
         print("error")
         print(e)
