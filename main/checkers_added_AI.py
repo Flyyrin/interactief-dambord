@@ -50,7 +50,10 @@ gameData = {
 }
 
 def postNoWait(URL, params, json):
-    requests.post(url = URL, params = params, json = json)
+    try:
+        requests.post(url = URL, params = params, json = json)
+    except:
+        pass
 
 def ai_move(move):
     try:
@@ -63,7 +66,7 @@ def ai_move(move):
             print(x)
         for y in range(delta_y):
             print(y)
-        print(delta_x, delta_y)
+        print(pos_1_x, pos_2_x,pos_1_y, pos_2_y)
     except Exception as e:
         print("error")
         print(e)
