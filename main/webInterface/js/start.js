@@ -81,7 +81,7 @@ window.onload = function() {
             $(".color-player1 > .color").removeClass("disabled");
             $(".color-player2 > .color:eq(2)").addClass("selected");
             $(".color-player2 > .color:eq(2)").removeClass("yellow");
-            $(".color-player2 > .color:eq(2)").addClass("ai_color");
+            $(".color-player2 > .color:eq(2)").addClass("ai");
             $(".color-player2 > .color:eq(0)").css("opacity", 0) ;
             $(".color-player2 > .color:eq(1)").css("opacity", 0) ;
             $(".color-player2 > .color:eq(3)").css("opacity", 0) ;
@@ -104,7 +104,7 @@ window.onload = function() {
             $(".color-player2> .color:eq(0)").addClass("disabled");
             $(".color-player1 > .color").removeClass("selected");
             $(".color-player1 > .color:eq(0)").addClass("selected");
-            $(".color-player2 > .color:eq(2)").removeClass("ai_color");
+            $(".color-player2 > .color:eq(2)").removeClass("ai");
             $(".color-player2 > .color:eq(2)").addClass("yellow");
             updateButton()
         }
