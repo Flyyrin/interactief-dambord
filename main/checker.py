@@ -128,7 +128,6 @@ def startGame(queue):
                 playing = False
                 exit()
             if data == "exit":
-                print("puss")
                 for i in range(64):
                     color(i, "e")
                 refresh()
@@ -152,9 +151,7 @@ def startGame(queue):
         for position in empty:
             color(layout['game'][str(position)], "e")
 
-        if ai_active and player == 2:
-            print("making move")
-            print(game.get_possible_moves())
+        if ai and player == 2:
             move = random.choice(game.get_possible_moves())
             time.sleep(3)
             controller = "-"
@@ -223,7 +220,6 @@ def startGame(queue):
                             player2kingsAmount += 1
                         else:
                             player2piecesAmount += 1
-        
             gameData["pieces"]["player1"]["pieces"] = player1piecesAmount
             gameData["pieces"]["player2"]["pieces"] = player2piecesAmount
             gameData["pieces"]["player1"]["kings"] = player1kingsAmount
@@ -268,13 +264,10 @@ def setupGame(queue):
                 playerData["player2"]["name"] = np2
                 playerData["player1"]["color"] = cp1
                 playerData["player2"]["color"] = cp2
-                print("assist:", assist, type(assist))
-                print("opponent_ai:", opponent_ai, type(opponent_ai))
                 if assist == "true":
                     show_moves = True
                 if opponent_ai == "true":
                     ai_active = True
-
                 startGame(queue)
 
             if "color" in data:
@@ -286,6 +279,14 @@ def setupGame(queue):
                 for i in range(32,64):
                     color(i, cp2)
                 refresh()
+            if data == "stop":
+                for i in range(32):
+                    color(i, "red")
+                for i in range(32,64):
+                    color(i, "purple")
+                refresh()
+                playing = False
+                exit()
             if data == "exit":
                 for i in range(64):
                     color(i, "e")
