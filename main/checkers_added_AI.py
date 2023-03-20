@@ -273,6 +273,7 @@ def setupGame(queue):
                     show_moves = False
                 if opponent_ai == "true":
                     ai_active = True
+                    print("ai active")
                 if opponent_ai == "false":
                     ai_active = False
 
