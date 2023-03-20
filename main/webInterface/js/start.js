@@ -72,11 +72,10 @@ window.onload = function() {
 
     $('.ai').change(function() {
         if(this.checked) {
+            cp2 = "ai"
             $('.name-player2').attr('disabled', 'disabled');
             $('.name-player2').val('AI').change().trigger("input");
             $(".name-player2").addClass("disabled")
-
-            cp2 = "AI"
             $(".color-player2 > .color").removeClass("selected");
             $(".color-player1 > .color").removeClass("disabled");
             $(".color-player2 > .color:eq(2)").addClass("selected");
