@@ -56,6 +56,7 @@ def ai_move(move):
     pos_board= layout["board"][f"({move[0]},{move[1]})"]
     pos_final = int([k for k, v in layout["game"].items() if v == pos_board][0])
     print(move, pos_board, pos_final)
+    time.sleep(3)
 
 board = {}
 old_board = {}
