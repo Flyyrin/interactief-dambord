@@ -153,6 +153,7 @@ def startGame(queue):
         if ai_active == True & player == 2:
             move = random.choice(game.get_possible_moves())
             print("making move")
+            print(game.get_possible_moves())
             time.sleep(3)
             controller = "-"
             game.move(move)
