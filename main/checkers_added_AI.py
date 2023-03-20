@@ -63,9 +63,9 @@ def ai_move(move):
         delta_x = pos_2_x - pos_1_x
         delta_y = pos_2_y - pos_1_y
         for x in range(abs(delta_x)):
-            print(x)
+            print(pos_1_x + x + 1, pos_1_y)
         for y in range(abs(delta_y)):
-            print(y)
+            print(pos_1_x , pos_1_y + x + 1)
         print(pos_1_x, pos_2_x,pos_1_y, pos_2_y)
     except Exception as e:
         print("error")
