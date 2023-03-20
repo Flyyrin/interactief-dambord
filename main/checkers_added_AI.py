@@ -293,6 +293,12 @@ def setupGame(queue):
                     color(i, "e")
                 refresh()
                 exit()
+            if data == "stop":
+                for i in range(32):
+                    color(i, "red")
+                for i in range(32,64):
+                    color(i, "purple")
+                refresh()
         except:
             pass
 

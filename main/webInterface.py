@@ -32,8 +32,8 @@ def startWebInterface(queue):
         
         def stop(self,nodig):
             print("stop")
-            requests.post(url = URL, params = {"type": "stop"})
             queue.put("stop")
+            requests.post(url = URL, params = {"type": "stop"})
         
     requests.post(url = URL, params = {"type": "stop"})
     api = Api()
