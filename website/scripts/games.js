@@ -50,7 +50,7 @@ async function loadData(data) {
             }
             template = template.replace("cp1", colors[data[i]["player1"]["color"]])
             template = template.replace("cp2", colors[data[i]["player2"]["color"]])
-            template = template.replace("tm", colors[data[i]["time"]])
+            template = template.replace("tm", data[i]["time"])
             template = template.replace("pt", `${timeSince(data[i]["date"])} geleden`)
             
             $(".games").append(template);
