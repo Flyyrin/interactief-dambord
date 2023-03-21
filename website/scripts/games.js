@@ -8,9 +8,10 @@ const colors = {
     "blue": "#4fa3fc",
     "yellow": "#ECD13F",
     "green": "#4bec3f",
-    "purple": "#cf3fec"
+    "purple": "#cf3fec",
+    "ai": "#eeeeee"
 }
-  
+
 async function getapi(url) {
     const response = await fetch(url);
     var apidata = await response.json();
