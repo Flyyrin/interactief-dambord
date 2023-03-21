@@ -6,6 +6,7 @@ from webInterface import startWebInterface
 import threading
 import requests
 import time
+import datetime
 import random
 import board
 import neopixel 
@@ -89,6 +90,7 @@ def startGame(queue):
     global layout
     global show_moves
     global ai
+    start_time = datetime.datetime.now()
     game = Game()
     moves = []   
     selected = 0
@@ -103,6 +105,7 @@ def startGame(queue):
             winData = dict(playerData)
             winData["winner"] = winner  
             winData["date"] = int(time.time() * 1000)
+            winData["time"] = str(datetime.timedelta(0, int((datetime.datetime.now() - start_time).total_seconds())))[2:]
             requests.post(url = URL+"s" , json = winData)
             playing = False
             for i in range(64):

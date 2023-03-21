@@ -45,7 +45,6 @@ p, h1{
 }
 
 .timeTag {
-    position: absolute;
     margin: 0;
     padding: 0;
     top: 0;
@@ -54,7 +53,7 @@ p, h1{
 	transform: translateX(-50%);
     white-space: nowrap;
     text-shadow: 0px 5px 15px #5e5e5e;
-    color: rgb(229, 229, 229);
+    color: rgb(229, 229, 229) !important;
 }
 
 .text-center {
