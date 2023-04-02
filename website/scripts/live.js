@@ -96,10 +96,11 @@ $(window).ready(function() {
     }
 
     if ($(window).width() < 960) {
-        console.log($(".pieces"))
+        $(".board").load("images/m-board.svg")
         $(".pieces").removeClass("d-flex")
         $(".pieces").hide();
+    } else {
+        $(".board").load("images/board.svg")
     }
-    $(".board").load("images/board.svg")
     setup()
 })
