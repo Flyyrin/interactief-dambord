@@ -95,13 +95,9 @@ html, body {
 .back {
 	position: fixed;
 	top: 2rem;
-	right: 3rem;
+	left: 3rem;
 	font-size: 2rem !important;
-	background-color: #fc4c4f !important;
 	color: white !important;
 	cursor: pointer;
-	border-radius: 4px;
-	width: 4rem;
-	height: 4rem;
 	z-index: 999;
 }
