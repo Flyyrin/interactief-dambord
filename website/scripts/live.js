@@ -1,5 +1,5 @@
 $(window).ready(function() {
-    var server = "http://flyyrin.pythonanywhere.com/game"
+    var server = "https://flyyrin.pythonanywhere.com/game"
     const colors = {
         "e": "#00000000",
         "red": "#fc4c4f",
