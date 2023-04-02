@@ -91,3 +91,17 @@ html, body {
 .black-shadow {
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.back {
+	position: fixed;
+	top: 2rem;
+	right: 3rem;
+	font-size: 2rem !important;
+	background-color: #fc4c4f !important;
+	color: white !important;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 4rem;
+	height: 4rem;
+	z-index: 999;
+}
