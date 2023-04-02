@@ -1,5 +1,6 @@
 $(window).ready(function() {
-    var server = "https://flyyrin.pythonanywhere.com/game"
+    const server = "https://flyyrin.pythonanywhere.com/game"
+    var currentData = []
     const colors = {
         "e": "#00000000",
         "red": "#fc4c4f",
@@ -16,19 +17,20 @@ $(window).ready(function() {
         "king-ai": "#ffffff88"
     }
 
-    function setup() {
-        $.get(server, function(data) {
-            data = JSON.parse(data);
-            $(".player1").html(data.gameData.np1)
-            $(".player2").html(data.gameData.np2)
-            $(".player1").addClass(data.gameData.cp1+"-text")
-            $(".player2").addClass(data.gameData.cp2+"-text")            
-        });
-    }
-
     function update() {
         $.get(server, function(data) {
             data = JSON.parse(data);
+            
+            var newData = [data.gameData.np1, data.gameData.np2, data.gameData.cp1, data.gameData.cp2]
+            if (newData != currentData) {
+                currentData = newData
+                $(".player1").attr('class', 'playertag player1');
+                $(".player2").attr('class', 'playertag player2');
+                $(".player1").html(data.gameData.np1)
+                $(".player2").html(data.gameData.np2)
+                $(".player1").addClass(data.gameData.cp1+"-text")
+                $(".player2").addClass(data.gameData.cp2+"-text") 
+            }
 
             if (!data.game && !data.winner) {
                 $("#noGameModal").modal('show');
@@ -98,7 +100,6 @@ $(window).ready(function() {
         $(".board").load("images/board.svg")
     }
 
-    setup()
     update()
     setInterval(function() {
         update();

@@ -3,12 +3,12 @@ import time
 
 playerData = {
     "player1": {
-        "name": "Rafael",
-        "color": "ai"
+        "name": "Romeo",
+        "color": "yellow"
     },
     "player2": {
-        "name": "Romeo",
-        "color": "green"
+        "name": "Rafael",
+        "color": "red"
     }
 }
 
