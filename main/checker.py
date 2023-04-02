@@ -155,7 +155,6 @@ def startGame(queue):
             gameData["np2"] = playerData["player2"]["name"]
             gameData["cp1"] = playerData["player1"]["color"]
             gameData["cp2"] = playerData["player2"]["color"]
-            gameData["time"]= int(time.time() * 1000)
             requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
             controller = "-"
             startup = False

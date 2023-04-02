@@ -67,5 +67,5 @@ gameData["np1"] = playerData["player1"]["name"]
 gameData["np2"] = playerData["player2"]["name"]
 gameData["cp1"] = playerData["player1"]["color"]
 gameData["cp2"] = playerData["player2"]["color"]
-gameData["time"]= int(time.time() * 1000)
+gameData["startTime"]= int(time.time() * 1000)
 requests.post(url = "https://flyyrin.pythonanywhere.com/game", params = {"type": "gameData"}, json = {"gameData": gameData})

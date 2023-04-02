@@ -102,6 +102,7 @@ def gameongoing():
         if type == "start":
             winner = 0
             game = True
+            gameData["startTime"] = int(time.time() * 1000)
         if type == "stop":
             winner = 0
             game = False

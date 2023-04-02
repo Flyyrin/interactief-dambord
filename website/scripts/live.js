@@ -19,20 +19,10 @@ $(window).ready(function() {
     function setup() {
         $.get(server, function(data) {
             data = JSON.parse(data);
-            console.log(data.game)
-            if (!data.game) {
-                $("#noGameModal").modal('show');
-            } else{
-                $(".player1").html(data.gameData.np1)
-                $(".player2").html(data.gameData.np2)
-                $(".player1").addClass(data.gameData.cp1+"-text")
-                $(".player2").addClass(data.gameData.cp2+"-text")
-
-                update()
-                setInterval(function() {
-                    update();
-                }, 1000);
-            }
+            $(".player1").html(data.gameData.np1)
+            $(".player2").html(data.gameData.np2)
+            $(".player1").addClass(data.gameData.cp1+"-text")
+            $(".player2").addClass(data.gameData.cp2+"-text")            
         });
     }
 
@@ -57,7 +47,7 @@ $(window).ready(function() {
             } else {
                 $("#noGameModal").modal('hide');
                 $("#winnerModal").modal('hide');
-                var startTime = new Date(data.gameData.time)
+                var startTime = new Date(data.gameData.startTime)
                 var currentTime = new Date(data.gameData.currentTime);
                 var alphaSeconds = (currentTime.getTime() - startTime.getTime())/1000
                 var mmss = new Date(alphaSeconds * 1000).toISOString().substring(14, 19)
@@ -107,5 +97,10 @@ $(window).ready(function() {
     } else {
         $(".board").load("images/board.svg")
     }
+
     setup()
+    update()
+    setInterval(function() {
+        update();
+    }, 1000);
 })
