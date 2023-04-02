@@ -20,19 +20,8 @@ $(window).ready(function() {
         $.get(server, function(data) {
             data = JSON.parse(data);
             console.log(data.game)
-            if (!data.game && !data.winner) {
+            if (!data.game) {
                 $("#noGameModal").modal('show');
-            } else if (!data.game && data.winner) {
-                $(".winner").attr('class', 'winner black-text-shadow');
-                if (data.winner == 1) {
-                    $(".winner").text(data.gameData.np1);
-                    $(".winner").addClass(data.gameData.cp1+"-text");
-                }
-                if (data.winner == 2) {
-                    $(".winner").text(data.gameData.np2);
-                    $(".winner").addClass(data.gameData.cp2+"-text");
-                }
-                $("#winnerModal").modal('show');
             } else{
                 $(".player1").html(data.gameData.np1)
                 $(".player2").html(data.gameData.np2)
@@ -54,6 +43,7 @@ $(window).ready(function() {
             if (!data.game && !data.winner) {
                 $("#noGameModal").modal('show');
             } else if (!data.game && data.winner) {
+                $("#noGameModal").modal('hide');
                 $(".winner").attr('class', 'winner black-text-shadow');
                 if (data.winner == 1) {
                     $(".winner").text(data.gameData.np1);
