@@ -95,6 +95,11 @@ $(window).ready(function() {
         });
     }
 
+    if ($(window).width() < 960) {
+        console.log($(".pieces"))
+        $(".pieces").removeClass("d-flex")
+        $(".pieces").hide();
+    }
     $(".board").load("images/board.svg")
     setup()
 })
