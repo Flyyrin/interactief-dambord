@@ -2,6 +2,7 @@ from flask import Flask, request, redirect
 from flask_cors import CORS, cross_origin
 import json
 import os
+import time
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 GAMES_FILE_PATH = os.path.join(BASE, "games.json")
@@ -13,7 +14,8 @@ gameData = {
     "np2": "Romeo",
     "cp1": "red",
     "cp2": "purple",
-    "time": "00:55",
+    "time": 0,
+    "currentTime": 0,
     "playing": 1,
     "pieces": {
         "player1": {
@@ -107,6 +109,7 @@ def gameongoing():
             gameData = request.get_json()["gameData"]
         return ""
     if request.method == 'GET':
+        gameData["currentTime"] = int(time.time() * 1000)
         return json.dumps({"game":game, "winner":winner, "gameData":gameData})
 
 if __name__ == '__main__':
