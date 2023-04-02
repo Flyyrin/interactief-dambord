@@ -35,11 +35,11 @@ window.onload = function() {;
     function updateGame() {
         $.get( "http://flyyrin.pythonanywhere.com/game", function( data ) {
             data = JSON.parse(data);
-            if (data["gameData"]["current-player"] == 1) {
+            if (data["gameData"]["playing"] == 1) {
                 $(".player1").addClass("playing")
                 $(".player2").removeClass("playing")
             }
-            if (data["gameData"]["current-player"] == 2) {
+            if (data["gameData"]["playing"] == 2) {
                 $(".player2").addClass("playing")
                 $(".player1").removeClass("playing")
             }

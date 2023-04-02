@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+html, body {
+    background-color: rgb(90, 90, 90) !important;
+	height: 100%;
+    font-family: 'Roboto', sans-serif !important;
+	overflow: hidden;
+}
+
+.time {
+	font-size: 2rem;
+}
+
+.playertag {
+	font-size: 4rem;
+}
+
+.playing {
+	-webkit-text-stroke: 0.15rem white;
+}
+
+.playing[class~="ai-text"] {
+	color: #676767;
+}
+
+.pieces {
+	font-size: 2rem;
+	color: white;
+}
+
+.oponent-piece {
+	color: black
+}
+
+.red {
+	background-color: #fc4c4f;
+}
+
+.blue {
+	background-color: #4fa3fc;
+}
+
+.yellow {
+	background-color: #ECD13F;
+}
+
+.green {
+	background-color: #4bec3f;
+}
+
+.purple {
+	background-color: #cf3fec;
+}
+
+.ai {
+	background-color: #ffffff;
+}
+
+.red-text {
+	color: #fc4c4f;
+}
+
+.blue-text {
+	color: #4fa3fc;
+}
+
+.yellow-text {
+	color: #ECD13F;
+}
+
+.green-text {
+	color: #4bec3f;
+}
+
+.purple-text {
+	color: #cf3fec;
+}
+
+.ai-text {
+	color: #ffffff;
+}
+
+.black-text-shadow {
+	text-shadow: 0px 5px 15px #000000;
+}
+
+.light-text-shadow {
+	text-shadow: 0px 5px 15px #0000006c;
+}
+
+.black-shadow {
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

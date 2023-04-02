@@ -35,7 +35,7 @@ playerData = {
 }
 
 gameData = {
-    "current-player": 0,
+    "playing": 0,
     "pieces": {
         "player1": {
             "pieces": 12,
@@ -47,6 +47,40 @@ gameData = {
             "kings": 0,
             "captured": 0
         }
+    },
+    "board": {
+        "1": 1, 
+        "2": 1, 
+        "3": 1, 
+        "4": 1, 
+        "5": 1, 
+        "6": 1, 
+        "7": 1, 
+        "8": 1, 
+        "9": 1, 
+        "10": 1, 
+        "11": 1, 
+        "12": 1, 
+        "13": "e", 
+        "14": "e", 
+        "15": "e", 
+        "16": "e", 
+        "17": "e", 
+        "18": "e", 
+        "19": "e", 
+        "20": "e", 
+        "21": 2, 
+        "22": 2, 
+        "23": 2, 
+        "24": 2, 
+        "25": 2, 
+        "26": 2, 
+        "27": 2, 
+        "28": 2, 
+        "29": 2, 
+        "30": 2, 
+        "31": 2, 
+        "32": 2
     }
 }
 
@@ -116,7 +150,12 @@ def startGame(queue):
         controller = readController(player)
 
         if startup:
-            gameData["current-player"] = game.whose_turn()
+            gameData["playing"] = game.whose_turn()
+            gameData["np1"] = playerData["player1"]["name"]
+            gameData["np2"] = playerData["player2"]["name"]
+            gameData["cp1"] = playerData["player1"]["color"]
+            gameData["cp2"] = playerData["player2"]["color"]
+            gameData["time"]= int(time.time() * 1000)
             requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
             controller = "-"
             startup = False
@@ -216,20 +255,27 @@ def startGame(queue):
                     if piece.player == 1:
                         if piece.king:
                             player1kingsAmount += 1
+                            gameData["board"][position] = 3
                         else:
                             player1piecesAmount += 1
+                            gameData["board"][position] = 1
                     if piece.player == 2:
                         if piece.king:
                             player2kingsAmount += 1
+                            gameData["board"][position] = 4
                         else:
                             player2piecesAmount += 1
+                            gameData["board"][position] = 2
+                else:
+                    gameData["board"][position] = "e"
+                    
             gameData["pieces"]["player1"]["pieces"] = player1piecesAmount
             gameData["pieces"]["player2"]["pieces"] = player2piecesAmount
             gameData["pieces"]["player1"]["kings"] = player1kingsAmount
             gameData["pieces"]["player2"]["kings"] = player2kingsAmount
             gameData["pieces"]["player1"]["captured"] = 12 - (player2piecesAmount + player2kingsAmount)
             gameData["pieces"]["player2"]["captured"] = 12 - (player1piecesAmount + player1kingsAmount)
-            gameData["current-player"] = game.whose_turn()
+            gameData["playing"] = game.whose_turn()
             threading.Thread(target=postNoWait, args=(URL, {"type": "gameData"}, {"gameData": gameData})).start()
 
         if controller:

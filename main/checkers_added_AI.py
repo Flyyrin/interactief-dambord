@@ -34,7 +34,7 @@ playerData = {
 }
 
 gameData = {
-    "current-player": 0,
+    "playing": 0,
     "pieces": {
         "player1": {
             "pieces": 12,
@@ -131,7 +131,7 @@ def startGame(queue):
         controller = readController(player)
 
         if startup:
-            gameData["current-player"] = game.whose_turn()
+            gameData["playing"] = game.whose_turn()
             requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
             controller = "-"
             startup = False
@@ -247,7 +247,7 @@ def startGame(queue):
             gameData["pieces"]["player2"]["kings"] = player2kingsAmount
             gameData["pieces"]["player1"]["captured"] = 12 - (player2piecesAmount + player2kingsAmount)
             gameData["pieces"]["player2"]["captured"] = 12 - (player1piecesAmount + player1kingsAmount)
-            gameData["current-player"] = game.whose_turn()
+            gameData["playing"] = game.whose_turn()
             threading.Thread(target=postNoWait, args=(URL, {"type": "gameData"}, {"gameData": gameData})).start()
 
         if controller:
