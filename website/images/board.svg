@@ -1,5 +1,5 @@
 <svg id="eR1wvEa9rGi1" viewBox="0 0 2000 2000" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
-    <defs>
+    <!-- <defs>
         <filter id="glow" height="300%" width="300%" x="-75%" y="-75%">
             <feMorphology operator="dilate" radius="30" in="SourceColor" result="thicken"/>
             <feGaussianBlur in="thicken" stdDeviation="10" result="blurred"/>
@@ -7,7 +7,7 @@
                 <feMergeNode in="blurred"/>
             </feMerge>
         </filter>
-    </defs>
+    </defs> -->
 
     <rect width="250" height="250" transform="translate(0 0)" fill="#a9a5a2"/>
     <rect width="250" height="250" transform="translate(1000 0)" fill="#a9a5a2"/>
