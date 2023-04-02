@@ -9,12 +9,12 @@ GAMES_FILE_PATH = os.path.join(BASE, "games.json")
 
 game = False
 winner = 0
+startTime = 0
 gameData = {
     "np1": "Rafael",
     "np2": "Romeo",
     "cp1": "red",
     "cp2": "purple",
-    "time": 0,
     "currentTime": 0,
     "playing": 1,
     "pieces": {
@@ -94,6 +94,7 @@ def gameongoing():
     global game
     global winner
     global gameData
+    global startTime
     if request.method == 'POST':
         type = request.args.get("type")
         if type == "winner":
@@ -102,7 +103,7 @@ def gameongoing():
         if type == "start":
             winner = 0
             game = True
-            gameData["startTime"] = int(time.time() * 1000)
+            startTime = int(time.time() * 1000)
         if type == "stop":
             winner = 0
             game = False
@@ -111,6 +112,7 @@ def gameongoing():
         return ""
     if request.method == 'GET':
         gameData["currentTime"] = int(time.time() * 1000)
+        gameData["startTime"] = startTime
         return json.dumps({"game":game, "winner":winner, "gameData":gameData})
 
 if __name__ == '__main__':

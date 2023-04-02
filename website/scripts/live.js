@@ -10,8 +10,8 @@ $(window).ready(function() {
         "ai": "#ffffff",
         "king-red": "#ff0004",
         "king-blue": "#007bff",
-        "king-yellow": "#ffd900",
-        "king-green": "#11ff00",
+        "king-yellow": "#d6b500",
+        "king-green": "#0cad00",
         "king-purple": "#a200c3",
         "king-ai": "#ffffff88"
     }

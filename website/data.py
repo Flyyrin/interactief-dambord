@@ -4,7 +4,7 @@ import time
 playerData = {
     "player1": {
         "name": "Rafael",
-        "color": "blue"
+        "color": "ai"
     },
     "player2": {
         "name": "Romeo",
@@ -27,10 +27,10 @@ gameData = {
         }
     },
     "board": {
-        "1": 1, 
-        "2": 1, 
-        "3": 1, 
-        "4": 1, 
+        "1": 3, 
+        "2": 3, 
+        "3": 3, 
+        "4": 3, 
         "5": 1, 
         "6": 1, 
         "7": 1, 
@@ -55,10 +55,10 @@ gameData = {
         "26": 2, 
         "27": 2, 
         "28": 2, 
-        "29": 2, 
-        "30": 2, 
-        "31": 2, 
-        "32": 2
+        "29": 4, 
+        "30": 4, 
+        "31": 4, 
+        "32": 4
     }
 }
 
@@ -67,5 +67,4 @@ gameData["np1"] = playerData["player1"]["name"]
 gameData["np2"] = playerData["player2"]["name"]
 gameData["cp1"] = playerData["player1"]["color"]
 gameData["cp2"] = playerData["player2"]["color"]
-gameData["startTime"]= int(time.time() * 1000)
 requests.post(url = "https://flyyrin.pythonanywhere.com/game", params = {"type": "gameData"}, json = {"gameData": gameData})
