@@ -4,7 +4,7 @@ import time
 playerData = {
     "player1": {
         "name": "Romeo",
-        "color": "yellow"
+        "color": "green"
     },
     "player2": {
         "name": "Rafael",
