@@ -2,6 +2,9 @@ $(window).ready(function() {
     const server = "https://flyyrin.pythonanywhere.com/game"
     var currentData = []
     const colors = {
+        "c" : "#4de1ff",
+        "h" : "#ffffff",
+        "p" : "#eba152",
         "e": "#00000000",
         "red": "#fc4c4f",
         "blue": "#4fa3fc",
@@ -85,6 +88,15 @@ $(window).ready(function() {
                         $(`.board > svg > #${position}`).attr("fill", colors[`king-${data.gameData.cp2}`]);
                     }
                     if (piece == "e") {
+                        $(`.board > svg > #${position}`).attr("fill", colors[piece]);
+                    }
+                    if (piece == "c") {
+                        $(`.board > svg > #${position}`).attr("fill", colors[piece]);
+                    }
+                    if (piece == "h") {
+                        $(`.board > svg > #${position}`).attr("fill", colors[piece]);
+                    }
+                    if (piece == "p") {
                         $(`.board > svg > #${position}`).attr("fill", colors[piece]);
                     }
                 });
