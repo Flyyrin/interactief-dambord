@@ -1,4 +1,5 @@
-num = 0
+num = 64
+row = 0
 for x in range(8):
     for y in range(8):
         num += 1
