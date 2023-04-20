@@ -72,15 +72,18 @@ window.onload = function() {
 
     $('.ai').change(function() {
         if(this.checked) {
-            cp2 = "ai"
+            var colors = ["red", "blue", "yellow", "green", "purple"]          
+            colors.splice(colors.indexOf(cp1), 1);
+            cp2 = colors[Math.floor(Math.random()*colors.length)];
+            console.log(cp2)
             $('.name-player2').attr('disabled', 'disabled');
             $('.name-player2').val('AI').change().trigger("input");
             $(".name-player2").addClass("disabled")
-            $(".color-player2 > .color").removeClass("selected");
             $(".color-player1 > .color").removeClass("disabled");
+            $(`.color-player1 > .${cp2}`).addClass("disabled");
             $(".color-player2 > .color:eq(2)").addClass("selected");
             $(".color-player2 > .color:eq(2)").removeClass("yellow");
-            $(".color-player2 > .color:eq(2)").addClass("ai");
+            $(".color-player2 > .color:eq(2)").addClass(cp2);
             $(".color-player2 > .color:eq(0)").css("opacity", 0) ;
             $(".color-player2 > .color:eq(1)").css("opacity", 0) ;
             $(".color-player2 > .color:eq(3)").css("opacity", 0) ;
@@ -88,6 +91,8 @@ window.onload = function() {
             updateButton()
         } else {
             cp1 = "red"
+            $(".color-player2 > .color:eq(2)").removeClass(cp2);
+            $(`.color-player1 > .${cp2}`).removeClass("disabled");
             cp2 = "purple"
             $('.name-player2').removeAttr('disabled');
             $('.name-player2').val("").change();
@@ -103,7 +108,6 @@ window.onload = function() {
             $(".color-player2> .color:eq(0)").addClass("disabled");
             $(".color-player1 > .color").removeClass("selected");
             $(".color-player1 > .color:eq(0)").addClass("selected");
-            $(".color-player2 > .color:eq(2)").removeClass("ai");
             $(".color-player2 > .color:eq(2)").addClass("yellow");
             updateButton()
         }
