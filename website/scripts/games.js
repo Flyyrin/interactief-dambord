@@ -8,8 +8,7 @@ const colors = {
     "blue": "#4fa3fc",
     "yellow": "#ECD13F",
     "green": "#4bec3f",
-    "purple": "#cf3fec",
-    "ai": "#878787"
+    "purple": "#cf3fec"
 }
 
 async function getapi(url) {

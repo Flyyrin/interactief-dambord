@@ -86,10 +86,6 @@ html, body {
 	-webkit-text-stroke: 0.15rem white;
 }
 
-.playing[class~="ai-text"] {
-	color: #676767;
-}
-
 .pieces {
 	font-size: 3rem;
 	color: white;
@@ -119,10 +115,6 @@ html, body {
 	background-color: #cf3fec;
 }
 
-.ai {
-	background-color: #ffffff;
-}
-
 .red-text {
 	color: #fc4c4f;
 }
@@ -141,10 +133,6 @@ html, body {
 
 .purple-text {
 	color: #cf3fec;
-}
-
-.ai-text {
-	color: #ffffff;
 }
 
 .versus {

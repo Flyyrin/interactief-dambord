@@ -11,13 +11,11 @@ $(window).ready(function() {
         "yellow": "#ECD13F",
         "green": "#4bec3f",
         "purple": "#cf3fec",
-        "ai": "#ffffff",
         "king-red": "#ff0004",
         "king-blue": "#007bff",
         "king-yellow": "#d6b500",
         "king-green": "#0cad00",
         "king-purple": "#a200c3",
-        "king-ai": "#ffffff88"
     }
 
     function update() {
