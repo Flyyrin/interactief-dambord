@@ -64,9 +64,7 @@ def color(tile, color):
 def refresh():
     global board
     global old_board
-    global boardData
     for tile, color in board.items():
-        boardData[tile] = color
         if color == 1:
             tile_color = eval(config["colors"][playerData["player1"]["color"]])
         elif color == 2:
@@ -89,7 +87,12 @@ def refresh():
             pixels[led1] = tile_color
             pixels[led2] = tile_color
     old_board = dict(board)
-    print(boardData)
+
+def refreshLive():
+    global board
+    global boardData
+    for tile, color in board.items():
+        boardData[tile] = color
 
 def startGame(queue):
     global layout
@@ -263,6 +266,7 @@ def startGame(queue):
                 color(selected_tile, "c")
             color(highlighted_tile, "h")
             refresh()
+            refreshLive()
 
 def setupGame(queue):
     for i in range(32):
