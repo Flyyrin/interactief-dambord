@@ -36,24 +36,24 @@ window.onload = function() {
     });
 
     $(".name-player1").on("input", function(){
-        if ($(this).val() == "" || $(this).val().length > 10) {
+        if ($(this).val() == "" || $(this).val().length > 11) {
             $(".start").addClass("disabled")
             $(this).addClass("invalid");
         } else {
             $(this).removeClass("invalid");
-            if ($(".name-player2").val() != "" && ($(".name-player2").val().length > 10) != true) {
+            if ($(".name-player2").val() != "" && ($(".name-player2").val().length > 11) != true) {
                 $(".start").removeClass("disabled")
             }
         }
     });
 
     $(".name-player2").on("input", function(){
-        if ($(this).val() == "" || $(this).val().length  > 10) {
+        if ($(this).val() == "" || $(this).val().length  > 11) {
             $(".start").addClass("disabled")
             $(this).addClass("invalid");
         } else {
             $(this).removeClass("invalid");
-            if ($(".name-player1").val() != "" && ($(".name-player1").val().length > 10) != true) {
+            if ($(".name-player1").val() != "" && ($(".name-player1").val().length > 11) != true) {
                 $(".start").removeClass("disabled")
             }
         }
@@ -72,12 +72,13 @@ window.onload = function() {
 
     $('.ai').change(function() {
         if(this.checked) {
-            var colors = ["red", "blue", "yellow", "green", "purple"]          
+            var colors = ["red", "blue", "yellow", "green", "purple"]  
+            var names = ["bob", "henkie", "willie", "dave", "karel", "mindy", "josephine", "mandelijn", "karen", "ankie", "tessa", "carly", "stinky", "benjy"];        
             colors.splice(colors.indexOf(cp1), 1);
             cp2 = colors[Math.floor(Math.random()*colors.length)];
-            console.log(cp2)
+            ai_name = names[Math.floor(Math.random()*names.length)];
             $('.name-player2').attr('disabled', 'disabled');
-            $('.name-player2').val('AI').change().trigger("input");
+            $('.name-player2').val(`${ai_name}🤖`).change().trigger("input");
             $(".name-player2").addClass("disabled")
             $(".color-player1 > .color").removeClass("disabled");
             $(`.color-player1 > .${cp2}`).addClass("disabled");
