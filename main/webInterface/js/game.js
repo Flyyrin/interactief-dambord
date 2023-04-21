@@ -58,7 +58,7 @@ window.onload = function() {;
     updateGame()
     setInterval(function() {
         updateGame();
-    }, 1000);
+    }, 100);
 
     $(".exit").on("click", function(){
         pywebview.api.exit("") 
