@@ -288,8 +288,12 @@ def setupGame(queue):
                 playerData["player2"]["color"] = cp2
                 if assist == "true":
                     show_moves = True
+                if assist == "false":
+                    show_moves = False
                 if opponent_ai == "true":
                     ai = True
+                if opponent_ai == "false":
+                    ai = False
                 startGame(queue)
 
             if "color" in data:
