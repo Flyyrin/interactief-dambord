@@ -87,7 +87,7 @@ html, body {
 }
 
 .playing span {
-	-webkit-text-stroke: none;
+	-webkit-text-stroke: 0.15rem rgba(0, 0, 0, 0);
 }
 
 .pieces {
