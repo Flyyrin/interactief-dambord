@@ -5,7 +5,7 @@ window.onload = function() {;
     var cp2 = getParam('cp2');
 
     $(".player1").html(np1)
-    $(".player2").html(np2)
+    $(".player2").html(np2.replace("🤖", "<span>🤖</span>"))
     $(".player1").addClass(cp1+"-text")
     $(".player2").addClass(cp2+"-text")
 

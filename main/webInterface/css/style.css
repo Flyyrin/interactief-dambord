@@ -86,6 +86,10 @@ html, body {
 	-webkit-text-stroke: 0.15rem white;
 }
 
+.playing span {
+	-webkit-text-stroke: none;
+}
+
 .pieces {
 	font-size: 3rem;
 	color: white;
