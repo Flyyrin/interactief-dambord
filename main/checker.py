@@ -3,6 +3,7 @@ from controller import readController
 import json
 from queue import Queue
 from webInterface import startWebInterface
+from algorithm import getBestMove
 import threading
 import requests
 import time
@@ -171,7 +172,8 @@ def startGame(queue):
             color(layout['game'][str(position)], "e")
 
         if ai and player == 2:
-            move = random.choice(game.get_possible_moves())
+            # move = random.choice(game.get_possible_moves())
+            move = getBestMove(game)
             time.sleep(3)
             controller = "-"
             game.move(move)
