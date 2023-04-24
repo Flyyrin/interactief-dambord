@@ -2,7 +2,7 @@ baseURL = "https://raw.githubusercontent.com/Flyyrin/GIP-2022-2023/main"
 
 var code = {
     "code-block-1": "main/json/config.json",
-    "code-block-2": "main/checker.py"
+    "code-block-2": "main/json/layout.json"
 }
 
 $(document).ready(function() {
