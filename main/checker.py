@@ -172,12 +172,14 @@ def startGame(queue):
             color(layout['game'][str(position)], "e")
 
         if ai and player == 2:
+            ai_playing = True
             # move = random.choice(game.get_possible_moves())
             move = getBestMove(game)
             time.sleep(3)
             controller = "-"
             game.move(move)
         else:
+            ai_playing = False
             if controller == "up":
                 if highlighted["y"] < 7:
                     highlighted["y"] += 1
@@ -266,7 +268,7 @@ def startGame(queue):
                 color(layout['game'][str(move[1])], "p")
             if selected_tile:
                 color(selected_tile, "c")
-            if not ai and player == 1:
+            if not ai_playing:
                 color(highlighted_tile, "h")
             refresh()
             refreshLive()
