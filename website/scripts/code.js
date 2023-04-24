@@ -1,10 +1,18 @@
+baseURL = "https://raw.githubusercontent.com/Flyyrin/GIP-2022-2023/main"
+
+var code = {
+    "code-block-1": "main/json/config.json",
+    "code-block-2": "main/checker.py"
+}
+
 $(document).ready(function() {
     function highlight() {
         hljs.highlightAll()
     }
-    $(".code-block-1").load("../code/checker.py");
-    $(".code-block-2").load("../code/webInterface.py");
-    $(".code-block-3").load("../code/controller.py");
-    $(".code-block-4").load("../code/start.py");
+    $.each(code, function(name, path) {
+        $.get(`${baseURL}/${path}`, function(data) {
+            $(`.${name}`).text(data);
+        });
+    });
     setTimeout(highlight, 1000)
 });

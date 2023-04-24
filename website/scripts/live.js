@@ -1,4 +1,4 @@
-$(window).ready(function() {
+$(document).ready(function() {
     const server = "https://flyyrin.pythonanywhere.com/game"
     var currentData = []
     const colors = {

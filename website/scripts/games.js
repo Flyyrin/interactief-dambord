@@ -107,8 +107,8 @@ function minDelay() {
     return new Promise(resolve => setTimeout(resolve, minimim_spinner_time));
 }  
 
-window.onload = function() {
+$(document).ready(function() {
     hideGames()
     firstLoad()
     refreshInterval = setInterval(refreshFunction, 3000);
-}
+});

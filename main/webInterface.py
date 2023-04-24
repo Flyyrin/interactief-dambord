@@ -12,26 +12,20 @@ def startWebInterface(queue):
             pass
 
         def exit(self,nodig):
-            print("exit")
             requests.post(url = URL, params = {"type": "stop"})
             queue.put("exit")
             time.sleep(1)
             subprocess.Popen("killall sh", shell=True, stdout=subprocess.PIPE)
         
         def start(self,playerData):
-            print("start")
             queue.put("start|"+playerData)
-            print(playerData)
             np1,np2,cp1,cp2,assist,ai = playerData.split("&")
-            print(np1,np2,cp1,cp2,assist,ai)
             requests.post(url = URL, params = {"type": "start"})
 
         def color(self,colorData):
-            print("color")
             queue.put("color|"+colorData)
         
         def stop(self,nodig):
-            print("stop")
             queue.put("stop")
             requests.post(url = URL, params = {"type": "stop"})
         
