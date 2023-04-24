@@ -266,7 +266,8 @@ def startGame(queue):
                 color(layout['game'][str(move[1])], "p")
             if selected_tile:
                 color(selected_tile, "c")
-            color(highlighted_tile, "h")
+            if not ai and player == 2:
+                color(highlighted_tile, "h")
             refresh()
             refreshLive()
 
