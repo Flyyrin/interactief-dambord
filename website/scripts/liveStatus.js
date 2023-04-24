@@ -28,5 +28,5 @@ $(document).ready(function() {
     update()
     setInterval(function() {
         update();
-    }, 1000);
+    }, 500);
 })
