@@ -192,3 +192,7 @@ html, body {
 .form-check-input {
 	background-color: #4bec3f !important;
 }
+
+.difficulty {
+	font-size: xx-large !important;
+}
