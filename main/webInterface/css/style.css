@@ -195,4 +195,16 @@ html, body {
 
 .difficulty {
 	font-size: xx-large !important;
+	background-color: #4bec3f !important;
+	border: none !important;
+	width: 12rem !important;
+}
+
+.difficulty:focus, .difficulty:active {
+	outline: none !important;
+	box-shadow: none !important;
+ }
+
+.difficult {
+	background-color: #fc4c4f !important;
 }

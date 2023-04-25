@@ -23,6 +23,7 @@ with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/layout.json') as layoutF
 
 show_moves = False
 ai = False
+difficult = False
 
 playerData = {
     "player1": {
@@ -102,6 +103,7 @@ def startGame(queue):
     global gameData
     global boardData
     global playerData
+    global difficult
     start_time = datetime.datetime.now()
     game = Game()
     moves = []   
@@ -172,14 +174,15 @@ def startGame(queue):
             color(layout['game'][str(position)], "e")
 
         if ai and player == 2:
-            ai_playing = True
-            # move = random.choice(game.get_possible_moves())
-            move = getBestMove(game)
+            print("difficult: ", difficult)
+            if difficult:
+                move = getBestMove(game)
+            else:
+                move = random.choice(game.get_possible_moves())
             time.sleep(3)
             controller = "-"
             game.move(move)
         else:
-            ai_playing = False
             if controller == "up":
                 if highlighted["y"] < 7:
                     highlighted["y"] += 1
@@ -268,8 +271,7 @@ def startGame(queue):
                 color(layout['game'][str(move[1])], "p")
             if selected_tile:
                 color(selected_tile, "c")
-            if not ai_playing:
-                color(highlighted_tile, "h")
+            color(highlighted_tile, "h")
             refresh()
             refreshLive()
 
@@ -286,7 +288,8 @@ def setupGame(queue):
                 global playerData
                 global show_moves
                 global ai
-                np1,np2,cp1,cp2,assist,opponent_ai = data.split("|")[1].split("&")
+                global difficult
+                np1,np2,cp1,cp2,assist,opponent_ai,difficult_ai = data.split("|")[1].split("&")
                 playerData["player1"]["name"] = np1
                 playerData["player2"]["name"] = np2
                 playerData["player1"]["color"] = cp1
@@ -299,6 +302,10 @@ def setupGame(queue):
                     ai = True
                 if opponent_ai == "false":
                     ai = False
+                if difficult_ai == "true":
+                    difficult = True
+                if difficult_ai == "false":
+                    difficult = False
                 startGame(queue)
 
             if "color" in data:

@@ -5,6 +5,7 @@ window.onload = function() {
 
     var cp1 = $(".color-player1 > .selected").attr('class').split(' ')[2];
     var cp2 = $(".color-player2 > .selected").attr('class').split(' ')[2];
+    var difficult = false
 
     function updateButton() {
         $(".start").css({background: `linear-gradient(120deg, ${$(".color-player1 > .selected").css("background-color")} 50%, ${$(".color-player2 > .selected").css("background-color")} 50%)`});
@@ -65,7 +66,8 @@ window.onload = function() {
             var np2 = $(".name-player2").val()
             var assist = $(".assist").is(':checked')
             var opponent_ai = $(".ai").is(':checked')
-            pywebview.api.start(np1+"&"+np2+"&"+cp1+"&"+cp2+"&"+assist+"&"+opponent_ai)
+            var difficult_ai = $(".difficulty").is(':checked')
+            pywebview.api.start(np1+"&"+np2+"&"+cp1+"&"+cp2+"&"+assist+"&"+opponent_ai+"&"+difficult_ai)
             window.location = window.location.href.replace('start.html', `game.html?np1=${np1}&np2=${np2}&cp1=${cp1}&cp2=${cp2}`);
         }
     });
@@ -111,6 +113,18 @@ window.onload = function() {
             $(".color-player1 > .color:eq(0)").addClass("selected");
             $(".color-player2 > .color:eq(2)").addClass("yellow");
             updateButton()
+        }
+    });
+
+    $(".difficulty").on("click", function(){
+        if (difficult) {
+            difficult = false
+            $(this).removeClass("difficult");
+            $(this).text("Makkelijk");
+        } else {
+            difficult = true
+            $(this).addClass("difficult");
+            $(this).text("Moeielijk");
         }
     });
 
