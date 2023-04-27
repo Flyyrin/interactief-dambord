@@ -174,7 +174,6 @@ def startGame(queue):
             color(layout['game'][str(position)], "e")
 
         if ai and player == 2:
-            print("difficult: ", difficult)
             if difficult:
                 move = getBestMove(game)
             else:
