@@ -49,6 +49,14 @@ window.onload = function() {
     });
 
     $(".name-player2").on("input", function(){
+        if ($(".ai").is(':checked')) {
+            console.log($(".difficulty").hasClass("difficult"))
+            if ($(".difficulty").hasClass("difficult")) {
+                $('.name-player2').val($('.name-player2').val().slice(0,-2)+"🧠")
+            } else {
+                $('.name-player2').val($('.name-player2').val().slice(0,-2)+"💩")
+            }
+        }
         if ($(this).val() == "" || $(this).val().length  > 11) {
             $(".start").addClass("disabled")
             $(this).addClass("invalid");
@@ -66,7 +74,7 @@ window.onload = function() {
             var np2 = $(".name-player2").val()
             var assist = $(".assist").is(':checked')
             var opponent_ai = $(".ai").is(':checked')
-            var difficult_ai = $(".difficulty").is(':checked')
+            var difficult_ai = $(".difficulty").hasClass("difficult")
             pywebview.api.start(np1+"&"+np2+"&"+cp1+"&"+cp2+"&"+assist+"&"+opponent_ai+"&"+difficult_ai)
             window.location = window.location.href.replace('start.html', `game.html?np1=${np1}&np2=${np2}&cp1=${cp1}&cp2=${cp2}`);
         }
@@ -75,12 +83,12 @@ window.onload = function() {
     $('.ai').change(function() {
         if(this.checked) {
             var colors = ["red", "blue", "yellow", "green", "purple"]  
-            var names = ["bob", "henkie", "willie", "dave", "karel", "mindy", "josephine", "mandelijn", "karen", "ankie", "tessa", "carly", "stinky", "benjy"];        
+            var names = ["bob", "henkie", "willie", "dave", "karel", "mindy", "karen", "ankie", "tessa", "carly", "stinky", "benjy"];        
             colors.splice(colors.indexOf(cp1), 1);
             cp2 = colors[Math.floor(Math.random()*colors.length)];
             ai_name = names[Math.floor(Math.random()*names.length)];
             $('.name-player2').attr('disabled', 'disabled');
-            $('.name-player2').val(`${ai_name}🤖`).change().trigger("input");
+            $('.name-player2').val(`${ai_name}🤖💩`).change().trigger("input");
             $(".name-player2").addClass("disabled")
             $(".color-player1 > .color").removeClass("disabled");
             $(`.color-player1 > .${cp2}`).addClass("disabled");
@@ -126,6 +134,7 @@ window.onload = function() {
             $(this).addClass("difficult");
             $(this).text("Moeielijk");
         }
+        $('.name-player2').change().trigger("input");
     });
 
     $(".exit").on("click", function(){
