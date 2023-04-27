@@ -1,4 +1,7 @@
-import webview # sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0 gir1.2-webkit2-4.0 pywebview
+"""
+API waarmee de webInterface kan comuniceren met python code.
+"""
+import webview
 import os
 import subprocess
 import requests

@@ -1,4 +1,7 @@
-from checkers.game import Game # https://pypi.org/project/imparaai-checkers/
+"""
+Dit is de kern van het damspel, hier wordt de game en de webInterface vanuit bestuurd.
+"""
+from checkers.game import Game
 from controller import readController
 import json
 from queue import Queue

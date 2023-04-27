@@ -5,10 +5,11 @@
             "color": "green"
         },
         "player2": {
-            "name": "Romeo",
+            "name": "Michael",
             "color": "red"
         },
         "winner": 2,
-        "date": 1670231294871
+        "date": 1670231294871,
+        "time": "19:57"
     }
 ]

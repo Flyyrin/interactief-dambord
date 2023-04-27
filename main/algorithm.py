@@ -1,3 +1,6 @@
+"""
+Bestand gebruikt om de ai logische stappen te laten nemen.
+"""
 import random
 
 def getBestMove(game):

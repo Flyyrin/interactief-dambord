@@ -1,3 +1,6 @@
+"""
+Bestand gebruikt om de 2 joysticks en knoppen mee af te lezen en hun waarde door te geven.
+"""
 from gpiozero import Button
 import time
 
