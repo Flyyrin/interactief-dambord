@@ -1,8 +1,17 @@
 """
 Bestand gebruikt om de ai logische stappen te laten nemen.
 """
+
+# importeer nodioge modules en defineer alle basis variabelen
 import random
 
+# de functie getBestMove krijgt de class game mee als argument
+# hij vraagt een lijst met mogelijke moves aan de game
+# hij gaat de posities waar stukken van de tegenstander staan in een lijst zetten
+# voor elke mogelijke move maakt hij een nieuw bord aan waar deze move is gemaakt,
+# hij kijkt of hij hier nu niet geslagen kan worden en voegt deze move toe aan een lijstje
+# hij geeft random een move van het lijstje met beste moves terug
+# als de lijst met beste moves leeg is dan gebruikt hij de lijst met alle moelijke moves
 def getBestMove(game):
     possibleMoves = game.get_possible_moves()
     opponentPieces = []
