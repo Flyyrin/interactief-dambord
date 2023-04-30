@@ -18,6 +18,7 @@ URL = "http://flyyrin.pythonanywhere.com/game"
 ## start: stuurt commando naar de server om spel te starten en zet "start|--doorgegeven player data--" in de queue
 ## color: zet "color|--doorgegeven kleur data--" in de queue
 ## stop: stuurt commando naar de server om spel stop te zetten en zet "stop" in de queue
+# door een bug is minstens 1 parameter nodig, bij functies zonder parameters wordt een lege string doorgegeven om een error te voorkomen
 def startWebInterface(queue):
     class Api:
         def __init__(self):

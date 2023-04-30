@@ -21,7 +21,7 @@ $(document).ready(function() {
     }
     $.each(code, function(name, path) {
         $.get(`${baseURL}/${path}`, function(data) {
-            $(`.${name}`).text(data);
+            $(`.${name}`).text($(`.${name}`).text() + data);
         });
     });
     setTimeout(highlight, 1000)
