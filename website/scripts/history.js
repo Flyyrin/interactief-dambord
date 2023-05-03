@@ -71,7 +71,9 @@ $(document).ready(function() {
         $(".player2").addClass(data.player2.color+"-text") 
         $(".totalMoves").html(gameData.length)
         $(".time").html(`${timeSince(data.date)} geleden`)
-        update()
+        setTimeout(function() {
+            update()
+        }, 100);
     });
 
     $(".controlButtonLeft").on("click", function(){
