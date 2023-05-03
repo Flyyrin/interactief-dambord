@@ -22,6 +22,7 @@
     margin-left: 0;
     font-family: 'Jost', sans-serif;
     height: 1rem;
+    cursor: zoom-in;
 }
 
 .game-col {
