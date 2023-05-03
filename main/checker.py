@@ -110,6 +110,7 @@ def startGame(queue):
     start_time = datetime.datetime.now()
     game = Game()
     moves = []   
+    history = []
     selected = 0
     highlighted = {"x": 0, "y": 0}
     selected_tile = False
@@ -123,6 +124,7 @@ def startGame(queue):
             winData["winner"] = winner  
             winData["date"] = int(time.time() * 1000)
             winData["time"] = str(datetime.timedelta(0, int((datetime.datetime.now() - start_time).total_seconds())))[2:]
+            winData["history"] = history
             requests.post(url = URL+"s" , json = winData)
             playing = False
             for i in range(64):
@@ -184,6 +186,7 @@ def startGame(queue):
             time.sleep(3)
             controller = "-"
             game.move(move)
+            moved = True
         else:
             if controller == "up":
                 if highlighted["y"] < 7:
@@ -218,6 +221,7 @@ def startGame(queue):
                             selected_tile = False
                             moves.clear()
                             game.move(move)
+                            moved = True
                     if allowed:
                         if selected == new_selected:
                             selected = 0
@@ -258,6 +262,23 @@ def startGame(queue):
             gameData["playing"] = game.whose_turn()
             gameData["board"] = boardData
             threading.Thread(target=postNoWait, args=(URL, {"type": "gameData"}, {"gameData": gameData})).start()
+
+        if moved:
+            print("er is een move gemaakt")
+            moved = False
+            historyBoard = {}
+            for i in range(64):
+                historyBoard[i] = "e"
+            for piece in game.board.pieces:
+                if piece.position != None:
+                    player_piece = piece.player
+                    if piece.king:
+                        player_piece += 2
+                    print(f"{layout['game'][str(piece.position)]} = {player_piece}")
+                    historyBoard[layout['game'][str(piece.position)]] = player_piece
+            print(historyBoard)
+            history.append(historyBoard)
+            print(history)
 
         if controller:
             for i in range(64):
