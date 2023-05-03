@@ -203,7 +203,7 @@ html, body {
 .difficulty:focus, .difficulty:active {
 	outline: none !important;
 	box-shadow: none !important;
- }
+}
 
 .difficult {
 	background-color: #fc4c4f !important;

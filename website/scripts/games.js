@@ -15,7 +15,8 @@ async function getapi(url) {
     const response = await fetch(url);
     var apidata = await response.json();
     if (response) {
-        return apidata.slice(-3).reverse()
+        return apidata.reverse()
+        // return apidata.slice(-3).reverse()
     }
 }
 
@@ -37,7 +38,8 @@ function showSpinner() {
 
 async function loadData(data) {
     $(".games").empty();
-    for (var i = 0; i < data.length; i++) {
+    console.log(data)
+    for (var i = 0; i < 3; i++) {
         await $.get('html/game-item.html', function (template) {
             template = template.replace("player1", data[i]["player1"]["name"])
             template = template.replace("player2", data[i]["player2"]["name"])
@@ -51,35 +53,10 @@ async function loadData(data) {
             template = template.replace("cp2", colors[data[i]["player2"]["color"]])
             template = template.replace("tm", data[i]["time"])
             template = template.replace("pt", `${timeSince(data[i]["date"])} geleden`)
-            
+            template = template.replace("gg", data.length-data.indexOf(data[i])-1)
             $(".games").append(template);
         })
     }
-}
-
-function timeSince(date) {
-    var seconds = Math.floor((new Date() - date) / 1000);
-    var interval = seconds / 31536000;
-    if (interval > 1) {
-      return Math.floor(interval) + " jaar";
-    }
-    interval = seconds / 2592000;
-    if (interval > 1) {
-      return Math.floor(interval) + " maanden";
-    }
-    interval = seconds / 86400;
-    if (interval > 1) {
-      return Math.floor(interval) + " dagen";
-    }
-    interval = seconds / 3600;
-    if (interval > 1) {
-      return Math.floor(interval) + " uur";
-    }
-    interval = seconds / 60;
-    if (interval > 1) {
-      return Math.floor(interval) + " minuten";
-    }
-    return Math.floor(seconds) + " seconden";
 }
 
 async function refreshFunction() {
