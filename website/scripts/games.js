@@ -53,8 +53,8 @@ async function loadData(data) {
             template = template.replace("cp2", colors[data[i]["player2"]["color"]])
             template = template.replace("tm", data[i]["time"])
             template = template.replace("pt", `${timeSince(data[i]["date"])} geleden`)
-            // window.open('/history?game=gg', '_blank');
-            template = template.replace("oc", `window.open('/history?game=${data.length-data.indexOf(data[i])-1}', '_blank', 'top=150,left=${(window.innerWidth/2)-150},width=300,height=500');`)
+            // `window.open('/history?game=${data.length-data.indexOf(data[i])-1}', '_blank', 'top=150,left=${(window.innerWidth/2)-150},width=300,height=500');`
+            template = template.replace("oc", `window.open('/history?game=${data.length-data.indexOf(data[i])-1}', '_blank');`)
             $(".games").append(template);
         })
     }
