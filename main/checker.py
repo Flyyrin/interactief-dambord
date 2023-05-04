@@ -143,6 +143,7 @@ def startGame(queue):
             gameData["cp2"] = playerData["player2"]["color"]
             gameData["board"] = boardData
             requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
+            moved = True
             controller = "-"
             startup = False
         try:
