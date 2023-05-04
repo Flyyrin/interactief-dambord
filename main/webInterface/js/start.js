@@ -143,7 +143,7 @@ window.onload = function() {
         }
     });
 
-    // als de difficulty knop wordt ingedrukt, zet hem op moeielijk of makkelijk aan de hand van waarop die al staat
+    // als de difficulty knop wordt ingedrukt, zet hem op moeilijk of makkelijk aan de hand van waarop die al staat
     $(".difficulty").on("click", function(){
         if (difficult) {
             difficult = false
@@ -152,7 +152,7 @@ window.onload = function() {
         } else {
             difficult = true
             $(this).addClass("difficult");
-            $(this).text("Moeielijk");
+            $(this).text("Moeilijk");
         }
         $('.name-player2').change().trigger("input");
     });
