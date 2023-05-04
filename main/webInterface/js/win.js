@@ -1,3 +1,8 @@
+// als de pagina is geladen, haal de winner, time, np1, np2, cp1 en cp2 uit de url
+// zet de namen in de juiste elementen en voeg de juiste class toe aan de hand van de kleur
+// laat aan de hand van de winner de juiste kroon zien.
+// als er op restart wordt gedrukt, voer de stop functie uit op de api, en ga terug naar het start schrerm
+// als er op exit wordt gedrukt, voer de exit functie uit op de api
 window.onload = function() {
     var winner = getParam('winner');
     var time = getParam('time');
@@ -14,7 +19,6 @@ window.onload = function() {
     $(".player2").addClass(cp2+"-text")
     if (winner == 1) {
         $(".crown2").addClass("invisible")
-        console.log("won")
     }
     if (winner == 2) {
         $(".crown1").addClass("invisible")

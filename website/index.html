@@ -13,9 +13,11 @@
         <link rel="stylesheet" href="https://cdn.pythonanywhere.com/bootstrap/additional-styles.css">
         <link rel="stylesheet" href="styles/style.css" type="text/css">
         <link rel="stylesheet" href="styles/games.css" type="text/css">
+        <link rel="stylesheet" href="styles/liveStatus.css" type="text/css">
         <link rel="stylesheet" href="styles/placeholder.css" type="text/css">
     </head>
     <body>
+        <div class="loadOverlay" style="background-color:#ffffff; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;"></div>
         <section class="menu navbar-section">
             <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
                 <div class="container-fluid">
@@ -77,7 +79,7 @@
             <div class="container">
                 <div class="bs-section-head">
                     <h3 class="bs-section-title bs-fonts-style mb-0 display-2"><strong>Laatste Games</strong></h3>
-                    <h6 class="bs-role bs-fonts-style align-center mb-3 display-4"><a href="/live" class="text-primary" target="_blank">Live Game</a></h6>
+                    <h6 class="bs-role bs-fonts-style align-center mb-3 display-4"><a href="/live" class="text-primary liveStatus" target="_blank">Live Game</a> <span class="liveStatusDivider">|</span> <span class="liveStatusData"><span class="liveStatusData1"></span> vs <span class="liveStatusData2"></span> <span class="liveStatusDatat"></span></span></h6>
                 </div>
                 <div class="row mt-4 mx-auto placeholder">
 
@@ -603,6 +605,10 @@
                                     <div id="collapse3" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel3">
                                         <div class="panel-body">
                                             <p class="bs-fonts-style panel-text display-7">
+                                                <strong>imparaai-checkers</strong> is een module die is ontworpen om het bordspel dammen te simuleren en te spelen. Het biedt een reeks functies en klassen die kunnen worden gebruikt om het spel te spelen en te analyseren, en om kunstmatige intelligentie algoritmen te ontwikkelen om tegen het spel te spelen.
+                                                <br><br>
+                                                <strong>flask</strong> is een micro web-framework waarmee ontwikkelaars webapplicaties kunnen bouwen met Python. Het biedt een eenvoudige en flexibele manier om webapplicaties te maken. Hiermee werkt onze server.
+                                                <br><br>
                                                 We gebruiken de <strong>json</strong> module om onze gegevens te coderen en decoderen. zodat we deze kunnen lezen, aanpassen, verzenden naar en opslaan op onze server.
                                                 <br><br>
                                                 <strong>neopixel</strong> is Een module die wordt gebruikt voor het aansturen van de NeoPixel-LED-strip, die individueel adresseerbare RGB-leds bevat. Hiermee kunnen we elke tegel van ons dambord apart aansturen.
@@ -649,27 +655,32 @@
                                 <div class="card mb-3">
                                     <div class="card-header" role="tab" id="titel1">
                                         <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" href="#code-collapse1">
-                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Game</strong></h6>
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Json</strong></h6>
                                             <span class="sign bs-iconfont bi bi-caret-down"></span>
                                         </a>
                                     </div>
                                     <div id="code-collapse1" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
                                         <div class="panel-body">
-                                            <pre><code class="language-python code-block code-block-1">-</code></pre>
+                                            <p class="bs-fonts-style panel-text display-7"><strong>Config</strong></p>
+                                            <pre><code class="language-json code-block code-block-1">// kleuren configuratie voor het dambord &#13;</code></pre>
+                                            <p class="bs-fonts-style panel-text display-7"><strong>Layout</strong></p>
+                                            <pre><code class="language-json code-block code-block-2">// om waardes van 32 naar 64 configuratie te kunnen omvormen en andersom &#13;// om waardes van 64 naar x,y configuratie te kunnen omvormen en andersom &#13;</code></pre>
+                                            <p class="bs-fonts-style panel-text display-7"><strong>Game Winners</strong></p>
+                                            <pre><code class="language-json code-block code-block-11">// formaat waarin de server de gespeelde games opslaat &#13;</code></pre>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card mb-3">
                                     <div class="card-header" role="tab" id="titel1">
-                                        <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" href="#code-collapse2">
-                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>WebInterface</strong></h6>
+                                        <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" href="#code-collapse7">
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Server</strong></h6>
                                             <span class="sign bs-iconfont bi bi-caret-down"></span>
                                         </a>
                                     </div>
-                                    <div id="code-collapse2" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                    <div id="code-collapse7" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
                                         <div class="panel-body">
-                                            <pre><code class="language-python code-block code-block-2">-</code></pre>
+                                            <pre><code class="language-python code-block code-block-12"></code></pre>
                                         </div>
                                     </div>
                                 </div>
@@ -677,13 +688,13 @@
                                 <div class="card mb-3">
                                     <div class="card-header" role="tab" id="titel1">
                                         <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" href="#code-collapse3">
-                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Controller</strong></h6>
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Game</strong></h6>
                                             <span class="sign bs-iconfont bi bi-caret-down"></span>
                                         </a>
                                     </div>
                                     <div id="code-collapse3" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
                                         <div class="panel-body">
-                                            <pre><code class="language-python code-block code-block-3">-</code></pre>
+                                            <pre><code class="language-python code-block code-block-4"></code></pre>
                                         </div>
                                     </div>
                                 </div>
@@ -691,13 +702,60 @@
                                 <div class="card mb-3">
                                     <div class="card-header" role="tab" id="titel1">
                                         <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" href="#code-collapse4">
-                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Start</strong></h6>
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Controller</strong></h6>
                                             <span class="sign bs-iconfont bi bi-caret-down"></span>
                                         </a>
                                     </div>
                                     <div id="code-collapse4" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
                                         <div class="panel-body">
-                                            <pre><code class="language-python code-block code-block-4">-</code></pre>
+                                            <pre><code class="language-python code-block code-block-5"></code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header" role="tab" id="titel1">
+                                        <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" href="#code-collapse2">
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Algorithm</strong></h6>
+                                            <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                        </a>
+                                    </div>
+                                    <div id="code-collapse2" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                        <div class="panel-body">
+                                            <pre><code class="language-python code-block code-block-3"></code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header" role="tab" id="titel1">
+                                        <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" href="#code-collapse6">
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>WebInterface</strong></h6>
+                                            <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                        </a>
+                                    </div>
+                                    <div id="code-collapse6" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                        <div class="panel-body">
+                                            <p class="bs-fonts-style panel-text display-7"><strong>API</strong></p>
+                                            <pre><code class="language-python code-block code-block-7"></code></pre>
+                                            <p class="bs-fonts-style panel-text display-7"><strong>Interface JavaScript</strong></p>
+                                            <pre><code class="language-javascript code-block code-block-8"></code></pre>
+                                            <pre><code class="language-javascript code-block code-block-9"></code></pre>
+                                            <pre><code class="language-javascript code-block code-block-10"></code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header" role="tab" id="titel1">
+                                        <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" href="#code-collapse5">
+                                            <h6 class="panel-title-edit bs-fonts-style mb-0 display-7"><strong>Start</strong></h6>
+                                            <span class="sign bs-iconfont bi bi-caret-down"></span>
+                                        </a>
+                                    </div>
+                                    <div id="code-collapse5" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="titel1">
+                                        <div class="panel-body">
+                                            <pre><code class="language-python code-block code-block-6"></code></pre>
                                         </div>
                                     </div>
                                 </div>
@@ -776,6 +834,8 @@
         <script src="scripts/resizeMap.js"></script> 
         <script src="scripts/code.js"></script>  
         <script src="scripts/collapse.js"></script>  
+        <script src="scripts/time.js"></script>  
         <script src="scripts/games.js"></script>  
+        <script src="scripts/liveStatus.js"></script>  
     </body>
 </html>

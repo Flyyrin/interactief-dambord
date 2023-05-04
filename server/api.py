@@ -1,3 +1,8 @@
+"""
+Dit is de flask server die ervoor zorgt dat het dambord, de webInterface en de website met elkaar kunnen comuniceren.
+"""
+
+# importeer nodioge modules en defineer alle basis variabelen
 from flask import Flask, request, redirect
 from flask_cors import CORS, cross_origin
 import json
@@ -12,7 +17,7 @@ winner = 0
 startTime = 0
 gameData = {
     "np1": "Rafael",
-    "np2": "Romeo",
+    "np2": "Michael",
     "cp1": "red",
     "cp2": "purple",
     "currentTime": 0,
@@ -29,50 +34,23 @@ gameData = {
             "captured": 6
         }
     },
-    "board": {
-        "1": 1, 
-        "2": 1, 
-        "3": 1, 
-        "4": 1, 
-        "5": 1, 
-        "6": 1, 
-        "7": 1, 
-        "8": 1, 
-        "9": 1, 
-        "10": 1, 
-        "11": 1, 
-        "12": 1, 
-        "13": "e", 
-        "14": "e", 
-        "15": "e", 
-        "16": "e", 
-        "17": "e", 
-        "18": "e", 
-        "19": "e", 
-        "20": "e", 
-        "21": 2, 
-        "22": 2, 
-        "23": 2, 
-        "24": 2, 
-        "25": 2, 
-        "26": 2, 
-        "27": 2, 
-        "28": 2, 
-        "29": 2, 
-        "30": 2, 
-        "31": 2, 
-        "32": 2
-    }
+    "board": {}
 }
 
+# maak een flas app aan, en verander de instellingen
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+# maak de route "/" aan
+# als mensen deze route bezoeken krijgen ze een korte tekst te zien
 @app.route('/')
 def main():
     return "Server voor <a href='https://dambord.netlify.app/'>GIP</a>"
 
+# maak de route "/games" aan
+# als hiernaar gepost wordt dan wordt de json data append naar de games.json file
+# als deze route bezoek wordt dan geeft hij de inhoud van games.json terug
 @app.route('/games', methods=['GET','POST'])
 @cross_origin()
 def games():
@@ -88,6 +66,10 @@ def games():
     if request.method == 'GET':
         return open(GAMES_FILE_PATH).read()
 
+# maak de route "/game" aan
+# als hiernaar gepost wordt kijkt hij naar het argument "type" en aan de hand daarvan kan hij de status van de game of de gameData veranderen
+# als deze route bezoek wordt dan geeft hij voegt hij de start tijd en de huidige tijd toe aan de gameData 
+# en geeft hij deze data samen met de winner en game status terug
 @app.route('/game', methods=['GET','POST'])
 @cross_origin()
 def gameongoing():
@@ -115,5 +97,6 @@ def gameongoing():
         gameData["startTime"] = startTime
         return json.dumps({"game":game, "winner":winner, "gameData":gameData})
 
+# als de file direct wordt uitgevoerd dan start de flask app
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

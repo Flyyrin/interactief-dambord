@@ -86,6 +86,10 @@ html, body {
 	-webkit-text-stroke: 0.15rem white;
 }
 
+.playing span {
+	-webkit-text-stroke: 0.15rem rgba(0, 0, 0, 0);
+}
+
 .pieces {
 	font-size: 3rem;
 	color: white;
@@ -187,4 +191,20 @@ html, body {
 
 .form-check-input {
 	background-color: #4bec3f !important;
+}
+
+.difficulty {
+	font-size: xx-large !important;
+	background-color: #4bec3f !important;
+	border: none !important;
+	width: 12rem !important;
+}
+
+.difficulty:focus, .difficulty:active {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.difficult {
+	background-color: #fc4c4f !important;
 }

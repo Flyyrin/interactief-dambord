@@ -1,8 +1,12 @@
-from checkers.game import Game # https://pypi.org/project/imparaai-checkers/
+"""
+Dit is de kern van het damspel, hier wordt de game en de webInterface vanuit bestuurd.
+"""
+from checkers.game import Game
 from controller import readController
 import json
 from queue import Queue
 from webInterface import startWebInterface
+from algorithm import getBestMove
 import threading
 import requests
 import time
@@ -22,6 +26,7 @@ with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/layout.json') as layoutF
 
 show_moves = False
 ai = False
+difficult = False
 
 playerData = {
     "player1": {
@@ -101,9 +106,11 @@ def startGame(queue):
     global gameData
     global boardData
     global playerData
+    global difficult
     start_time = datetime.datetime.now()
     game = Game()
     moves = []   
+    history = []
     selected = 0
     highlighted = {"x": 0, "y": 0}
     selected_tile = False
@@ -117,6 +124,7 @@ def startGame(queue):
             winData["winner"] = winner  
             winData["date"] = int(time.time() * 1000)
             winData["time"] = str(datetime.timedelta(0, int((datetime.datetime.now() - start_time).total_seconds())))[2:]
+            winData["history"] = history
             requests.post(url = URL+"s" , json = winData)
             playing = False
             for i in range(64):
@@ -171,10 +179,14 @@ def startGame(queue):
             color(layout['game'][str(position)], "e")
 
         if ai and player == 2:
-            move = random.choice(game.get_possible_moves())
+            if difficult:
+                move = getBestMove(game)
+            else:
+                move = random.choice(game.get_possible_moves())
             time.sleep(3)
             controller = "-"
             game.move(move)
+            moved = True
         else:
             if controller == "up":
                 if highlighted["y"] < 7:
@@ -209,6 +221,7 @@ def startGame(queue):
                             selected_tile = False
                             moves.clear()
                             game.move(move)
+                            moved = True
                     if allowed:
                         if selected == new_selected:
                             selected = 0
@@ -250,6 +263,23 @@ def startGame(queue):
             gameData["board"] = boardData
             threading.Thread(target=postNoWait, args=(URL, {"type": "gameData"}, {"gameData": gameData})).start()
 
+        if moved:
+            print("er is een move gemaakt")
+            moved = False
+            historyBoard = {}
+            for i in range(64):
+                historyBoard[i] = "e"
+            for piece in game.board.pieces:
+                if piece.position != None:
+                    player_piece = piece.player
+                    if piece.king:
+                        player_piece += 2
+                    print(f"{layout['game'][str(piece.position)]} = {player_piece}")
+                    historyBoard[layout['game'][str(piece.position)]] = player_piece
+            print(historyBoard)
+            history.append(historyBoard)
+            print(history)
+
         if controller:
             for i in range(64):
                 color(i, "e")
@@ -281,15 +311,24 @@ def setupGame(queue):
                 global playerData
                 global show_moves
                 global ai
-                np1,np2,cp1,cp2,assist,opponent_ai = data.split("|")[1].split("&")
+                global difficult
+                np1,np2,cp1,cp2,assist,opponent_ai,difficult_ai = data.split("|")[1].split("&")
                 playerData["player1"]["name"] = np1
                 playerData["player2"]["name"] = np2
                 playerData["player1"]["color"] = cp1
                 playerData["player2"]["color"] = cp2
                 if assist == "true":
                     show_moves = True
+                if assist == "false":
+                    show_moves = False
                 if opponent_ai == "true":
                     ai = True
+                if opponent_ai == "false":
+                    ai = False
+                if difficult_ai == "true":
+                    difficult = True
+                if difficult_ai == "false":
+                    difficult = False
                 startGame(queue)
 
             if "color" in data:

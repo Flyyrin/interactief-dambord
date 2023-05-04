@@ -1,6 +1,12 @@
+"""
+Bestand gebruikt om de 2 joysticks en knoppen mee af te lezen en hun waarde door te geven.
+"""
+
+# importeer nodioge modules
 from gpiozero import Button
 import time
 
+# defineer alle knoppen en variabelen
 joystick_onder1 = Button(5, pull_up = 0)
 joystick_boven1 = Button(6, pull_up = 0)
 joystick_links1 = Button(13, pull_up = 0)
@@ -22,6 +28,9 @@ joystick_links2_pressed = False
 joystick_rechts2_pressed = False
 joystick_button2_pressed = False
 
+# de functie readController krijgt speler die aan de beurt is als arument
+# afhankelijk van de speler die aan de beurt is kijkt hij naar de knoppen van deze speler 
+# en geeft hij een bepaalde waarde door als deze worden ingedrukt
 def readController(player):
     global joystick_boven1_pressed
     global joystick_onder1_pressed

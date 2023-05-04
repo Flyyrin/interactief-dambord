@@ -1,0 +1,8 @@
+.controlButton {
+    font-size: 2rem !important;
+}
+
+.controlButton:focus, .controlButton:active {
+	outline: none !important;
+	box-shadow: none !important;
+}

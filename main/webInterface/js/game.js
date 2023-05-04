@@ -1,3 +1,5 @@
+// als de pagina is geladen, haal np1, np2, cp1 en cp2 uit de url
+// zet de namen in de juiste elementen en voeg de juiste class toe aan de hand van de kleur
 window.onload = function() {;
     var np1 = getParam('np1');
     var np2 = getParam('np2');
@@ -5,10 +7,11 @@ window.onload = function() {;
     var cp2 = getParam('cp2');
 
     $(".player1").html(np1)
-    $(".player2").html(np2)
+    $(".player2").html(np2.replace("🤖", "<span>🤖</span>"))
     $(".player1").addClass(cp1+"-text")
     $(".player2").addClass(cp2+"-text")
 
+    // haal de huidige tijd op en start een timer interval die elke seconde de timer waarde update
     var gameTime
     var startTime = Date.now()
     var delta = Date.now() - startTime; 
@@ -21,6 +24,9 @@ window.onload = function() {;
         $(".timer").text(gameTime)
     }, 1000);
  
+    // als er 1x op stop wordt geklikt, vraag voor en confirmatie
+    // als er nog eens wordt gedrukt, voer de stop functie van de api uit een ga terug naar het begin scherm
+    // anders zet de stop knop weer terug op normaal
     var clicked = 0
     $(".stop").on("click", function(){
         clicked += 1
@@ -32,6 +38,10 @@ window.onload = function() {;
         }
     });
 
+    // functie die telkens opnieuw wordt uigevoerd
+    // haal data van de server af (/game) en update aantal speelstukken en wie aan de beurt is
+    // als de game niet actief is en er is een winner,
+    // dan verwijs door naar de win pagina en voeg winner en speeltijd toe aan de parameters
     function updateGame() {
         $.get( "http://flyyrin.pythonanywhere.com/game", function( data ) {
             data = JSON.parse(data);
@@ -55,11 +65,13 @@ window.onload = function() {;
         });
     }
 
+    // voer de update functie uit, en herhaal dit elker 100 milliseconde
     updateGame()
     setInterval(function() {
         updateGame();
-    }, 1000);
+    }, 100);
 
+    // als de exit knop wordt ingedrukt, voer de exit functie van de api uit
     $(".exit").on("click", function(){
         pywebview.api.exit("") 
     });
