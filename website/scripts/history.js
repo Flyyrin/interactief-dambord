@@ -89,4 +89,8 @@ $(document).ready(function() {
             update()
         }
     });
+
+    $(".back").on("click", function(){
+        history.back()
+    });
 })
