@@ -75,8 +75,20 @@ p, h1{
     visibility: hidden;
 }
 
+.mobileTime {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media only screen and (min-width: 600px) {
     .placeholder, .games {
       width: 75%;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .mobileTime {
+        overflow: visible;
+        text-overflow: visible;
     }
 }
