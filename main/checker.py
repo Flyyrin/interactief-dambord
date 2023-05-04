@@ -65,6 +65,7 @@ old_board = {}
 def color(tile, color):
     global board
     board[tile] = color
+    print(f"{tile}: {color}")
 
 def refresh():
     global board
