@@ -65,13 +65,11 @@ old_board = {}
 def color(tile, color):
     global board
     board[tile] = color
-    print(f"{tile}: {color}")
 
 def refresh():
     global board
     global old_board
     for tile, color in board.items():
-        print(color)
         if color == 1:
             tile_color = eval(config["colors"][playerData["player1"]["color"]])
         elif color == 2:
@@ -96,7 +94,6 @@ def refresh():
     old_board = dict(board)
 
 def refreshLive():
-    print("refreshliverenskutkind")
     global board
     global boardData
     for tile, color in board.items():
@@ -266,29 +263,26 @@ def startGame(queue):
             gameData["playing"] = game.whose_turn()
             gameData["board"] = boardData
             threading.Thread(target=postNoWait, args=(URL, {"type": "gameData"}, {"gameData": gameData})).start()
-        print("controller",controller)
-        try:
-            if moved:
-                print("er is een move gemaakt")
-                moved = False
-                historyBoard = {}
-                for i in range(64):
-                    historyBoard[i] = "e"
-                for piece in game.board.pieces:
-                    if piece.position != None:
-                        player_piece = piece.player
-                        if piece.king:
-                            player_piece += 2
-                        print(f"{layout['game'][str(piece.position)]} = {player_piece}")
-                        historyBoard[layout['game'][str(piece.position)]] = player_piece
-                print(historyBoard)
-                history.append(historyBoard)
-                print(history)
-        except Exception as e:
-            print("erroor",e)
+     
+        if moved:
+            print("er is een move gemaakt")
+            moved = False
+            historyBoard = {}
+            for i in range(64):
+                historyBoard[i] = "e"
+            for piece in game.board.pieces:
+                if piece.position != None:
+                    player_piece = piece.player
+                    if piece.king:
+                        player_piece += 2
+                    print(f"{layout['game'][str(piece.position)]} = {player_piece}")
+                    historyBoard[layout['game'][str(piece.position)]] = player_piece
+            print(historyBoard)
+            history.append(historyBoard)
+            print(history)
+       
         
         if controller:
-            print('controlller')
             for i in range(64):
                 color(i, "e")
             for piece in game.board.pieces:
