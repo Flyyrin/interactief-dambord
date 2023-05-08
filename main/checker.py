@@ -1,6 +1,7 @@
 """
 Dit is de kern van het damspel, hier wordt de game en de webInterface vanuit bestuurd.
 """
+# het inladen van de nodige modules
 from checkers.game import Game
 from controller import readController
 import json
@@ -15,8 +16,9 @@ import random
 import board
 import neopixel 
 
+# stel de neopixel library in en  laad de json bestanden in
+# deze json bestanden bevatten de kleuren voor het dambord en de layout voor het dambord met coördinaten
 pixels = neopixel.NeoPixel(board.D18, 128)
-URL = "http://flyyrin.pythonanywhere.com/game"
 
 with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/config.json') as configFile:
     config = json.load(configFile)
@@ -24,10 +26,16 @@ with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/config.json') as configF
 with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
+# aanmaken van benodigden variabelen
 show_moves = False
 ai = False
 difficult = False
+URL = "http://flyyrin.pythonanywhere.com/game"
 
+# aanmaken van 3 dictonaries, playerData, boardData en gameData
+# playerData slaat de gegevens van beide spelers op (naam en kleur)
+# boardData bewaart de posities van ieder damstuk
+# gameData slaat de gegevens op van de huidige game (of er een spel gespeeld wordt, hoeveel stukken er nog over zijn...)
 playerData = {
     "player1": {
         "name": "",
@@ -57,15 +65,23 @@ gameData = {
     }
 }
 
+# functie om de gegevens van de game te posten naar de pythonanywhere server
+# op deze manier wordt er gepost wanneer er iemand wint en wie er wint, de posities op het dambord, als het spel gestopt wordt...
 def postNoWait(URL, params, json):
     requests.post(url = URL, params = params, json = json)
 
+# aanmaken van de dictonaries board en old board en een color functie
+# de functie is om een vakje van het board te kleuren naar een bepaalde kleur. De positie en kleur worden doorgegeven als parameter
 board = {}
 old_board = {}
 def color(tile, color):
     global board
     board[tile] = color
 
+# functie om de bijbehorende kleuren van ieder vak toe te passen op het dambord 
+# hiermee wordt de board dictonary doorlopen, als de kleur bij een speler hoort, krijgt dit vak de kleurwaarde die de speler gekozen heeft
+# hoort de kleur niet bij een speler, wordt de waarde van de kleur uit het config bestand gehaald met vooraf aangegeven kleuren en toegekend aan het vakje
+# hierna wordt ieder vakje aangepast naar de juiste kleurwaarde en zal deze huidige configuratie weer opgeslagen worden in een dictionary
 def refresh():
     global board
     global old_board
@@ -93,12 +109,15 @@ def refresh():
             pixels[led2] = tile_color
     old_board = dict(board)
 
+# functie om de huidige board vakken en kleuren om te zetten naar de dictonary boardData
 def refreshLive():
     global board
     global boardData
     for tile, color in board.items():
         boardData[tile] = color
 
+# functie om de game te starten, hierin wordt alle informatie doorgeven die gekozen en aangepast is door de speler(s)
+# deze informatie bestaat uit of de speler assists wil, of de speler
 def startGame(queue):
     global layout
     global show_moves
@@ -301,6 +320,9 @@ def startGame(queue):
             refresh()
             refreshLive()
 
+# functie die blijft runnen tijdens het spel. hierin krijgt het dambord de basiskleuren, wordt de informatie zoals speelhulp en AI ontvangen van het start scherm
+# en wordt het spel hierop aangepast
+# 
 def setupGame(queue):
     for i in range(32):
         color(i, "red")
