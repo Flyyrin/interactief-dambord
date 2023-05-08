@@ -1,4 +1,0 @@
-19: Verder afwerken van het startscherm voor het spel.
-20: 20
-21: live
-22: website afgewerkt
