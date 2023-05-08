@@ -1,7 +1,9 @@
 const api_url = "https://flyyrin.pythonanywhere.com/games";
-const minimim_spinner_time = 3000
+const minimim_spinner_time = 0
 var current_apidata
 var refreshInterval
+var amount = 3
+var oldAmount = amount
 
 const colors = {
     "red": "#fc4c4f",
@@ -39,7 +41,7 @@ function showSpinner() {
 async function loadData(data) {
     $(".games").empty();
     console.log(data)
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < amount; i++) {
         await $.get('html/game-item.html', function (template) {
             template = template.replace("player1", data[i]["player1"]["name"])
             template = template.replace("player2", data[i]["player2"]["name"])
@@ -53,7 +55,6 @@ async function loadData(data) {
             template = template.replace("cp2", colors[data[i]["player2"]["color"]])
             template = template.replace("tm", data[i]["time"])
             template = template.replace("pt", `${timeSince(data[i]["date"])} geleden`)
-            // `window.open('/history?game=${data.length-data.indexOf(data[i])-1}', '_blank', 'top=150,left=${(window.innerWidth/2)-150},width=300,height=500');`
             template = template.replace("oc", `window.open('/history?game=${data.length-data.indexOf(data[i])-1}', '_self');`)
             $(".games").append(template);
         })
@@ -62,7 +63,8 @@ async function loadData(data) {
 
 async function refreshFunction() {
     data = await getapi(api_url)
-    if (JSON.stringify(data)!=JSON.stringify(current_apidata)) {
+    if ((JSON.stringify(data)!=JSON.stringify(current_apidata)) || (amount != oldAmount)) {
+        oldAmount = amount
         hideGames()
         showSpinner();
         await loadData(data)
@@ -89,4 +91,9 @@ $(document).ready(function() {
     hideGames()
     firstLoad()
     refreshInterval = setInterval(refreshFunction, 3000);
+
+    $(".loadMore").on("click", function(){
+        amount += 3
+        refreshFunction()
+    });
 });
