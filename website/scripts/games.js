@@ -42,22 +42,27 @@ async function loadData(data) {
     $(".games").empty();
     console.log(data)
     for (var i = 0; i < amount; i++) {
-        await $.get('html/game-item.html', function (template) {
-            template = template.replace("player1", data[i]["player1"]["name"])
-            template = template.replace("player2", data[i]["player2"]["name"])
-            if (data[i]["winner"] == 1) {
-                template = template.replace("p1w", "winner")
-            }
-            if (data[i]["winner"] == 2) {
-                template = template.replace("p2w", "winner")
-            }
-            template = template.replace("cp1", colors[data[i]["player1"]["color"]])
-            template = template.replace("cp2", colors[data[i]["player2"]["color"]])
-            template = template.replace("tm", data[i]["time"])
-            template = template.replace("pt", `${timeSince(data[i]["date"])} geleden`)
-            template = template.replace("oc", `window.open('/history?game=${data.length-data.indexOf(data[i])-1}', '_self');`)
-            $(".games").append(template);
-        })
+        if (i <= data.length) {
+            await $.get('html/game-item.html', function (template) {
+                template = template.replace("player1", data[i]["player1"]["name"])
+                template = template.replace("player2", data[i]["player2"]["name"])
+                if (data[i]["winner"] == 1) {
+                    template = template.replace("p1w", "winner")
+                }
+                if (data[i]["winner"] == 2) {
+                    template = template.replace("p2w", "winner")
+                }
+                template = template.replace("cp1", colors[data[i]["player1"]["color"]])
+                template = template.replace("cp2", colors[data[i]["player2"]["color"]])
+                template = template.replace("tm", data[i]["time"])
+                template = template.replace("pt", `${timeSince(data[i]["date"])} geleden`)
+                template = template.replace("oc", `window.open('/history?game=${data.length-data.indexOf(data[i])-1}', '_self');`)
+                $(".games").append(template);
+            })
+        } else {
+            $(".loadMore").addClass("disabled")
+            $(".loadMore").text("Einde Bereikt")
+        }
     }
 }
 
@@ -93,7 +98,9 @@ $(document).ready(function() {
     refreshInterval = setInterval(refreshFunction, 3000);
 
     $(".loadMore").on("click", function(){
-        amount += 3
-        refreshFunction()
+        if (!$(".loadMore").hasClass("disabled")) {
+            amount += 3
+            refreshFunction()
+        }
     });
 });
