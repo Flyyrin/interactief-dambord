@@ -1,7 +1,8 @@
 import board
 import neopixel 
+import random
 
 pixels = neopixel.NeoPixel(board.D18, 128)
 
-
-pixels[20] = (255,255,255)
+while True:
+    pixels[random.randint(0,128)] = (255,255,255)
