@@ -5,73 +5,25 @@ import neopixel
 
 pixels = neopixel.NeoPixel(board.D18, 128)
 
-r1 = 0
-g1 = 0
-b1 = 0
+Define the start and end RGB values as tuples
+start_rgb = (255, 0, 255)  # Red
+end_rgb = (127, 100, 0)    # Green
 
-r2 = 100
-g2 = 255
-b2 = 255
+# Calculate the maximum difference in any one color channel
+max_diff = max(abs(end_rgb[i] - start_rgb[i]) for i in range(3))
 
+# Define the number of steps in the transition based on the maximum difference
+num_steps = max_diff + 1
 
-def changered(red,speed):
-    global r1, g1, b1
-    if red > r1:
-        for x in range (r1,red):
-            print(f"r: {x}")
-            
-            time.sleep(speed)
-    else:
-        down = r1 - red
-        for x in range (0,down):
-            print(f"r: {r1 - x}")
-            time.sleep(speed)
-    r1 = red
+# Calculate the step size for each color channel
+r_step = (end_rgb[0] - start_rgb[0]) / num_steps
+g_step = (end_rgb[1] - start_rgb[1]) / num_steps
+b_step = (end_rgb[2] - start_rgb[2]) / num_steps
 
-def changegreen(green,speed):
-    global r1, g1, b1
-    if(green > g1):
-            for x in range (g1,green):
-                print(f"g: {x}")
-                time.sleep(speed)
-    else:
-            down = g1 - green
-            for x in range (0,down):
-                print(f"g: {g1 - x}")
-                time.sleep(speed)
-    g1 = green
-
-def changeblue(blue,speed):
-    global r1, g1, b1
-    if(blue > b1):
-            for x in range (b1,blue):
-                print(f"b: {x}")
-                time.sleep(speed)
-    else:
-            down = b1 - blue
-            for x in range (0,down):
-                print(f"b: {b1 - x}")
-                time.sleep(speed)
-    b1 = blue
-
-
-if r2 == r1 or r2 == 0:
-    rx = r1 + 1
-else:
-    rx = abs(r2-r1)
-if g2 == g1 or g2 == 0:
-    gx = g1 + 1
-else:
-    gx = abs(g2-g1)
-if b2 == b1 or b2 == 0:
-    bx = b1 + 1
-else:
-    bx = abs(b2-b1)
-
-rs = 0.8/rx
-gs = 0.8/gx
-bs = 0.8/bx
-
-threading.Thread(target=changered, args=(r2,rs)).start()
-threading.Thread(target=changegreen, args=(g2,gs)).start()
-threading.Thread(target=changeblue, args=(b2,bs)).start()
+# Loop through each step and calculate the new RGB value
+for i in range(num_steps):
+    r = int(start_rgb[0] + (i * r_step))
+    g = int(start_rgb[1] + (i * g_step))
+    b = int(start_rgb[2] + (i * b_step))
+    print(f"Step {i+1}: RGB({r}, {g}, {b})")
+    pixels[0] = (r,g,b)
