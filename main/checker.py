@@ -405,7 +405,7 @@ def setupGame(queue):
     #     color(i, "red")
     # for i in range(32,64):
     #     color(i, "purple")
-    refresh()
+    # refresh()
     while True:
         try:
             data = queue.get()
@@ -446,6 +446,7 @@ def setupGame(queue):
                 elif new_color2 != old_color2:
                     end_rgb = new_color2
                     start_rgb = old_color2
+                print(start_rgb,end_rgb)
 
                 # Calculate the maximum difference in any one color channel
                 max_diff = max(abs(end_rgb[i] - start_rgb[i]) for i in range(3))
@@ -465,13 +466,15 @@ def setupGame(queue):
                     b = int(start_rgb[2] + (i * b_step))
                     print(f"Step {i+1}: RGB({r}, {g}, {b})")
                     pixels[0] = (r,g,b)
+                    pixels.show()
 
                 # for i in range(32):
                 #     color(i, cp1)
                 # for i in range(32,64):
                 #     color(i, cp2)
+                # refresh()
 
-                refresh()
+                
             if data == "stop":
                 for i in range(32):
                     color(i, "red")
