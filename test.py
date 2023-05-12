@@ -1,7 +1,7 @@
 import board
 import neopixel 
 
-pixels = neopixel.NeoPixel(board.D18, 128)
+pixels = neopixel.NeoPixel(board.D18, 128, auto_write=False)
 
 # Define the start and end RGB values as tuples
 start_rgb = (255, 0, 0)  # Red
@@ -24,4 +24,7 @@ for i in range(num_steps):
     g = int(start_rgb[1] + (i * g_step))
     b = int(start_rgb[2] + (i * b_step))
     print(f"Step {i+1}: RGB({r}, {g}, {b})")
-    pixels[0] = (r,g,b)
+    for i in range(64):
+        pixels[i*2] = (r,g,b)
+        pixels[i*2 +1] = (r,g,b)
+    pixels.show()
