@@ -18,7 +18,7 @@ import neopixel
 
 # stel de neopixel library in en  laad de json bestanden in
 # deze json bestanden bevatten de kleuren voor het dambord en de layout voor het dambord met coördinaten
-pixels = neopixel.NeoPixel(board.D18, 128)
+pixels = neopixel.NeoPixel(board.D18, 128, auto_write=False)
 
 with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/config.json') as configFile:
     config = json.load(configFile)
@@ -108,6 +108,7 @@ def refresh():
             pixels[led1] = tile_color
             pixels[led2] = tile_color
     old_board = dict(board)
+    pixels.show()
 
 # functie om de huidige board vakken en kleuren om te zetten naar de dictonary boardData
 def refreshLive():
@@ -147,10 +148,70 @@ def startGame(queue):
             winData["history"] = history
             requests.post(url = URL+"s" , json = winData)
             playing = False
+
+            # for i in range(64):
+            #     color(i, winner)
+
+            if winner == 1:
+                r,g,b = eval(config["colors"][playerData["player1"]["color"]])
+            elif winner == 2:
+                r,g,b = eval(config["colors"][playerData["player2"]["color"]])
+
+            on = []
             for i in range(64):
-                color(i, winner)
-            refresh()
-            exit()
+                on.append(i)
+            
+            while True:
+                if len(on) != 0:
+                    led = random.choice(on)
+                    print(led, on)
+                    on.remove(led)
+                    pixels[led * 2] = (r,g,b)
+                    pixels[led*2+1] = (r,g,b)
+                    pixels.show()
+                    time.sleep(0.01)
+                else: 
+                    time.sleep(0.5)
+                    break
+
+            countDown = True
+            ratio = 1
+            waiting = True
+            while waiting: 
+                if countDown:
+                    ratio = ratio - 0.01
+                else:
+                    ratio = ratio + 0.01
+                for led in range(64):
+                    pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                    pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                if round(ratio, 2) == 0.1:
+                    countDown = False
+                if round(ratio,2) == 1:
+                    countDown = True
+                pixels.show()  
+
+                try:
+                    data = queue.get_nowait()
+                    if data == "stop":
+                        for i in range(32):
+                            color(i, "red")
+                        for i in range(32,64):
+                            color(i, "purple")
+                        refresh()
+                        waiting = False
+                        playing = False
+                        exit()
+                    if data == "exit":
+                        for i in range(64):
+                            color(i, "e")
+                        refresh()
+                        waiting = False
+                        playing = False
+                        exit()
+                except:
+                    pass
+
         player = game.whose_turn()
         controller = readController(player)
 
@@ -324,10 +385,26 @@ def startGame(queue):
 # en wordt het spel hierop aangepast
 # 
 def setupGame(queue):
-    for i in range(32):
-        color(i, "red")
-    for i in range(32,64):
-        color(i, "purple")
+    ratio = 0
+    while True: 
+        ratio = ratio + 0.01
+        for led in range(32):
+            r,g,b = eval(config["colors"]["red"])
+            pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
+            pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
+        for led in range(32,64):
+            r,g,b = eval(config["colors"]["purple"])
+            pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
+            pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
+        
+        if round(ratio,2) == 1:
+            break
+        pixels.show()  
+
+    # for i in range(32):
+    #     color(i, "red")
+    # for i in range(32,64):
+    #     color(i, "purple")
     refresh()
     while True:
         try:
@@ -359,7 +436,11 @@ def setupGame(queue):
             if "color" in data:
                 cp1,cp2 = data.split("|")[1].split("&")
                 color1 = eval(config["colors"][str(cp1)])
-                color2 = eval(config["colors"][str(cp2)])
+                color02 = eval(config["colors"][str(cp2)])
+                old_color1 = pixels[0]
+                old_color2 = pixels[127]
+                print(old_color1,color1)
+                print(old_color2,color2)
                 for i in range(32):
                     color(i, cp1)
                 for i in range(32,64):
