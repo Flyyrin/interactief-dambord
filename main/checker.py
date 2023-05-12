@@ -222,6 +222,37 @@ def startGame(queue):
             moved = True
             controller = "-"
             startup = False
+
+
+            tiles = []
+            for tile in range(64):
+                if tile not in layout["game"].values() or tile in [31,29,27,25,33,35,37,39]:
+                    tiles.append(tile)
+       
+
+
+            print(tiles)
+            ratio = 1
+            while True: 
+                ratio = ratio - 0.01
+                for led in range(32):
+                    if led in tiles:
+                        r,g,b = eval(config["colors"][playerData["player1"]["color"]])
+                        pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                        pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                for led in range(32,64):
+                    if led in tiles:
+                        r,g,b = eval(config["colors"][playerData["player2"]["color"]])
+                        pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                        pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                
+                if round(ratio,2) == 0:
+                    break
+                pixels.show()  
+
+
+
+
         try:
             data = queue.get_nowait()
             if data == "stop":
