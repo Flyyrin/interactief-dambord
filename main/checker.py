@@ -149,9 +149,6 @@ def startGame(queue):
             requests.post(url = URL+"s" , json = winData)
             playing = False
 
-            # for i in range(64):
-            #     color(i, winner)
-
             if winner == 1:
                 r,g,b = eval(config["colors"][playerData["player1"]["color"]])
             elif winner == 2:
@@ -383,7 +380,6 @@ def startGame(queue):
 
 # functie die blijft runnen tijdens het spel. hierin krijgt het dambord de basiskleuren, wordt de informatie zoals speelhulp en AI ontvangen van het start scherm
 # en wordt het spel hierop aangepast
-# 
 def setupGame(queue):
     ratio = 0
     while True: 
@@ -401,11 +397,6 @@ def setupGame(queue):
             break
         pixels.show()  
 
-    # for i in range(32):
-    #     color(i, "red")
-    # for i in range(32,64):
-    #     color(i, "purple")
-    # refresh()
     while True:
         try:
             data = queue.get()
@@ -478,14 +469,7 @@ def setupGame(queue):
                         pixels[led * 2] = end_rgb
                         pixels[led * 2 + 1] = end_rgb
                         pixels.show()
-
-                # for i in range(32):
-                #     color(i, cp1)
-                # for i in range(32,64):
-                #     color(i, cp2)
-                # refresh()
-
-                
+   
             if data == "stop":
                 for i in range(32):
                     color(i, "red")
