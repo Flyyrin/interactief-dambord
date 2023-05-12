@@ -435,16 +435,42 @@ def setupGame(queue):
 
             if "color" in data:
                 cp1,cp2 = data.split("|")[1].split("&")
-                color1 = eval(config["colors"][str(cp1)])
-                color02 = eval(config["colors"][str(cp2)])
+                new_color1 = eval(config["colors"][str(cp1)])
+                new_color2 = eval(config["colors"][str(cp2)])
                 old_color1 = pixels[0]
                 old_color2 = pixels[127]
-                print(old_color1,color1)
-                print(old_color2,color2)
-                for i in range(32):
-                    color(i, cp1)
-                for i in range(32,64):
-                    color(i, cp2)
+
+                if new_color1 != old_color1:
+                    end_rgb = new_color1
+                    start_rgb = old_color1
+                elif new_color2 != old_color2:
+                    end_rgb = new_color2
+                    start_rgb = old_color2
+
+                # Calculate the maximum difference in any one color channel
+                max_diff = max(abs(end_rgb[i] - start_rgb[i]) for i in range(3))
+
+                # Define the number of steps in the transition based on the maximum difference
+                num_steps = max_diff + 1
+
+                # Calculate the step size for each color channel
+                r_step = (end_rgb[0] - start_rgb[0]) / num_steps
+                g_step = (end_rgb[1] - start_rgb[1]) / num_steps
+                b_step = (end_rgb[2] - start_rgb[2]) / num_steps
+
+                # Loop through each step and calculate the new RGB value
+                for i in range(num_steps):
+                    r = int(start_rgb[0] + (i * r_step))
+                    g = int(start_rgb[1] + (i * g_step))
+                    b = int(start_rgb[2] + (i * b_step))
+                    print(f"Step {i+1}: RGB({r}, {g}, {b})")
+                    pixels[0] = (r,g,b)
+
+                # for i in range(32):
+                #     color(i, cp1)
+                # for i in range(32,64):
+                #     color(i, cp2)
+
                 refresh()
             if data == "stop":
                 for i in range(32):
