@@ -161,7 +161,6 @@ def startGame(queue):
             while True:
                 if len(on) != 0:
                     led = random.choice(on)
-                    print(led, on)
                     on.remove(led)
                     pixels[led * 2] = (r,g,b)
                     pixels[led*2+1] = (r,g,b)
@@ -343,7 +342,6 @@ def startGame(queue):
             threading.Thread(target=postNoWait, args=(URL, {"type": "gameData"}, {"gameData": gameData})).start()
      
         if moved:
-            print("er is een move gemaakt")
             moved = False
             historyBoard = {}
             for i in range(64):
@@ -353,12 +351,8 @@ def startGame(queue):
                     player_piece = piece.player
                     if piece.king:
                         player_piece += 2
-                    print(f"{layout['game'][str(piece.position)]} = {player_piece}")
                     historyBoard[layout['game'][str(piece.position)]] = player_piece
-            print(historyBoard)
-            history.append(historyBoard)
-            print(history)
-       
+            history.append(historyBoard)       
         
         if controller:
             for i in range(64):
@@ -426,13 +420,10 @@ def setupGame(queue):
 
             if "color" in data:
                 cp1,cp2 = data.split("|")[1].split("&")
-                print(cp1,cp2)
                 new_color1 = list(eval(config["colors"][str(cp1)]))
                 new_color2 = list(eval(config["colors"][str(cp2)]))
                 old_color1 = pixels[0]
                 old_color2 = pixels[127]
-                print(new_color1 != old_color1, type(new_color1),type(old_color1))
-                print(new_color1,old_color1)
                 if new_color1 != old_color1:
                     end_rgb = new_color1
                     start_rgb = old_color1
@@ -441,7 +432,6 @@ def setupGame(queue):
                     end_rgb = new_color2
                     start_rgb = old_color2
                     led_range = range(32,64)
-                print(start_rgb,end_rgb)
 
                 if led_range: 
                     # Calculate the maximum difference in any one color channel
