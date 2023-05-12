@@ -5,9 +5,9 @@ import neopixel
 
 pixels = neopixel.NeoPixel(board.D18, 128)
 
-Define the start and end RGB values as tuples
-start_rgb = (255, 0, 255)  # Red
-end_rgb = (127, 100, 0)    # Green
+# Define the start and end RGB values as tuples
+start_rgb = (255, 0, 0)  # Red
+end_rgb = (0, 0, 255)    # Green
 
 # Calculate the maximum difference in any one color channel
 max_diff = max(abs(end_rgb[i] - start_rgb[i]) for i in range(3))
