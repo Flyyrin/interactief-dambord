@@ -18,7 +18,7 @@ import neopixel
 
 # stel de neopixel library in en  laad de json bestanden in
 # deze json bestanden bevatten de kleuren voor het dambord en de layout voor het dambord met coördinaten
-pixels = neopixel.NeoPixel(board.D18, 128, auto_write=False)
+pixels = neopixel.NeoPixel(board.D18, 128, auto_write=False,brightness = 0.7)
 
 with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/config.json') as configFile:
     config = json.load(configFile)
@@ -435,38 +435,49 @@ def setupGame(queue):
 
             if "color" in data:
                 cp1,cp2 = data.split("|")[1].split("&")
-                new_color1 = eval(config["colors"][str(cp1)])
-                new_color2 = eval(config["colors"][str(cp2)])
+                print(cp1,cp2)
+                new_color1 = list(eval(config["colors"][str(cp1)]))
+                new_color2 = list(eval(config["colors"][str(cp2)]))
                 old_color1 = pixels[0]
                 old_color2 = pixels[127]
-
+                print(new_color1 != old_color1, type(new_color1),type(old_color1))
+                print(new_color1,old_color1)
                 if new_color1 != old_color1:
                     end_rgb = new_color1
                     start_rgb = old_color1
-                elif new_color2 != old_color2:
+                    led_range = range(32)
+                if new_color2 != old_color2:
                     end_rgb = new_color2
                     start_rgb = old_color2
+                    led_range = range(32,64)
                 print(start_rgb,end_rgb)
 
-                # Calculate the maximum difference in any one color channel
-                max_diff = max(abs(end_rgb[i] - start_rgb[i]) for i in range(3))
+                if led_range: 
+                    # Calculate the maximum difference in any one color channel
+                    max_diff = max(abs(end_rgb[i] - start_rgb[i]) for i in range(3))
 
-                # Define the number of steps in the transition based on the maximum difference
-                num_steps = max_diff + 1
+                    # Define the number of steps in the transition based on the maximum difference
+                    num_steps = max_diff + 1
 
-                # Calculate the step size for each color channel
-                r_step = (end_rgb[0] - start_rgb[0]) / num_steps
-                g_step = (end_rgb[1] - start_rgb[1]) / num_steps
-                b_step = (end_rgb[2] - start_rgb[2]) / num_steps
+                    # Calculate the step size for each color channel
+                    r_step = (end_rgb[0] - start_rgb[0]) / num_steps
+                    g_step = (end_rgb[1] - start_rgb[1]) / num_steps
+                    b_step = (end_rgb[2] - start_rgb[2]) / num_steps
 
-                # Loop through each step and calculate the new RGB value
-                for i in range(num_steps):
-                    r = int(start_rgb[0] + (i * r_step))
-                    g = int(start_rgb[1] + (i * g_step))
-                    b = int(start_rgb[2] + (i * b_step))
-                    print(f"Step {i+1}: RGB({r}, {g}, {b})")
-                    pixels[0] = (r,g,b)
-                    pixels.show()
+                    # Loop through each step and calculate the new RGB value
+                    for i in range(num_steps):
+                        r = int(start_rgb[0] + (i * r_step))
+                        g = int(start_rgb[1] + (i * g_step))
+                        b = int(start_rgb[2] + (i * b_step))
+                        for led in led_range:
+                            pixels[led * 2] = (r,g,b)
+                            pixels[led * 2 + 1] = (r,g,b)
+                        pixels.show()
+
+                    for led in led_range:
+                        pixels[led * 2] = end_rgb
+                        pixels[led * 2 + 1] = end_rgb
+                        pixels.show()
 
                 # for i in range(32):
                 #     color(i, cp1)
