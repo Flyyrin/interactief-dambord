@@ -273,43 +273,96 @@ def startGame(queue):
                 new_color1 = list(eval(config["colors"][str(cp1)]))
                 new_color2 = list(eval(config["colors"][str(cp2)]))
 
+                p1_tiles = []
+                p2_tiles = []
+                p1k_tiles = []
+                p2k_tiles = []
+                h = []
+                e = []
+                c = []
+                p = []
+
+                for tile, color in boardData:
+                    if color == 1:
+                        p1_tiles.append(tile)
+                    elif color == 2:
+                        p2_tiles.append(tile)
+                    elif color == 3:
+                        p1k_tiles.append(tile)
+                    elif color == 4:
+                        p2k_tiles.append(tile)
+                    elif color == "h":
+                        h.append(tile)
+                    elif color == "c":
+                        c.append(tile)
+                    elif color == "p":
+                        p.append(tile)
+                    elif color == "e":
+                        e.append(tile)
                 
-                
-                if new_color1 != old_color1:
-                    end_rgb = new_color1
-                    start_rgb = old_color1
-                    led_range = range(32)
-                if new_color2 != old_color2:
-                    end_rgb = new_color2
-                    start_rgb = old_color2
-                    led_range = range(32,64)
+                # if new_color1 != old_color1:
+                #     end_rgb = new_color1
+                #     start_rgb = old_color1
+                #     led_range = range(32)
+                # if new_color2 != old_color2:
+                #     end_rgb = new_color2
+                #     start_rgb = old_color2
+                #     led_range = range(32,64)
 
-                if led_range: 
-                    # Calculate the maximum difference in any one color channel
-                    max_diff = max(abs(end_rgb[i] - start_rgb[i]) for i in range(3))
+                # if led_range: 
+                #     # Calculate the maximum difference in any one color channel
+                #     max_diff = max(abs(end_rgb[i] - start_rgb[i]) for i in range(3))
 
-                    # Define the number of steps in the transition based on the maximum difference
-                    num_steps = max_diff + 1
+                #     # Define the number of steps in the transition based on the maximum difference
+                #     num_steps = max_diff + 1
 
-                    # Calculate the step size for each color channel
-                    r_step = (end_rgb[0] - start_rgb[0]) / num_steps
-                    g_step = (end_rgb[1] - start_rgb[1]) / num_steps
-                    b_step = (end_rgb[2] - start_rgb[2]) / num_steps
+                #     # Calculate the step size for each color channel
+                #     r_step = (end_rgb[0] - start_rgb[0]) / num_steps
+                #     g_step = (end_rgb[1] - start_rgb[1]) / num_steps
+                #     b_step = (end_rgb[2] - start_rgb[2]) / num_steps
 
-                    # Loop through each step and calculate the new RGB value
-                    for i in range(num_steps):
-                        r = int(start_rgb[0] + (i * r_step))
-                        g = int(start_rgb[1] + (i * g_step))
-                        b = int(start_rgb[2] + (i * b_step))
-                        for led in led_range:
-                            pixels[led * 2] = (r,g,b)
-                            pixels[led * 2 + 1] = (r,g,b)
-                        pixels.show()
+                #     # Loop through each step and calculate the new RGB value
+                #     for i in range(num_steps):
+                #         r = int(start_rgb[0] + (i * r_step))
+                #         g = int(start_rgb[1] + (i * g_step))
+                #         b = int(start_rgb[2] + (i * b_step))
+                #         for led in led_range:
+                #             pixels[led * 2] = (r,g,b)
+                #             pixels[led * 2 + 1] = (r,g,b)
+                #         pixels.show()
 
-                    for led in led_range:
-                        pixels[led * 2] = end_rgb
-                        pixels[led * 2 + 1] = end_rgb
-                        pixels.show()
+                #     for led in led_range:
+                #         pixels[led * 2] = end_rgb
+                #         pixels[led * 2 + 1] = end_rgb
+                #         pixels.show()
+
+      
+                # Calculate the maximum difference in any one color channel
+                max_diff = max(abs(new_color1[i] - old_color1[i]) for i in range(3))
+
+                # Define the number of steps in the transition based on the maximum difference
+                num_steps = max_diff + 1
+
+                # Calculate the step size for each color channel
+                r_step = (new_color1[0] - old_color1[0]) / num_steps
+                g_step = (new_color1[1] - old_color1[1]) / num_steps
+                b_step = (new_color1[2] - old_color1[2]) / num_steps
+
+                # Loop through each step and calculate the new RGB value
+                for i in range(num_steps):
+                    r = int(old_color1[0] + (i * r_step))
+                    g = int(old_color1[1] + (i * g_step))
+                    b = int(old_color1[2] + (i * b_step))
+                    for led in p1_tiles:
+                        pixels[led * 2] = (r,g,b)
+                        pixels[led * 2 + 1] = (r,g,b)
+                    pixels.show()
+
+                for led in p1_tiles:
+                    pixels[led * 2] = new_color1
+                    pixels[led * 2 + 1] = new_color1
+                    pixels.show()
+
 
 
 
