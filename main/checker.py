@@ -119,6 +119,40 @@ def refreshLive():
     for tile, color in board.items():
         boardData[tile] = color
 
+def fade(tiles):
+    old_color = pixels[tiles[0]]
+    for tile in tiles:
+        if tile <= 32:
+            new_color = eval(config["colors"]["red"])
+        elif tile <= 64:
+            new_color = eval(config["colors"]["purple"])
+    print(old_color, new_color)
+    # Calculate the maximum difference in any one color channel
+    max_diff = max(abs(new_color[i] - old_color[i]) for i in range(3))
+
+    # Define the number of steps in the transition based on the maximum difference
+    num_steps = max_diff + 1
+
+    # Calculate the step size for each color channel
+    r_step = (new_color[0] - old_color[0]) / num_steps
+    g_step = (new_color[1] - old_color[1]) / num_steps
+    b_step = (new_color[2] - old_color[2]) / num_steps
+
+    # Loop through each step and calculate the new RGB value
+    for i in range(num_steps):
+        r = int(old_color[0] + (i * r_step))
+        g = int(old_color[1] + (i * g_step))
+        b = int(old_color[2] + (i * b_step))
+        for led in tiles:
+            pixels[led * 2] = (r,g,b)
+            pixels[led * 2 + 1] = (r,g,b)
+        pixels.show()
+
+    for led in tiles:
+        pixels[led * 2] = new_color
+        pixels[led * 2 + 1] = new_color
+        pixels.show()
+
 # functie om de game te starten, hierin wordt alle informatie doorgeven die gekozen en aangepast is door de speler(s)
 # deze informatie bestaat uit of de speler assists wil, of de speler
 def startGame(queue):
@@ -235,8 +269,6 @@ def startGame(queue):
                     tiles.append(tile)
        
 
-
-            print(tiles)
             ratio = 1
             while True: 
                 ratio = ratio - 0.01
@@ -259,19 +291,15 @@ def startGame(queue):
 
 
         try:
+            print("k")
             data = queue.get_nowait()
+            print("k")
             if data == "stop":
                 # for i in range(32):
                 #     color(i, "red")
                 # for i in range(32,64):
                 #     color(i, "purple")
                 # refresh()
-                
-                # old_color1 = list(eval(config["colors"][str(cp1)]))
-                # old_color2 = list(eval(config["colors"][str(cp2)]))
-                # cp1,cp2 = "red","purple"
-                # new_color1 = list(eval(config["colors"][str(cp1)]))
-                # new_color2 = list(eval(config["colors"][str(cp2)]))
 
                 p1_tiles = []
                 p2_tiles = []
@@ -282,24 +310,62 @@ def startGame(queue):
                 c = []
                 p = []
 
-                for tile, color in boardData:
-                    if color == 1:
-                        p1_tiles.append(tile)
-                    elif color == 2:
-                        p2_tiles.append(tile)
-                    elif color == 3:
-                        p1k_tiles.append(tile)
-                    elif color == 4:
-                        p2k_tiles.append(tile)
-                    elif color == "h":
-                        h.append(tile)
-                    elif color == "c":
-                        c.append(tile)
-                    elif color == "p":
-                        p.append(tile)
-                    elif color == "e":
-                        e.append(tile)
+                if len(boardData)!= 0:
+                    for tile, color in boardData.items():
+                        if color == 1:
+                            p1_tiles.append(tile)
+                        elif color == 2:
+                            p2_tiles.append(tile)
+                        elif color == 3:
+                            p1k_tiles.append(tile)
+                        elif color == 4:
+                            p2k_tiles.append(tile)
+                        elif color == "h":
+                            h.append(tile)
+                        elif color == "c":
+                            c.append(tile)
+                        elif color == "p":
+                            p.append(tile)
+                        elif color == "e":
+                            e.append(tile)
+
+                if len(p1_tiles)!= 0:
+                    fade(p1_tiles)
+                if len(p2_tiles)!= 0:
+                    fade(p2_tiles)
+                if len(p1k_tiles)!= 0:
+                    fade(p1k_tiles)
+                if len(p2k_tiles)!= 0:
+                    fade(p2k_tiles)
+                if len(h)!= 0:
+                    fade(h)
+                if len(p)!= 0:
+                    fade(p)
+                if len(c)!= 0:
+                    fade(c)
+
+                if len(e)!= 0:
+                    ratio = 0
+                    while True: 
+                        ratio = ratio + 0.01
+                        for led in e:
+                            r,g,b = eval(config["colors"]["red"])
+                            pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                            pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                        for led in e:
+                            r,g,b = eval(config["colors"]["purple"])
+                            pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                            pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
+                        
+                        if round(ratio,2) == 1:
+                            break
+                        pixels.show()  
                 
+                # old_color1 = list(eval(config["colors"][str(cp1)]))
+                # old_color2 = list(eval(config["colors"][str(cp2)]))
+                # cp1,cp2 = "red","purple"
+                # new_color1 = list(eval(config["colors"][str(cp1)]))
+                # new_color2 = list(eval(config["colors"][str(cp2)]))
                 # if new_color1 != old_color1:
                 #     end_rgb = new_color1
                 #     start_rgb = old_color1
@@ -336,69 +402,6 @@ def startGame(queue):
                 #         pixels[led * 2 + 1] = end_rgb
                 #         pixels.show()
 
-                def fade(tiles):
-                    old_color = pixels[tiles[0]]
-                    for tile in tiles:
-                        if tile <= 32:
-                            new_color = eval(config["colors"]["red"])
-                        elif tile <= 64:
-                            new_color = eval(config["colors"]["purple"])
-                    # Calculate the maximum difference in any one color channel
-                    max_diff = max(abs(new_color[i] - old_color[i]) for i in range(3))
-
-                    # Define the number of steps in the transition based on the maximum difference
-                    num_steps = max_diff + 1
-
-                    # Calculate the step size for each color channel
-                    r_step = (new_color[0] - old_color[0]) / num_steps
-                    g_step = (new_color[1] - old_color[1]) / num_steps
-                    b_step = (new_color[2] - old_color[2]) / num_steps
-
-                    # Loop through each step and calculate the new RGB value
-                    for i in range(num_steps):
-                        r = int(old_color[0] + (i * r_step))
-                        g = int(old_color[1] + (i * g_step))
-                        b = int(old_color[2] + (i * b_step))
-                        for led in tiles:
-                            pixels[led * 2] = (r,g,b)
-                            pixels[led * 2 + 1] = (r,g,b)
-                        pixels.show()
-
-                    for led in tiles:
-                        pixels[led * 2] = new_color
-                        pixels[led * 2 + 1] = new_color
-                        pixels.show()
-
-                if len(p1_tiles)!= 0:
-                    fade(p1_tiles)
-                if len(p2_tiles)!= 0:
-                    fade(p2_tiles)
-                if len(p1k_tiles)!= 0:
-                    fade(p1k_tiles)
-                if len(p2k_tiles)!= 0:
-                    fade(p2k_tiles)
-                if len(h)!= 0:
-                    fade(h)
-                if len(p)!= 0:
-                    fade(p)
-                fade(c)
-
-                ratio = 0
-                while True: 
-                    ratio = ratio + 0.01
-                    for led in e:
-                        r,g,b = eval(config["colors"]["red"])
-                        pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
-                        pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
-                    for led in e:
-                        r,g,b = eval(config["colors"]["purple"])
-                        pixels[led * 2] = (round(r*ratio),round(g*ratio),round(b*ratio))
-                        pixels[led*2+1] = (round(r*ratio),round(g*ratio),round(b*ratio))
-                    
-                    if round(ratio,2) == 1:
-                        break
-                    pixels.show()  
-
                 playing = False
                 exit()
             if data == "exit":
@@ -407,8 +410,8 @@ def startGame(queue):
                 refresh()
                 playing = False
                 exit()
-        except:
-            pass
+        except Exception as error:
+            print(str(error))
 
         pieces = []
         player1pieces = []
@@ -631,7 +634,14 @@ def setupGame(queue):
                         pixels.show()
    
             if data == "stop":
+                # for i in range(32):
+                #     color(i, "red")
+                # for i in range(32,64):
+                #     color(i, "purple")
+                # refresh()
+                playing = False
                 exit()
+
             if data == "exit":
                 ratio = 1
                 while True: 
