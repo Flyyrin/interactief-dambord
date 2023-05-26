@@ -26,3 +26,7 @@ if __name__ == '__main__':
         pass
     finally:
         GPIO.cleanup()
+
+# git clone https://github.com/lucsmall/VirtualWire.git
+# cd VirtualWire
+# sudo python setup.py install
