@@ -1,32 +1,27 @@
 import time
-import RPi.GPIO as GPIO
-import virtualwire
+from pyRH_ASK import RH_ASK
 
-# Raspberry Pi pin connected to the receiver data pin
-RX_PIN = 18
+# Raspberry Pi pin connected to the receiver
+RX_PIN = 27
 
-def setup():
-    # Initialize the virtual wire library
-    GPIO.setmode(GPIO.BCM)
-    vw = virtualwire.VirtualWire(RX_PIN, 2000)  # Transmission rate in bits per second
-    vw.begin()
-    vw.enableTransmit(False)  # Set to False for receiving
+# Create an instance of the RH_ASK driver
+driver = RH_ASK.RH_ASK()
 
-def loop():
-    while True:
-        message = virtualwire.getMessage()  # Wait for a message to be received
-        if message:
-            print("Received key:", chr(message[0]))
+if not driver.init():
+    print("RF module initialization failed.")
+    exit(1)
 
-if __name__ == '__main__':
-    try:
-        setup()
-        loop()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        GPIO.cleanup()
+while True:
+    if driver.available():
+        received_data = ""
+        received_data_len = 0
+        buf = []
+        while driver.available():
+            buf.append(chr(driver.recv()))
+            received_data_len += 1
+            if received_data_len >= 32:  # Limit the received data size
+                break
 
-# git clone https://github.com/lucsmall/VirtualWire.git
-# cd VirtualWire
-# sudo python setup.py install
+        received_data = ''.join(buf)
+        print("Received data:", received_data)
+    time.sleep(1)
