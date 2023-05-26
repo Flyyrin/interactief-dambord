@@ -1,21 +1,39 @@
 import time
-import rpi_rf
+import RPi.GPIO as GPIO
+import subprocess
 
-# GPIO pin connected to the receiver
-RX_PIN = 27
+PIN = 27  # GPIO pin connected to the data pin of RF receiver
 
-# Create an instance of the RF device
-rf_device = rpi_rf.RFDevice(RX_PIN)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(PIN, GPIO.IN)
 
-# Enable the RF device
-rf_device.enable_rx()
+def receive_code():
+    code = 0
+    
+    while GPIO.input(PIN) == 1:
+        pass
+    
+    # Wait for the start bit
+    while GPIO.input(PIN) == 0:
+        pass
+    
+    # Read the received bits
+    for i in range(0, 16):
+        while GPIO.input(PIN) == 1:
+            pass
+        code <<= 1
+        if GPIO.input(PIN) == 0:
+            code |= 1
+        while GPIO.input(PIN) == 0:
+            pass
+    
+    return code
 
-while True:
-    if rf_device.rx_code_timestamp != None:
-        received_data = rf_device.rx_code
-        print("Received data:", received_data)
-        rf_device.reset()
-
-    time.sleep(0.01)
-
-rf_device.cleanup()
+try:
+    while True:
+        received_code = receive_code()
+        print("Received code:", received_code)
+        # Do something with the received code
+        
+except KeyboardInterrupt:
+    GPIO.cleanup()
