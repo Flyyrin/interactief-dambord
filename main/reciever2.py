@@ -1,27 +1,21 @@
 import time
-from pyRH_ASK import RH_ASK
+import rpi_rf
 
-# Raspberry Pi pin connected to the receiver
+# GPIO pin connected to the receiver
 RX_PIN = 27
 
-# Create an instance of the RH_ASK driver
-driver = RH_ASK.RH_ASK()
+# Create an instance of the RF device
+rf_device = rpi_rf.RFDevice(RX_PIN)
 
-if not driver.init():
-    print("RF module initialization failed.")
-    exit(1)
+# Enable the RF device
+rf_device.enable_rx()
 
 while True:
-    if driver.available():
-        received_data = ""
-        received_data_len = 0
-        buf = []
-        while driver.available():
-            buf.append(chr(driver.recv()))
-            received_data_len += 1
-            if received_data_len >= 32:  # Limit the received data size
-                break
-
-        received_data = ''.join(buf)
+    if rf_device.rx_code_timestamp != None:
+        received_data = rf_device.rx_code
         print("Received data:", received_data)
-    time.sleep(1)
+        rf_device.reset()
+
+    time.sleep(0.01)
+
+rf_device.cleanup()
