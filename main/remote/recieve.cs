@@ -17,6 +17,5 @@ void loop() {
   if (driver.recv(buf, &buflen)) {  
     Serial.print("Received: ");
     Serial.println((char *)buf);
-    driver.resetAvailable();
   }
 }
