@@ -1,19 +1,22 @@
-#include <RCSwitch.h>
+#include <RH_ASK.h>
+#include <SPI.h>
 
-RCSwitch mySwitch = RCSwitch();
+RH_ASK driver;
 
 void setup() {
   Serial.begin(9600);     // Initialize serial communication for debugging
-  mySwitch.enableReceive(2);  // Set the RF receiver pin
+  if (!driver.init()) {
+    Serial.println("RadioHead initialization failed");
+  }
 }
 
 void loop() {
-  if (mySwitch.available()) {
-    uint32_t receivedValue = mySwitch.getReceivedValue();  // Get the received value
-    if (receivedValue != 0) {
-      Serial.print("Received: ");
-      Serial.println((char *)&receivedValue);  // Print the received data
-    }
-    mySwitch.resetAvailable();
+  uint8_t buf[RH_ASK_MAX_MESSAGE_LEN];  // Buffer to hold received data
+  uint8_t buflen = sizeof(buf);  // Length of received data buffer
+
+  if (driver.recv(buf, &buflen)) {  // Check if data is received
+    Serial.print("Received: ");
+    Serial.println((char *)buf);  // Print the received data
+    driver.resetAvailable();
   }
 }
