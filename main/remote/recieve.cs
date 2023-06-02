@@ -15,7 +15,6 @@ void loop() {
   uint8_t buflen = sizeof(buf);
 
   if (driver.recv(buf, &buflen)) {  
-    Serial.print("Received: ");
     Serial.println((char *)buf);
   }
 }

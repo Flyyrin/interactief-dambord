@@ -17,22 +17,21 @@ bool button_pressed = false;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(up, INPUT);
-  pinMode(down, INPUT);
-  pinMode(left, INPUT);
-  pinMode(right, INPUT);
-  pinMode(button, INPUT);
+  pinMode(up, INPUT_PULLUP);
+  pinMode(down, INPUT_PULLUP);
+  pinMode(left, INPUT_PULLUP);
+  pinMode(right, INPUT_PULLUP);
+  pinMode(button, INPUT_PULLUP);
   if (!driver.init()) {
     Serial.println("initialization failed");
   }
 }
 
 void loop() {
-
-  if (digitalRead(up) == HIGH) {
+  if (digitalRead(up) == LOW) {
     if (up_pressed == false) {
       up_pressed = true;
-      char data[] = "up";
+      char data[] = "1_up";
       driver.send((uint8_t *)data, strlen(data));
       driver.waitPacketSent();
     }
@@ -40,10 +39,10 @@ void loop() {
     up_pressed = false;
   }
 
-  if (digitalRead(down) == HIGH) {
+  if (digitalRead(down) == LOW) {
     if (down_pressed == false) {
       down_pressed = true;
-      char data[] = "down";
+      char data[] = "1_down";
       driver.send((uint8_t *)data, strlen(data));
       driver.waitPacketSent();
     }
@@ -51,10 +50,10 @@ void loop() {
     down_pressed = false;
   }
 
-  if (digitalRead(left) == HIGH) {
+  if (digitalRead(left) == LOW) {
     if (left_pressed == false) {
       left_pressed = true;
-      char data[] = "left";
+      char data[] = "1_left";
       driver.send((uint8_t *)data, strlen(data));
       driver.waitPacketSent();
     }
@@ -62,10 +61,10 @@ void loop() {
     left_pressed = false;
   }
 
-  if (digitalRead(right) == HIGH) {
+  if (digitalRead(right) == LOW) {
     if (right_pressed == false) {
       right_pressed = true;
-      char data[] = "right";
+      char data[] = "1_right";
       driver.send((uint8_t *)data, strlen(data));
       driver.waitPacketSent();
     }
@@ -73,15 +72,14 @@ void loop() {
     right_pressed = false;
   }
 
-  if (digitalRead(left) == HIGH) {
+  if (digitalRead(button) == LOW) {
     if (button_pressed == false) {
       button_pressed = true;
-      char data[] = "button";
+      char data[] = "1_press";
       driver.send((uint8_t *)data, strlen(data));
       driver.waitPacketSent();
     }
   } else {
     button_pressed = false;
   }
-
 }
