@@ -15,6 +15,10 @@ import datetime
 import random
 import board
 import neopixel 
+import serial
+
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+ser.reset_input_buffer()
 
 # stel de neopixel library in en  laad de json bestanden in
 # deze json bestanden bevatten de kleuren voor het dambord en de layout voor het dambord met coördinaten
@@ -214,7 +218,8 @@ def startGame(queue):
                     pass
 
         player = game.whose_turn()
-        controller = readController(player)
+        print(player)
+        controller = readController(serial, player)
 
         if startup:
             gameData["playing"] = game.whose_turn()
