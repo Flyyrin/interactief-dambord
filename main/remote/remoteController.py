@@ -13,3 +13,6 @@ def readController(player):
 
         if player == command_player:
             return command
+
+while True:
+    readController(1)
