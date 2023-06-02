@@ -214,7 +214,7 @@ def startGame(queue):
                     pass
 
         player = game.whose_turn()
-        controller1 = readController(player)
+        controller = readController(player)
 
         if startup:
             gameData["playing"] = game.whose_turn()
@@ -225,7 +225,7 @@ def startGame(queue):
             gameData["board"] = boardData
             requests.post(url = URL, params = {"type": "gameData"}, json = {"gameData": gameData})
             moved = True
-            controller1 = "-"
+            controller = "-"
             startup = False
 
 
@@ -301,29 +301,29 @@ def startGame(queue):
             else:
                 move = random.choice(game.get_possible_moves())
             time.sleep(3)
-            controller1 = "-"
+            controller = "-"
             game.move(move)
             moved = True
         else:
-            if controller1 == "up":
+            if controller == "up":
                 if highlighted["y"] < 7:
                     highlighted["y"] += 1
 
-            if controller1 == "down":
+            if controller == "down":
                 if 0 < highlighted["y"]:
                     highlighted["y"] -= 1
 
-            if controller1 == "left":
+            if controller == "left":
                 if 0 < highlighted["x"]:
                     highlighted["x"] -= 1
 
-            if controller1 == "right":
+            if controller == "right":
                 if highlighted["x"] < 7:
                     highlighted["x"] += 1
 
             highlighted_tile = layout["board"][f"({highlighted['x']},{highlighted['y']})"]
 
-            if controller1 == "press":
+            if controller == "press":
                 if highlighted_tile in layout["game"].values():
                     allowed = False
                     new_selected = int([k for k, v in layout["game"].items() if v == highlighted_tile][0])
@@ -393,7 +393,7 @@ def startGame(queue):
                     historyBoard[layout['game'][str(piece.position)]] = player_piece
             history.append(historyBoard)       
         
-        if controller1:
+        if controller:
             for i in range(64):
                 color(i, "e")
             for piece in game.board.pieces:
