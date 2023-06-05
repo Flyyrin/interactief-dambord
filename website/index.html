@@ -560,9 +560,20 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-7">
-                        <div class="image-wrapper">
-                            <img src="images/schema.png" alt="Schema" usemap="#schema-map">
-                            <map name="schema-map" id="schema-map">
+                        <div class="image-wrapper image-simple">
+                            <img src="images/schema-simpel.png" alt="Schema" usemap="#schema-map-simple">
+                            <map name="schema-map-simple" id="schema-map-simple">
+                                <area alt="Rasberry Pi" title="Rasberry Pi" href="#rpi" coords="678,32,1557,585" shape="rect">
+                                <area alt="NeoPixel WS2812B" title="NeoPixel WS2812B" href="#led" coords="816,1127,-1,977" shape="rect">
+                                <area alt="Arcade Joystick" title="Arcade Joystick" href="#joystick" coords="1730,1760,2302,1348" shape="rect">
+                                <area alt="Arcade Joystick" title="Arcade Joystick" href="#joystick" coords="1726,1287,2302,880" shape="rect">
+                                <area alt="Arcade Button" title="Arcade Button" href="#joystick" coords="670,1594,137" shape="circle">
+                                <area alt="Arcade Button" title="Arcade Button" href="#joystick" coords="668,1306,136" shape="circle">
+                            </map>
+                        </div>
+                        <div class="image-wrapper image-hard">
+                            <img src="images/schema-hard.png" alt="Schema" usemap="#schema-map-hard">
+                            <map name="schema-map-hard" id="schema-map-hard">
                                 <area alt="Rasberry Pi" title="Rasberry Pi" href="#rpi" coords="678,32,1557,585" shape="rect">
                                 <area alt="NeoPixel WS2812B" title="NeoPixel WS2812B" href="#led" coords="816,1127,-1,977" shape="rect">
                                 <area alt="Arcade Joystick" title="Arcade Joystick" href="#joystick" coords="1730,1760,2302,1348" shape="rect">
@@ -573,6 +584,10 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg">
+                        <div class="col-lg-12 col-md-12 col-sm-12 align-center bs-section-btn p-0 m-0">
+                            <button type="button" class="btn btn-primary display-4 simple active">Simpel</button>
+                            <button type="button" class="btn btn-primary display-4 hard">Uitgebreid </button>
+                        </div>
                         <div class="text-wrapper">
                             <p class="bs-text bs-fonts-style display-7">Alles is logisch en overzichtelijk aangesloten om ervoor te zorgen dat de draden van de joysticks niet in de war raken.</p>
                         </div>
@@ -869,6 +884,7 @@
         <script src="https://cdn.pythonanywhere.com/imageMapResizer.js"></script>   
         <script src="https://cdn.pythonanywhere.com/formoid.js"></script>  
         <script src="scripts/resizeMap.js"></script> 
+        <script src="scripts/scheme.js"></script>  
         <script src="scripts/code.js"></script>  
         <script src="scripts/collapse.js"></script>  
         <script src="scripts/time.js"></script>  

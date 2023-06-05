@@ -1,3 +1,4 @@
 $(document).ready(function() {
-    $('#schema-map').imageMapResize();
+    $('#schema-map-hard').imageMapResize();
+    $('#schema-map-simple').imageMapResize();
 });
