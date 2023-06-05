@@ -134,6 +134,7 @@ def startGame(queue):
     global playerData
     global difficult
     global cp1,cp2
+    global ser
 
     start_time = datetime.datetime.now()
     game = Game()
@@ -218,8 +219,7 @@ def startGame(queue):
                     pass
 
         player = game.whose_turn()
-        print(player)
-        controller = readController(serial, player)
+        controller = readController(ser, player)
 
         if startup:
             gameData["playing"] = game.whose_turn()
