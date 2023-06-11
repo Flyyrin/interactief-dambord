@@ -1,12 +1,12 @@
 $(document).ready(function() {
-    $(".image-hard").hide()
+    $(".image-hard").hide();
 
     $(".simple").on("click", function(){
         if (!$(this).hasClass("active")) {
             $(this).siblings().removeClass("active")
             $(this).addClass("active")
-            $(".image-hard").hide()
-            $(".image-simple").show()
+            $(".image-hard").hide();
+            $(".image-simple").show();
         }
     });
 
@@ -14,8 +14,8 @@ $(document).ready(function() {
         if (!$(this).hasClass("active")) {
             $(this).siblings().removeClass("active")
             $(this).addClass("active")
-            $(".image-simple").hide()
-            $(".image-hard").show()
+            $(".image-simple").hide();
+            $(".image-hard").show();
         }
     });
 });
