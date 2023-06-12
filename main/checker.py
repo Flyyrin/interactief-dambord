@@ -15,14 +15,10 @@ import datetime
 import random
 import board
 import neopixel 
-import serial
-
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-ser.reset_input_buffer()
 
 # stel de neopixel library in en  laad de json bestanden in
 # deze json bestanden bevatten de kleuren voor het dambord en de layout voor het dambord met coördinaten
-pixels = neopixel.NeoPixel(board.D19, 128, auto_write=False,brightness = 0.7)
+pixels = neopixel.NeoPixel(board.D18, 128, auto_write=False,brightness = 0.7)
 
 with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/config.json') as configFile:
     config = json.load(configFile)
@@ -219,7 +215,7 @@ def startGame(queue):
                     pass
 
         player = game.whose_turn()
-        controller = readController(ser, player)
+        controller = readController(player)
 
         if startup:
             gameData["playing"] = game.whose_turn()

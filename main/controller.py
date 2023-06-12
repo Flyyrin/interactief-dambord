@@ -7,15 +7,15 @@ from gpiozero import Button
 import time
 
 # defineer alle knoppen en variabelen
-joystick_onder1 = Button(24, pull_up = 0)
-joystick_boven1 = Button(23, pull_up = 0)
-joystick_links1 = Button(22, pull_up = 0)
-joystick_rechts1 = Button(27, pull_up = 0)
+joystick_onder1 = Button(22, pull_up = 0)
+joystick_boven1 = Button(27, pull_up = 0)
+joystick_links1 = Button(23, pull_up = 0)
+joystick_rechts1 = Button(24, pull_up = 0)
 joystick_button1 = Button(4, pull_up = 0)
-joystick_onder2 = Button(18, pull_up = 0)
-joystick_boven2 = Button(17, pull_up = 0)
-joystick_links2 = Button(21, pull_up = 0)
-joystick_rechts2 = Button(20, pull_up = 0)
+joystick_onder2 = Button(21, pull_up = 0)
+joystick_boven2 = Button(20, pull_up = 0)
+joystick_links2 = Button(17, pull_up = 0)
+joystick_rechts2 = Button(13, pull_up = 0)
 joystick_button2 = Button(25, pull_up = 0)
 joystick_boven1_pressed = False
 joystick_onder1_pressed = False
@@ -125,8 +125,3 @@ def readController(player):
                 return "press"
         else:
             joystick_button2_pressed = False
-
-
-while True:
-    print("1",readController(1))
-    print("2",readController(2))
