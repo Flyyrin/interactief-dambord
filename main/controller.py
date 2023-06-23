@@ -6,12 +6,13 @@ Bestand gebruikt om de 2 joysticks en knoppen mee af te lezen en hun waarde door
 from gpiozero import Button
 import time
 
+
 # defineer alle knoppen en variabelen
 joystick_onder1 = Button(22, pull_up = 0)
 joystick_boven1 = Button(27, pull_up = 0)
 joystick_links1 = Button(23, pull_up = 0)
 joystick_rechts1 = Button(24, pull_up = 0)
-joystick_button1 = Button(4, pull_up = 0)
+joystick_button1 = Button(5, pull_up = 0)
 joystick_onder2 = Button(21, pull_up = 0)
 joystick_boven2 = Button(20, pull_up = 0)
 joystick_links2 = Button(17, pull_up = 0)

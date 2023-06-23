@@ -45,5 +45,5 @@ def startWebInterface(queue):
     # start de webInterface in full screen modus en geef de Api class mee
     requests.post(url = URL, params = {"type": "stop"})
     api = Api()
-    window = webview.create_window('Start', os.path.join(os.getcwd(), "/home/rpi/Documents/GIP-2022-2023/main/webInterface/start.html"), js_api=api, fullscreen=True)
+    window = webview.create_window('Start', os.path.join(os.getcwd(), "/home/rpi/Documenten/GIP-2022-2023/main/webInterface/start.html"), js_api=api, fullscreen=True)
     webview.start()

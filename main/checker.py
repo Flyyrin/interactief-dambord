@@ -20,10 +20,10 @@ import neopixel
 # deze json bestanden bevatten de kleuren voor het dambord en de layout voor het dambord met coördinaten
 pixels = neopixel.NeoPixel(board.D18, 128, auto_write=False,brightness = 0.7)
 
-with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/config.json') as configFile:
+with open(r'/home/rpi/Documenten/GIP-2022-2023/main/json/config.json') as configFile:
     config = json.load(configFile)
 
-with open(r'/home/rpi/Documents/GIP-2022-2023/main/json/layout.json') as layoutFile:
+with open(r'/home/rpi/Documenten/GIP-2022-2023/main/json/layout.json') as layoutFile:
     layout = json.load(layoutFile)
 
 # aanmaken van benodigden variabelen
@@ -130,7 +130,7 @@ def startGame(queue):
     global playerData
     global difficult
     global cp1,cp2
-    global ser
+    print("start in functie")
 
     start_time = datetime.datetime.now()
     game = Game()
@@ -158,7 +158,7 @@ def startGame(queue):
                 r,g,b = eval(config["colors"][playerData["player1"]["color"]])
             elif winner == 2:
                 r,g,b = eval(config["colors"][playerData["player2"]["color"]])
-
+            print("start in 1")
             on = []
             for i in range(64):
                 on.append(i)
@@ -253,6 +253,8 @@ def startGame(queue):
                 if round(ratio,2) == 0:
                     break
                 pixels.show()  
+
+                print("fade")
 
         try:
             data = queue.get_nowait()
@@ -457,6 +459,7 @@ def setupGame(queue):
                     difficult = True
                 if difficult_ai == "false":
                     difficult = False
+                print("voor start")
                 startGame(queue)
 
             if "color" in data:
@@ -531,8 +534,11 @@ def setupGame(queue):
                 exit()
         except:
             pass
+try:
 
-queue = Queue()
-gameThread = threading.Thread(target=setupGame, args=(queue,))
-gameThread.start()
-startWebInterface(queue)
+    queue = Queue()
+    gameThread = threading.Thread(target=setupGame, args=(queue,))
+    gameThread.start()
+    startWebInterface(queue)
+except Exception as e:
+    print(e, " erroor")
