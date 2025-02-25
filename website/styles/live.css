@@ -1,91 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
 
-html, body {
-    background-color: rgb(90, 90, 90) !important;
-	height: 100%;
-    font-family: 'Roboto', sans-serif !important;
-	overflow: hidden;
+html,
+body {
+  background-color: rgb(90, 90, 90) !important;
+  height: 100%;
+  font-family: "Roboto", sans-serif !important;
+  overflow: hidden;
 }
 
 .time {
-	font-size: 2rem;
+  font-size: 2rem;
 }
 
 .playertag {
-	font-size: 4rem;
+  font-size: 4rem;
 }
 
 .playing {
-	-webkit-text-stroke: 0.15rem white;
+  text-decoration: underline;
 }
 
 .pieces {
-	font-size: 2rem;
-	color: white;
+  font-size: 2rem;
+  color: white;
 }
 
 .oponent-piece {
-	color: black
+  color: black;
 }
 
 .red {
-	background-color: #fc4c4f;
+  background-color: #fc4c4f;
 }
 
 .blue {
-	background-color: #4fa3fc;
+  background-color: #4fa3fc;
 }
 
 .yellow {
-	background-color: #ECD13F;
+  background-color: #ecd13f;
 }
 
 .green {
-	background-color: #4bec3f;
+  background-color: #4bec3f;
 }
 
 .purple {
-	background-color: #cf3fec;
+  background-color: #cf3fec;
 }
 
 .red-text {
-	color: #fc4c4f;
+  color: #fc4c4f;
 }
 
 .blue-text {
-	color: #4fa3fc;
+  color: #4fa3fc;
 }
 
 .yellow-text {
-	color: #ECD13F;
+  color: #ecd13f;
 }
 
 .green-text {
-	color: #4bec3f;
+  color: #4bec3f;
 }
 
 .purple-text {
-	color: #cf3fec;
+  color: #cf3fec;
 }
 
 .black-text-shadow {
-	text-shadow: 0px 5px 15px #000000;
+  text-shadow: 0px 5px 15px #000000;
 }
 
 .light-text-shadow {
-	text-shadow: 0px 5px 15px #0000006c;
+  text-shadow: 0px 5px 15px #0000006c;
 }
 
 .black-shadow {
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .back {
-	position: fixed;
-	top: 2rem;
-	left: 3rem;
-	font-size: 2rem !important;
-	color: white !important;
-	cursor: pointer;
-	z-index: 999;
+  position: fixed;
+  top: 2rem;
+  left: 3rem;
+  font-size: 2rem !important;
+  color: white !important;
+  cursor: pointer;
+  z-index: 999;
 }
