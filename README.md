@@ -21,7 +21,7 @@ Welkom bij ons eindproject voor GIP: een digitaal dambord bestuurd via joysticks
 - **Flask** als framework voor de API
 - **WS2812b Ledstrip** voor visuele feedback
 
-  ## :file_folder: Mappenstructuur
+## :file_folder: Mappenstructuur
 - `main/` – Code voor bordbesturing en webinterface
 - `server/` – Backend/servercode (API)
 - `website/` – Root van de frontend website
